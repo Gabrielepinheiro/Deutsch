@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapagram — Base (tudo-em-um) · Revisão de Alemão</title>
+  <style>
+  /* =====================================================================
+     MAPAGRAM — Base visual para revisão de Alemão (CSS embutido)
+     Folha A4 horizontal · barra lateral pautada de 5 cm
+     Este arquivo é AUTÔNOMO: abre sozinho, sem pasta css/.
+     Imprimir: Ctrl/Cmd+P → A4 → Paisagem → marcar "Gráficos de plano de fundo".
+     ===================================================================== */
+  :root {
+    --tinta:#1f2933; --tinta-suave:#52606d; --linha:#c7d0d9;
+    --papel:#fff; --papel-suave:#f7f9fb;
+    --azul:#2f6db5;    --azul-bg:#e8f1fb;
+    --vermelho:#c0392b;--vermelho-bg:#fdecea;
+    --verde:#2e7d54;   --verde-bg:#e7f5ee;
+    --amarelo:#b7791f; --amarelo-bg:#fdf3e0;
+    --roxo:#6b4ca8;    --roxo-bg:#efeafb;
+    --cinza:#52606d;   --cinza-bg:#eef1f4;
+    --raio:10px; --sidebar-larg:50mm; --pauta-altura:8.5mm;
+  }
+  @page { size: A4 landscape; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body {
+    margin:0; padding:0; background:#e2e8ee;
+    font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif; color:var(--tinta);
+  }
+  .folha {
+    position:relative; width:297mm; height:210mm; background:var(--papel);
+    overflow:hidden; display:grid; grid-template-columns:var(--sidebar-larg) 1fr;
+    margin:12mm auto; box-shadow:0 6px 24px rgba(31,41,51,.18);
+  }
+  /* ---- Barra lateral 5 cm pautada ---- */
+  .sidebar {
+    position:relative; width:var(--sidebar-larg); height:210mm;
+    padding:14mm 5mm 8mm 6mm; border-right:1.5px solid var(--linha);
+    background:repeating-linear-gradient(to bottom,
+      transparent 0, transparent calc(var(--pauta-altura) - 1px),
+      var(--linha) calc(var(--pauta-altura) - 1px), var(--linha) var(--pauta-altura));
+    background-position:0 14mm;
+  }
+  .sidebar__titulo {
+    position:absolute; top:5mm; left:6mm; right:5mm; font-size:9pt; font-weight:700;
+    letter-spacing:.12em; text-transform:uppercase; color:var(--tinta-suave);
+    background:var(--papel); padding-bottom:2mm;
+  }
+  .sidebar::after {
+    content:""; position:absolute; top:0; bottom:0; right:7mm; width:1px;
+    background:rgba(192,57,43,.25);
+  }
+  /* ---- Área principal ---- */
+  .main {
+    position:relative; display:flex; flex-direction:column; height:210mm;
+    background-image:radial-gradient(var(--linha) .6px, transparent .6px);
+    background-size:6mm 6mm; background-position:6mm 6mm;
+  }
+  .header {
+    display:flex; align-items:flex-end; justify-content:space-between; gap:8mm;
+    padding:7mm 10mm 5mm; background:linear-gradient(to bottom,var(--papel) 70%,transparent);
+  }
+  .header__bloco-titulo { min-width:0; }
+  .header__eyebrow { font-size:9pt; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--azul); }
+  .header__titulo { margin:1mm 0 0; font-size:24pt; font-weight:800; line-height:1.05; color:var(--tinta); }
+  .header__subtitulo { margin:1.5mm 0 0; font-size:11pt; font-weight:400; color:var(--tinta-suave); }
+  .meta { flex-shrink:0; display:flex; flex-direction:column; gap:2mm; text-align:right; font-size:8.5pt; color:var(--tinta-suave); }
+  .meta__item { display:flex; gap:4mm; justify-content:flex-end; }
+  .meta__rotulo { font-weight:700; text-transform:uppercase; letter-spacing:.08em; }
+  .meta__valor { min-width:24mm; border-bottom:1px solid var(--linha); text-align:left; padding:0 1mm .5mm; }
+  .canvas { position:relative; flex:1; padding:2mm 10mm 6mm; overflow:hidden; }
+  .footer { display:flex; align-items:center; justify-content:space-between; padding:3mm 10mm 5mm; font-size:8pt; color:var(--tinta-suave); }
+  .footer__legenda { display:flex; gap:6mm; flex-wrap:wrap; }
+  .footer__pagina { font-weight:700; }
+  /* ---- Componentes ---- */
+  .node { display:inline-block; padding:3mm 4mm; border:1.5px solid var(--linha); border-radius:var(--raio); background:var(--papel); box-shadow:0 2px 6px rgba(31,41,51,.07); }
+  .node__titulo { margin:0 0 1.5mm; font-size:11pt; font-weight:700; }
+  .node__corpo { margin:0; font-size:9.5pt; line-height:1.4; color:var(--tinta-suave); }
+  .node--hub { display:block; text-align:center; border-width:2.5px; padding:4mm 6mm; }
+  .node--hub .node__titulo { font-size:14pt; }
+  .t-azul{border-color:var(--azul);background:var(--azul-bg);} .t-azul .node__titulo{color:var(--azul);}
+  .t-vermelho{border-color:var(--vermelho);background:var(--vermelho-bg);} .t-vermelho .node__titulo{color:var(--vermelho);}
+  .t-verde{border-color:var(--verde);background:var(--verde-bg);} .t-verde .node__titulo{color:var(--verde);}
+  .t-amarelo{border-color:var(--amarelo);background:var(--amarelo-bg);} .t-amarelo .node__titulo{color:var(--amarelo);}
+  .t-roxo{border-color:var(--roxo);background:var(--roxo-bg);} .t-roxo .node__titulo{color:var(--roxo);}
+  .t-cinza{border-color:var(--cinza);background:var(--cinza-bg);}
+  .chip { display:inline-block; padding:.8mm 2.5mm; border-radius:999px; font-size:8pt; font-weight:700; background:var(--cinza-bg); color:var(--tinta-suave); }
+  .de { font-weight:700; } .de--der{color:var(--azul);} .de--die{color:var(--vermelho);} .de--das{color:var(--verde);}
+  .arrow { align-self:center; font-size:16pt; color:var(--tinta-suave); padding:0 1mm; }
+  .fill {
+    border:1.5px dashed var(--linha); border-radius:var(--raio);
+    background:repeating-linear-gradient(to bottom,
+      transparent 0, transparent calc(var(--pauta-altura) - 1px),
+      var(--linha) calc(var(--pauta-altura) - 1px), var(--linha) var(--pauta-altura));
+    min-height:25mm;
+  }
+  .fill__rotulo { display:block; font-size:8pt; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--tinta-suave); padding:1.5mm 2mm; background:var(--papel); border-bottom:1px solid var(--linha); border-radius:var(--raio) var(--raio) 0 0; }
+  .row{display:flex;gap:6mm;align-items:stretch;} .col{display:flex;flex-direction:column;gap:6mm;}
+  .wrap{flex-wrap:wrap;} .center{justify-content:center;align-items:center;} .grow{flex:1;}
+  .gap-sm{gap:3mm;} .gap-lg{gap:10mm;}
+  @media print {
+    html, body { background:#fff; }
+    .folha { margin:0; box-shadow:none; page-break-after:always; }
+  }
+  </style>
+</head>
+<body>
+
+  <section class="folha">
+    <!-- BARRA LATERAL ESQUERDA · 5 cm pautada -->
+    <aside class="sidebar">
+      <div class="sidebar__titulo">Anotações</div>
+    </aside>
+
+    <!-- ÁREA PRINCIPAL · o mapagram -->
+    <div class="main">
+      <header class="header">
+        <div class="header__bloco-titulo">
+          <div class="header__eyebrow">Deutsch · Revisão</div>
+          <h1 class="header__titulo">Título do Tópico</h1>
+          <p class="header__subtitulo">Subtítulo ou foco da página</p>
+        </div>
+        <div class="meta">
+          <div class="meta__item"><span class="meta__rotulo">Tema</span><span class="meta__valor">&nbsp;</span></div>
+          <div class="meta__item"><span class="meta__rotulo">Nível</span><span class="meta__valor">&nbsp;</span></div>
+          <div class="meta__item"><span class="meta__rotulo">Data</span><span class="meta__valor">&nbsp;</span></div>
+        </div>
+      </header>
+
+      <div class="canvas">
+        <!-- ===== Exemplo (apague ao usar) ===== -->
+        <div class="col center" style="height:100%; gap:10mm;">
+          <div class="node node--hub t-azul" style="max-width:120mm;">
+            <p class="node__titulo">Conceito central</p>
+            <p class="node__corpo">Ideia principal do mapagram vai aqui.</p>
+          </div>
+          <div class="arrow">↓</div>
+          <div class="row center wrap" style="gap:8mm;">
+            <div class="node t-verde" style="width:70mm;">
+              <p class="node__titulo">Ramo 1</p>
+              <p class="node__corpo">Regra, exemplo ou conjugação.</p>
+            </div>
+            <div class="node t-amarelo" style="width:70mm;">
+              <p class="node__titulo">Ramo 2</p>
+              <p class="node__corpo">Outra parte do conteúdo.</p>
+            </div>
+            <div class="node t-roxo" style="width:70mm;">
+              <p class="node__titulo">Ramo 3</p>
+              <p class="node__corpo">Mais um ponto da revisão.</p>
+            </div>
+          </div>
+          <div class="fill" style="width:160mm;">
+            <span class="fill__rotulo">Pratique aqui</span>
+          </div>
+        </div>
+        <!-- ===== fim do exemplo ===== -->
+      </div>
+
+      <footer class="footer">
+        <div class="footer__legenda">
+          <span><span class="de de--der">der</span> masc.</span>
+          <span><span class="de de--die">die</span> fem.</span>
+          <span><span class="de de--das">das</span> neutro</span>
+        </div>
+        <div class="footer__pagina">Mapagram · Deutsch</div>
+      </footer>
+    </div>
+  </section>
+
+</body>
+</html>
