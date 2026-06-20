@@ -1,0 +1,320 @@
+/* =====================================================================
+   MAPAGRAM — Base visual para revisão de Alemão
+   Folha A4 horizontal (paisagem) · barra lateral pautada de 5 cm
+   ---------------------------------------------------------------------
+   Como usar:
+   1. Copie um arquivo da série (ex.: template-base.html).
+   2. Preencha o conteúdo dentro de .canvas com blocos .node / .arrow.
+   3. Abra no navegador e imprima (Ctrl/Cmd + P):
+        - Tamanho: A4
+        - Orientação: Paisagem (Landscape)
+        - Margens: Nenhuma / Padrão
+        - Marque "Gráficos de plano de fundo" (Background graphics)
+        - Salvar como PDF
+   ===================================================================== */
+
+/* ---------- Paleta e variáveis ---------- */
+:root {
+  --tinta:        #1f2933;  /* texto principal      */
+  --tinta-suave:  #52606d;  /* texto secundário     */
+  --linha:        #c7d0d9;  /* pautas / contornos   */
+  --papel:        #ffffff;
+  --papel-suave:  #f7f9fb;
+
+  /* Cores temáticas (gêneros, casos, categorias) */
+  --azul:    #2f6db5;   --azul-bg:    #e8f1fb;
+  --vermelho:#c0392b;   --vermelho-bg:#fdecea;
+  --verde:   #2e7d54;   --verde-bg:   #e7f5ee;
+  --amarelo: #b7791f;   --amarelo-bg: #fdf3e0;
+  --roxo:    #6b4ca8;   --roxo-bg:    #efeafb;
+  --cinza:   #52606d;   --cinza-bg:   #eef1f4;
+
+  --raio: 10px;
+  --sidebar-larg: 50mm;     /* 5 cm exatos */
+  --pauta-altura: 8.5mm;    /* espaçamento das linhas para escrever */
+}
+
+/* ---------- Definição da página A4 paisagem ---------- */
+@page {
+  size: A4 landscape;
+  margin: 0;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #e2e8ee;            /* fundo da "mesa" só na tela */
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: var(--tinta);
+}
+
+/* ---------- A folha ---------- */
+.folha {
+  position: relative;
+  width: 297mm;
+  height: 210mm;
+  background: var(--papel);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: var(--sidebar-larg) 1fr;
+  /* sombra/realce apenas na tela; some na impressão */
+  margin: 12mm auto;
+  box-shadow: 0 6px 24px rgba(31, 41, 51, 0.18);
+}
+
+/* ===================================================================
+   BARRA LATERAL ESQUERDA — 5 cm pautada (topo ao rodapé)
+   =================================================================== */
+.sidebar {
+  position: relative;
+  width: var(--sidebar-larg);
+  height: 210mm;
+  padding: 14mm 5mm 8mm 6mm;
+  border-right: 1.5px solid var(--linha);
+  background:
+    /* pautas horizontais para escrever */
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(var(--pauta-altura) - 1px),
+      var(--linha) calc(var(--pauta-altura) - 1px),
+      var(--linha) var(--pauta-altura)
+    );
+  background-position: 0 14mm;     /* começa abaixo do rótulo */
+}
+
+.sidebar__titulo {
+  position: absolute;
+  top: 5mm;
+  left: 6mm;
+  right: 5mm;
+  font-size: 9pt;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--tinta-suave);
+  background: var(--papel);
+  padding-bottom: 2mm;
+}
+
+/* margem vermelha vertical opcional (estilo caderno) */
+.sidebar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 7mm;
+  width: 1px;
+  background: rgba(192, 57, 43, 0.25);
+}
+
+/* ===================================================================
+   ÁREA PRINCIPAL — o mapagram
+   =================================================================== */
+.main {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 210mm;
+  /* malha de pontos suave para guiar o desenho do diagrama */
+  background-image: radial-gradient(var(--linha) 0.6px, transparent 0.6px);
+  background-size: 6mm 6mm;
+  background-position: 6mm 6mm;
+}
+
+/* Cabeçalho do mapagram */
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8mm;
+  padding: 7mm 10mm 5mm;
+  background: linear-gradient(to bottom, var(--papel) 70%, transparent);
+}
+
+.header__bloco-titulo { min-width: 0; }
+
+.header__eyebrow {
+  font-size: 9pt;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--azul);
+}
+
+.header__titulo {
+  margin: 1mm 0 0;
+  font-size: 24pt;
+  font-weight: 800;
+  line-height: 1.05;
+  color: var(--tinta);
+}
+
+.header__subtitulo {
+  margin: 1.5mm 0 0;
+  font-size: 11pt;
+  font-weight: 400;
+  color: var(--tinta-suave);
+}
+
+/* Metadados à direita (tema, nível, data) */
+.meta {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
+  text-align: right;
+  font-size: 8.5pt;
+  color: var(--tinta-suave);
+}
+.meta__item { display: flex; gap: 4mm; justify-content: flex-end; }
+.meta__rotulo { font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+.meta__valor {
+  min-width: 24mm;
+  border-bottom: 1px solid var(--linha);
+  text-align: left;
+  padding: 0 1mm 0.5mm;
+}
+
+/* Tela onde o diagrama é montado */
+.canvas {
+  position: relative;
+  flex: 1;
+  padding: 2mm 10mm 6mm;
+  overflow: hidden;
+}
+
+/* Rodapé */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3mm 10mm 5mm;
+  font-size: 8pt;
+  color: var(--tinta-suave);
+}
+.footer__legenda { display: flex; gap: 6mm; flex-wrap: wrap; }
+.footer__pagina { font-weight: 700; }
+
+/* ===================================================================
+   COMPONENTES DO MAPAGRAM (blocos reutilizáveis)
+   =================================================================== */
+
+/* NÓ / caixa de conceito */
+.node {
+  display: inline-block;
+  padding: 3mm 4mm;
+  border: 1.5px solid var(--linha);
+  border-radius: var(--raio);
+  background: var(--papel);
+  box-shadow: 0 2px 6px rgba(31, 41, 51, 0.07);
+}
+.node__titulo {
+  margin: 0 0 1.5mm;
+  font-size: 11pt;
+  font-weight: 700;
+}
+.node__corpo {
+  margin: 0;
+  font-size: 9.5pt;
+  line-height: 1.4;
+  color: var(--tinta-suave);
+}
+
+/* Nó central / destaque */
+.node--hub {
+  display: block;
+  text-align: center;
+  border-width: 2.5px;
+  padding: 4mm 6mm;
+}
+.node--hub .node__titulo { font-size: 14pt; }
+
+/* Variações de cor (combine com o tema da revisão) */
+.t-azul    { border-color: var(--azul);     background: var(--azul-bg); }
+.t-azul    .node__titulo { color: var(--azul); }
+.t-vermelho{ border-color: var(--vermelho); background: var(--vermelho-bg); }
+.t-vermelho .node__titulo { color: var(--vermelho); }
+.t-verde   { border-color: var(--verde);    background: var(--verde-bg); }
+.t-verde   .node__titulo { color: var(--verde); }
+.t-amarelo { border-color: var(--amarelo);  background: var(--amarelo-bg); }
+.t-amarelo .node__titulo { color: var(--amarelo); }
+.t-roxo    { border-color: var(--roxo);     background: var(--roxo-bg); }
+.t-roxo    .node__titulo { color: var(--roxo); }
+.t-cinza   { border-color: var(--cinza);    background: var(--cinza-bg); }
+
+/* Chip / etiqueta pequena */
+.chip {
+  display: inline-block;
+  padding: 0.8mm 2.5mm;
+  border-radius: 999px;
+  font-size: 8pt;
+  font-weight: 700;
+  background: var(--cinza-bg);
+  color: var(--tinta-suave);
+}
+
+/* Pílula de palavra-chave em alemão */
+.de {
+  font-weight: 700;
+}
+.de--der { color: var(--azul); }       /* masculino  */
+.de--die { color: var(--vermelho); }   /* feminino   */
+.de--das { color: var(--verde); }      /* neutro     */
+
+/* Conector simples (seta) — use entre nós em layout flex */
+.arrow {
+  align-self: center;
+  font-size: 16pt;
+  color: var(--tinta-suave);
+  padding: 0 1mm;
+}
+
+/* Caixa "campo em branco" para preencher à mão */
+.fill {
+  border: 1.5px dashed var(--linha);
+  border-radius: var(--raio);
+  background: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(var(--pauta-altura) - 1px),
+      var(--linha) calc(var(--pauta-altura) - 1px),
+      var(--linha) var(--pauta-altura)
+  );
+  min-height: 25mm;
+}
+.fill__rotulo {
+  display: block;
+  font-size: 8pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--tinta-suave);
+  padding: 1.5mm 2mm;
+  background: var(--papel);
+  border-bottom: 1px solid var(--linha);
+  border-radius: var(--raio) var(--raio) 0 0;
+}
+
+/* Utilitários simples de layout para montar a tela */
+.row  { display: flex; gap: 6mm; align-items: stretch; }
+.col  { display: flex; flex-direction: column; gap: 6mm; }
+.wrap { flex-wrap: wrap; }
+.center { justify-content: center; align-items: center; }
+.grow { flex: 1; }
+.gap-sm { gap: 3mm; }
+.gap-lg { gap: 10mm; }
+
+/* ===================================================================
+   IMPRESSÃO — limpa a "mesa" e remove sombras
+   =================================================================== */
+@media print {
+  html, body { background: #fff; }
+  .folha {
+    margin: 0;
+    box-shadow: none;
+    page-break-after: always;
+  }
+}
