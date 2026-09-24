@@ -1,0 +1,329 @@
+<title>Link na Bio da Arquiteta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper: #E9ECE6;
+    --sheet: #F6F7F3;
+    --ink: #1E2420;
+    --ink-2: #58625B;
+    --line: #B7BFB8;
+    --grid: rgba(61, 91, 72, .07);
+    --accent: #3D5B48;
+    --accent-ink: #F4F6F2;
+    --accent-soft: #DCE5DE;
+    --mark: #A8792A;
+    --display: "Syne", "Avenir Next", "Segoe UI", sans-serif;
+    --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #111412; --sheet: #191D1A; --ink: #E3E7E1; --ink-2: #9BA59D;
+      --line: #3A433D; --grid: rgba(143, 181, 156, .06); --accent: #8FB59C;
+      --accent-ink: #0F1411; --accent-soft: #24302A; --mark: #D6AE5E;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #111412; --sheet: #191D1A; --ink: #E3E7E1; --ink-2: #9BA59D;
+    --line: #3A433D; --grid: rgba(143, 181, 156, .06); --accent: #8FB59C;
+    --accent-ink: #0F1411; --accent-soft: #24302A; --mark: #D6AE5E;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    font: 16px/1.6 var(--body);
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 24px 24px;
+    padding-inline: 16px;
+    padding-block: 40px 64px;
+  }
+  a { color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--mark); outline-offset: 3px; }
+  .pagina { max-width: 1040px; margin: 0 auto; display: grid; gap: 72px; }
+
+  .label {
+    font: 500 11.5px/1.3 var(--mono);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(32px, 5.2vw, 52px); line-height: 1.05; letter-spacing: -.02em; }
+  h2 { font-size: clamp(24px, 3.2vw, 32px); line-height: 1.15; letter-spacing: -.01em; }
+  h3 { font-size: 18px; line-height: 1.3; }
+  p { margin: 0; }
+  .texto { max-width: 64ch; display: grid; gap: 14px; }
+  .secao { display: grid; gap: 24px; }
+  .secao > header { display: grid; gap: 8px; }
+  .muted { color: var(--ink-2); }
+
+  /* ---------- Abertura com o protótipo ---------- */
+  .abertura {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 48px;
+    align-items: center;
+  }
+  .abertura .texto { gap: 18px; }
+  .lead { font-size: 19px; line-height: 1.5; }
+  .aviso {
+    font-size: 14px; color: var(--ink-2);
+    padding: 12px 14px; border-left: 2px solid var(--mark); background: var(--sheet);
+  }
+  .celular {
+    width: 390px; max-width: 100%;
+    display: grid; gap: 10px; justify-items: center;
+  }
+  .celular .moldura {
+    width: 100%;
+    border: 1px solid var(--ink);
+    background: var(--sheet);
+    padding: 10px;
+    position: relative;
+  }
+  .celular iframe { display: block; width: 100%; height: 720px; border: 0; background: var(--paper); }
+  .cota-h {
+    width: 100%;
+    display: grid; grid-template-columns: auto 1fr auto 1fr auto; align-items: center; gap: 8px;
+    font: 500 11px var(--mono); color: var(--mark);
+  }
+  .cota-h i { display: block; height: 1px; background: var(--mark); }
+  .cota-h b { width: 1px; height: 12px; background: var(--mark); }
+
+  /* ---------- Princípios ---------- */
+  .principios { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .principios li { background: var(--sheet); padding: 20px; display: grid; gap: 8px; align-content: start; }
+  .principios p { color: var(--ink-2); font-size: 15px; }
+
+  /* ---------- Inspirar x copiar ---------- */
+  .duas { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .coluna { padding: 22px; border: 1px solid var(--line); background: var(--sheet); display: grid; gap: 12px; align-content: start; }
+  .coluna ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+  .coluna.sim { border-top: 3px solid var(--accent); }
+  .coluna.nao { border-top: 3px solid var(--mark); }
+
+  /* ---------- Tabelas ---------- */
+  .tabela { overflow-x: auto; border: 1px solid var(--line); background: var(--sheet); }
+  table { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 15px; }
+  th, td { text-align: left; vertical-align: top; padding: 12px 16px; border-bottom: 1px solid var(--line); }
+  th { font: 500 11.5px/1.3 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); background: var(--paper); }
+  tr:last-child td { border-bottom: 0; }
+  td strong { font-weight: 600; }
+  td.destaque { color: var(--accent); font-weight: 600; }
+
+  /* ---------- Diferenciais ---------- */
+  .diferenciais { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px 40px; }
+  .diferenciais article { display: grid; gap: 8px; align-content: start; padding-top: 14px; border-top: 1px solid var(--ink); }
+  .diferenciais p { color: var(--ink-2); }
+  .balao {
+    font: 13px/1.5 var(--mono); white-space: pre-wrap;
+    background: var(--accent-soft); padding: 12px 14px; color: var(--ink);
+  }
+
+  /* ---------- Passos ---------- */
+  .passos { list-style: none; counter-reset: passo; margin: 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .passos li {
+    counter-increment: passo;
+    display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 16px;
+    padding-block: 18px; border-bottom: 1px solid var(--line);
+  }
+  .passos li::before { content: counter(passo, decimal-leading-zero); font: 500 14px/1.6 var(--mono); color: var(--mark); }
+  .passos li div { display: grid; gap: 4px; }
+  .passos p { color: var(--ink-2); }
+  code { font: 13.5px var(--mono); background: var(--sheet); border: 1px solid var(--line); padding: 1px 5px; }
+
+  .fontes { font-size: 14px; color: var(--ink-2); display: grid; gap: 6px; }
+  .fontes ul { margin: 0; padding-left: 18px; }
+
+  @media (max-width: 860px) {
+    .abertura { grid-template-columns: 1fr; gap: 32px; }
+    .celular { justify-self: center; }
+    .celular iframe { height: 680px; }
+  }
+</style>
+
+<main class="pagina">
+
+  <!-- ===================== ABERTURA ===================== -->
+  <section class="abertura">
+    <div class="texto">
+      <div class="label">Estudo · link na bio · arquitetura de interiores</div>
+      <h1>Um link na bio que conduz a decisão</h1>
+      <p class="lead">O modelo da Leticia Vaz troca a lista de botões por uma conversa curta que termina numa indicação. Aqui está a lógica por trás dele e uma versão pensada do zero para quem vende projeto de interiores e consultoria.</p>
+      <p>O protótipo ao lado já funciona: responda as perguntas e veja a indicação, o motivo e o botão que abre o WhatsApp com o briefing preenchido.</p>
+      <p class="aviso">A rede deste ambiente bloqueou o acesso à página da Leticia. A análise usa a descrição pública do LinkCommerce (a plataforma por trás da página dela) e pode diferir em detalhes do perfil específico.</p>
+      <p><a href="prototipo.html" target="_blank" rel="noopener">Abrir o protótipo em tela cheia ↗</a></p>
+    </div>
+    <figure class="celular" style="margin:0">
+      <div class="cota-h" aria-hidden="true"><b></b><i></i><span>390 px</span><i></i><b></b></div>
+      <div class="moldura">
+        <iframe src="prototipo.html" title="Protótipo do link na bio: Diagnóstico do Espaço" loading="eager"></iframe>
+      </div>
+      <figcaption class="label">Protótipo interativo · dados de exemplo</figcaption>
+    </figure>
+  </section>
+
+  <!-- ===================== ANÁLISE ===================== -->
+  <section class="secao" id="analise">
+    <header>
+      <div class="label">1 · Análise</div>
+      <h2>Por que o modelo dela é inteligente</h2>
+    </header>
+    <div class="texto">
+      <p>Um link na bio comum empilha opções. Quanto mais botões, mais a pessoa trava e sai sem clicar em nada. O LinkCommerce faz o contrário: faz de 3 a 5 perguntas rápidas, entende o momento de quem chegou, cruza as respostas com o catálogo e mostra uma recomendação com explicação e um botão de compra.</p>
+    </div>
+    <ul class="principios">
+      <li><span class="label">Princípio</span><h3>Pergunta antes de oferecer</h3><p>A página começa pela necessidade da visitante, não pela vitrine. Ela se sente atendida, e não diante de um cardápio.</p></li>
+      <li><span class="label">Princípio</span><h3>Poucas perguntas, sem digitar</h3><p>Três a cinco toques. Cada pergunta muda a resposta final; nenhuma está ali só para coletar dados.</p></li>
+      <li><span class="label">Princípio</span><h3>Uma indicação, com motivo</h3><p>Em vez de dez opções, uma. O "porque este" transforma recomendação em confiança.</p></li>
+      <li><span class="label">Princípio</span><h3>Um próximo passo claro</h3><p>Logo abaixo da indicação há um único botão de ação. Nada compete com ele.</p></li>
+      <li><span class="label">Princípio</span><h3>A lógica fica escondida</h3><p>Por trás existe um mapa de respostas para ofertas. A visitante só vê a conversa.</p></li>
+    </ul>
+  </section>
+
+  <!-- ===================== INSPIRAR x COPIAR ===================== -->
+  <section class="secao" id="etica">
+    <header>
+      <div class="label">2 · Inspiração sem cópia</div>
+      <h2>O que é princípio e o que é dela</h2>
+    </header>
+    <div class="texto">
+      <p>Seu cuidado faz sentido. A boa notícia é que a parte inteligente do modelo é um padrão de mercado que ninguém possui: quizzes de diagnóstico existem em skincare, em seguros, em cursos. O que pertence à Leticia é a forma como ela o executou.</p>
+    </div>
+    <div class="duas">
+      <div class="coluna sim">
+        <h3>Pode usar à vontade</h3>
+        <ul>
+          <li>A ideia de perguntar antes de oferecer</li>
+          <li>Recomendação personalizada com justificativa</li>
+          <li>Um botão de ação por resultado</li>
+          <li>Links diretos como plano B para quem já sabe o que quer</li>
+        </ul>
+      </div>
+      <div class="coluna nao">
+        <h3>Deixe com ela</h3>
+        <ul>
+          <li>Textos, títulos e perguntas dela</li>
+          <li>Identidade visual: cores, fontes, fotos, layout</li>
+          <li>Nome dos produtos e a ordem das telas</li>
+        </ul>
+        <p class="muted">Sua versão nasce de outro lugar: das perguntas que você já faz na primeira reunião de briefing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SUA VERSÃO ===================== -->
+  <section class="secao" id="versao">
+    <header>
+      <div class="label">3 · Sua versão</div>
+      <h2>Diagnóstico do Espaço</h2>
+    </header>
+    <div class="texto">
+      <p>Ela vende produtos: a pessoa decide e compra ali mesmo. Você vende serviço consultivo, com ticket mais alto e decisão mais lenta. Por isso a sua versão não fecha a venda na página. Ela indica o formato certo e leva a cliente para a conversa já qualificada.</p>
+    </div>
+    <div class="tabela">
+      <table>
+        <thead><tr><th>Aspecto</th><th>Modelo de produtos</th><th>Sua versão</th></tr></thead>
+        <tbody>
+          <tr><td><strong>O que indica</strong></td><td>Um produto do catálogo</td><td>Um serviço e o formato: presencial ou online</td></tr>
+          <tr><td><strong>Onde converte</strong></td><td>Botão de compra</td><td>WhatsApp com as respostas já escritas na mensagem</td></tr>
+          <tr><td><strong>Quem não está pronta</strong></td><td>Sai sem comprar</td><td>Recebe um guia gratuito e entra na sua lista</td></tr>
+          <tr><td><strong>Linguagem visual</strong></td><td>Loja</td><td>Prancha técnica: folhas numeradas, linha de cota como barra de progresso, carimbo com o resumo</td></tr>
+          <tr><td><strong>Portas de entrada</strong></td><td>Produtos</td><td>Desde antes da compra do imóvel até a casa pronta</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===================== LÓGICA ===================== -->
+  <section class="secao" id="logica">
+    <header>
+      <div class="label">4 · A lógica por trás</div>
+      <h2>Quatro perguntas, cinco caminhos</h2>
+    </header>
+    <div class="texto">
+      <p>As perguntas são: <strong>momento</strong> (vai comprar, pegou as chaves, já mora, só se inspirando), <strong>tamanho da mudança</strong> (casa inteira, um ou dois ambientes, ajustes), <strong>participação</strong> (quer que alguém cuide de tudo, quer direção e executa, não sabe) e <strong>local</strong> (sua região ou outra cidade). Quem responde "só me inspirando" pula direto para o resultado.</p>
+    </div>
+    <div class="tabela">
+      <table>
+        <thead><tr><th>Se a pessoa…</th><th>Indicação principal</th><th>Também pode fazer sentido</th></tr></thead>
+        <tbody>
+          <tr><td>Está só se inspirando</td><td class="destaque">Guia gratuito</td><td>Consultoria</td></tr>
+          <tr><td>Ainda vai comprar ou alugar</td><td class="destaque">Consultoria de Compra de Imóvel</td><td>Projeto (casa ou ambiente)</td></tr>
+          <tr><td>Quer direção e executar, ou só ajustes</td><td class="destaque">Consultoria Olhar de Arquiteta</td><td>Projeto (casa ou ambiente)</td></tr>
+          <tr><td>Quer tudo resolvido na casa inteira</td><td class="destaque">Projeto de Interiores Completo</td><td>Consultoria</td></tr>
+          <tr><td>Quer tudo resolvido em 1 ou 2 ambientes</td><td class="destaque">Projeto de Ambiente</td><td>Consultoria</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted texto">Os ajustes finos viram notas no resultado: imóvel em outra cidade explica como funciona o atendimento online, e "ainda não sei" avisa que a primeira conversa serve justamente para escolher.</p>
+  </section>
+
+  <!-- ===================== DIFERENCIAIS ===================== -->
+  <section class="secao" id="diferenciais">
+    <header>
+      <div class="label">5 · O que só uma arquiteta faria</div>
+      <h2>Detalhes que tornam a sua versão própria</h2>
+    </header>
+    <div class="diferenciais">
+      <article>
+        <h3>A cliente chega com o briefing pronto</h3>
+        <p>O botão final abre o WhatsApp com esta mensagem já escrita. Você sabe quem é, o que quer e qual serviço viu antes de responder o primeiro "oi".</p>
+        <div class="balao">Olá, Gabriele! Fiz o diagnóstico no seu link da bio.
+
+• Peguei as chaves ou vou reformar
+• Um ou dois ambientes
+• Quero que alguém cuide de tudo
+• Na minha região
+
+Indicação: Projeto de Ambiente. Quero saber como funciona.</div>
+      </article>
+      <article>
+        <h3>Uma porta antes da concorrência</h3>
+        <p>A Consultoria de Compra atende quem ainda está escolhendo o imóvel, bem antes de procurar arquiteto. Com o valor abatido se ela fechar o projeto em até 60 dias, a primeira venda puxa a segunda.</p>
+      </article>
+      <article>
+        <h3>Uma escada de serviços</h3>
+        <p>Guia gratuito, consultoria, projeto de ambiente, projeto completo. Cada degrau tem um lugar no diagnóstico, então ninguém sai da página sem um próximo passo, nem quem só estava olhando.</p>
+      </article>
+      <article>
+        <h3>A linguagem da sua profissão</h3>
+        <p>As perguntas aparecem como folhas numeradas, o progresso é uma linha de cota e o resultado fecha com um carimbo de prancha. O visual vem do seu ofício, não de um modelo de loja.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== COMO COLOCAR NO AR ===================== -->
+  <section class="secao" id="no-ar">
+    <header>
+      <div class="label">6 · Do protótipo ao ar</div>
+      <h2>Como colocar no seu perfil</h2>
+    </header>
+    <ol class="passos">
+      <li><div><h3>Ajuste serviços, prazos e preços</h3><p>Tudo fica no bloco <code>SERVICOS</code> do arquivo <code>prototipo.html</code>. Troque os valores de exemplo pelos seus e renomeie os serviços do seu jeito.</p></div></li>
+      <li><div><h3>Preencha seus dados</h3><p>No bloco <code>CONFIG</code>: nome, cidade, número de WhatsApp, link do portfólio e do guia. No rodapé, seu número do CAU.</p></div></li>
+      <li><div><h3>Coloque prova real</h3><p>Troque o espaço tracejado por um depoimento verdadeiro com a foto do ambiente entregue. Uma prova vale mais que três.</p></div></li>
+      <li><div><h3>Crie o guia gratuito</h3><p>Um PDF curto e uma página de captura de e-mail (Tally, Google Forms ou MailerLite resolvem). É ele que segura quem ainda não está pronta.</p></div></li>
+      <li><div><h3>Publique</h3><p>O arquivo é uma página única, sem servidor. GitHub Pages ou Netlify hospedam de graça, e dá para usar um endereço seu, como <code>link.seudominio.com.br</code>.</p></div></li>
+      <li><div><h3>Meça e ajuste</h3><p>Acompanhe quantas pessoas começam, terminam e clicam no WhatsApp. Se muita gente abandona numa pergunta, reescreva ou corte essa pergunta.</p></div></li>
+    </ol>
+    <p class="muted texto">Se preferir não mexer em código, a mesma lógica pode ser montada no Tally ou no Typeform com lógica condicional. Assinar o próprio LinkCommerce também não é cópia: você usaria a ferramenta com o seu conteúdo, como qualquer cliente.</p>
+  </section>
+
+  <footer class="fontes">
+    <span class="label">Fontes da análise</span>
+    <ul>
+      <li><a href="https://www.linkcommerce.app/" target="_blank" rel="noopener">Linkcommerce · Seu Link na Bio que Vende</a></li>
+      <li><a href="https://exame.com/negocios/esta-influencer-vendia-roupas-para-pagar-a-faculdade-agora-vai-faturar-r-30-mi-com-ia-para-pmes/" target="_blank" rel="noopener">Exame · Letícia Vaz e a LV Tech</a></li>
+      <li><a href="https://www.iol.pt/leticia-vaz/leticia-vaz-tech/aos-17-anos-vendia-roupa-para-pagar-a-faculdade-hoje-construiu-um-imperio-milionario-com-ia-e-ajuda-pessoas-a-terem-sucesso" target="_blank" rel="noopener">IOL · Letícia Vaz Tech</a></li>
+    </ul>
+  </footer>
+</main>
