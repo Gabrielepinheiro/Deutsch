@@ -12,7 +12,7 @@ Cores e fontes: Paleta Amora & Floresta. Conteúdo: Jornada do Cliente GP.
 
 1. Suba `index.html` para que ele responda em `www.gabrielepinheiro.com/links`. O painel vai junto, em `/links/painel.html`.
 2. Preencha o bloco `GP_CONFIG` no fim do `index.html`. Campo vazio = item escondido:
-   - `instagram`, `portfolio`, `collection`, `foto`
+   - `instagram`, `portfolio`, `foto`
    - `premier`: link de agendamento. Vazio: o botão leva ao diagnóstico.
    - `impressum` e `privacidade`: obrigatórios na Alemanha.
    - `whatsapp`: só depois de confirmar o número oficial.

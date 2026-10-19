@@ -47,8 +47,9 @@ a { color: inherit; }
 .l-retrato {
   width: 84px; height: 84px; border-radius: 50%; flex: none; overflow: hidden;
   background: var(--rose); color: var(--amora); display: grid; place-items: center;
-  font: italic 300 2rem/1 var(--accent); font-variation-settings: "SOFT" 100, "WONK" 1;
 }
+.logo { display: block; width: 1.25em; height: auto; overflow: visible; }
+.l-retrato .logo { width: 50%; }
 .l-retrato img { width: 100%; height: 100%; object-fit: cover; }
 .l-id .sobre { color: var(--cacau-70); }
 .l-nome { font: 400 clamp(2rem, 7.4vw, 2.75rem)/1.08 var(--serif); margin: 0; text-wrap: balance; }
@@ -110,8 +111,6 @@ a { color: inherit; }
 /* Premier: Floresta + Porcelana */
 .l-premier { border-color: rgba(46,85,48,.4); }
 .l-premier .sobre { color: var(--floresta); }
-.l-premier-cab { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-.l-preco { font: 400 1.9rem/1 var(--serif); color: var(--floresta); white-space: nowrap; }
 .l-premier .l-lista .diam { color: var(--floresta); }
 .l-upgrade { background: var(--floresta-clara); border-radius: 4px; padding: 12px 14px; font-size: .9rem; margin: 0 0 18px !important; }
 .l-miudo { font-size: .82rem; color: var(--cacau-70); }
@@ -135,7 +134,6 @@ a { color: inherit; }
 .l-linha-corpo h3 { font: 500 .6875rem/1.4 var(--sans); letter-spacing: .32em; text-transform: uppercase; color: var(--cacau-70); margin: 14px 0 8px; }
 .l-linha-corpo ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
 .l-linha-corpo p { margin: 0; }
-.l-selo { font: 500 .66rem/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--amora); border: 1px solid currentColor; border-radius: 999px; padding: 5px 9px; vertical-align: middle; margin-left: 8px; white-space: nowrap; }
 .l-ajuda-escolha { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; font-size: .9rem; }
 .l-ajuda-escolha p { margin: 0 !important; }
 .l-link-seta { font-weight: 500; color: var(--amora); text-underline-offset: 4px; }
@@ -177,7 +175,8 @@ a { color: inherit; }
 .l-contatos small { display: block; color: var(--cacau-70); font-size: .8rem; font-weight: 300; }
 .l-contatos .seta { color: var(--amora); }
 .l-rodape { max-width: 1080px; margin: 0 auto; padding: 8px max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px)); display: grid; justify-items: center; gap: 8px; text-align: center; font-size: .82rem; color: var(--cacau-70); }
-.l-assinatura { font: italic 300 2.2rem/1 var(--accent); font-variation-settings: "SOFT" 100, "WONK" 1; color: var(--cacau); }
+.l-assinatura { color: var(--cacau); }
+.l-assinatura .logo { width: 52px; }
 .l-legal { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; }
 .l-legal a { text-underline-offset: 3px; }
 
@@ -185,7 +184,7 @@ a { color: inherit; }
   .l-pagina { grid-template-columns: minmax(0, 400px) minmax(0, 560px); justify-content: space-between; gap: 56px; padding-top: 56px; }
   .l-id { position: sticky; top: 40px; margin: 0; }
   .l-cartoes { margin: 0; }
-  .l-retrato { width: 104px; height: 104px; font-size: 2.4rem; }
+  .l-retrato { width: 104px; height: 104px; }
   .l-rodape { padding-top: 24px; }
 }
 @media (max-width: 380px) { .l-fatos b { font-size: 1.25rem; } }
@@ -219,8 +218,8 @@ a { color: inherit; }
   padding: calc(env(safe-area-inset-top, 0px) + 10px) max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px));
 }
 .diag .topo-linha { display: flex; align-items: center; justify-content: space-between; gap: 12px; max-width: 640px; margin: 0 auto 8px; }
-.diag .marca { font: italic 300 1.6rem/1 var(--accent); font-variation-settings: "SOFT" 100, "WONK" 1; color: var(--fg); text-decoration: none; }
-.diag .marca .ponto { color: var(--pink); }
+.diag .marca { color: var(--fg); display: block; padding: 4px 0; }
+.diag .marca .logo { width: 40px; }
 .diag .aos-links { font-size: .86rem; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; padding: 8px 0; }
 .diag .trilho { height: 2px; background: var(--line); max-width: 640px; margin: 0 auto; }
 .diag .trilho span { display: block; height: 100%; width: 0; background: var(--accent); transition: width .35s ease; }
@@ -332,13 +331,14 @@ a { color: inherit; }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="logo-gp" viewBox="0 0 80 66"><path d="M38.1 15.9A20 20 0 1 0 44 30H30M49 24v40M49 37a13 13 0 1 1 0 .01" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="butt"/></symbol></svg>
 
 <!-- =================== LINKS =================== -->
 <div id="vista-links">
 <main class="l-pagina">
   <header class="l-id">
     <div class="l-id-topo">
-      <div class="l-retrato" id="retrato" aria-hidden="true"><span>GP<span class="ponto">.</span></span></div>
+      <div class="l-retrato" id="retrato" aria-hidden="true"><svg class="logo" viewBox="0 0 80 66" aria-hidden="true"><use href="#logo-gp"/></svg></div>
       <p class="sobre">Studio GP<br>Design de interiores online</p>
     </div>
     <h1 class="l-nome">Gabriele Pinheiro</h1>
@@ -379,7 +379,7 @@ a { color: inherit; }
 
     <section class="l-cartao l-premier" id="premier" aria-labelledby="t-premier">
       <p class="sobre">Para a casa inteira</p>
-      <div class="l-premier-cab"><h2 id="t-premier">Premier</h2><span class="l-preco">200€</span></div>
+      <h2 id="t-premier">Premier</h2>
       <p>Para quem tem muitas demandas na casa e quer clareza antes de investir.</p>
       <ul class="l-lista">
         <li><span class="diam"></span><span>Call de 1h30 com todas as demandas da casa</span></li>
@@ -387,7 +387,7 @@ a { color: inherit; }
         <li><span class="diam"></span><span>Estratégia de execução: prioridades, ordem das compras e o que cada ambiente precisa</span></li>
         <li><span class="diam"></span><span>Plano Premier por escrito, em até 5 dias úteis</span></li>
       </ul>
-      <p class="l-upgrade">Seguiu para Essence, Maison ou Personalité em até 60 dias? Você tem <b>10% de desconto</b> nos ambientes do seu plano.</p>
+      <p class="l-upgrade">Decidiu investir em um projeto Essence, Maison ou Personalité em até 60 dias? Você recebe <b>um bônus</b>.</p>
       <a class="l-btn contorno largo" id="cta-premier" href="#diagnostico">Começar pelo diagnóstico <span class="seta" aria-hidden="true">→</span></a>
       <p class="l-miudo" style="margin:12px 0 0">Não inclui layout, shopping list ou projeto de ambientes.</p>
     </section>
@@ -422,18 +422,6 @@ a { color: inherit; }
             <h3>Não inclui</h3><p>Projeto técnico, troca de pisos e revestimentos, e obras.</p>
           </div>
         </details>
-        <details>
-          <summary><strong>Collection</strong><span>Para quem prefere fazer sozinho(a).</span></summary>
-          <div class="l-linha-corpo">
-            <p>Curadoria de produtos e combinações na plataforma Casa com Identidade, para escolher e comprar por conta própria com uma seleção de confiança como guia.</p>
-            <h3>Não inclui</h3><p>Atendimento individual, layout ou acompanhamento.</p>
-            <p style="margin-top:12px" hidden data-cfg="collection"><a class="l-link-seta" href="#" target="_blank" rel="noopener">Conhecer a Casa com Identidade →</a></p>
-          </div>
-        </details>
-        <details>
-          <summary><strong>Atelier <span class="l-selo">Em breve</span></strong><span>Espaços comerciais: salões, estúdios e consultórios.</span></summary>
-          <div class="l-linha-corpo"><p>Linha em definição. Investimento sob consulta.</p></div>
-        </details>
       </div>
       <div class="l-ajuda-escolha"><p>Não sabe qual escolher? O diagnóstico indica.</p><a class="l-link-seta" href="#diagnostico">Fazer o diagnóstico →</a></div>
     </section>
@@ -465,7 +453,7 @@ a { color: inherit; }
         <li><span class="diam"></span><span><b>Pensado</b> para a sua rotina real</span></li>
         <li><span class="diam"></span><span><b>Resolvido:</b> um layout, a melhor solução para o seu espaço</span></li>
         <li><span class="diam"></span><span><b>Possível:</b> com lojas que entregam onde você mora</span></li>
-        <li><span class="diam"></span><span><b>Sem obra:</b> a transformação vem dos móveis, da luz, da cor e dos objetos</span></li>
+        <li><span class="diam"></span><span><b>Sem obra:</b> a transformação vem dos móveis soltos, das texturas, das composições e adornos</span></li>
         <li><span class="diam"></span><span><b>Acompanhado:</b> você não fica sozinho(a) na hora de executar</span></li>
       </ul>
       <p class="l-edesign"><strong>O que é e-design?</strong>Design de interiores feito 100% online. Você me envia as medidas e as fotos da sua casa, eu desenvolvo o projeto e entrego tudo no Design Book, pronto para você executar de qualquer lugar do mundo.</p>
@@ -492,7 +480,7 @@ a { color: inherit; }
   </div>
 </main>
 <footer class="l-rodape">
-  <span class="l-assinatura" aria-hidden="true">GP<span class="ponto">.</span></span>
+  <span class="l-assinatura" aria-hidden="true"><svg class="logo" viewBox="0 0 80 66" aria-hidden="true"><use href="#logo-gp"/></svg></span>
   <span>Gabriele Pinheiro · Design de interiores online</span>
   <nav class="l-legal" aria-label="Informações legais">
     <a hidden data-cfg="impressum" href="#" target="_blank" rel="noopener">Impressum</a>
@@ -505,7 +493,7 @@ a { color: inherit; }
 <!-- =================== DIAGNÓSTICO DA CASA =================== -->
 <div id="vista-diagnostico" class="diag" hidden>
   <header class="topo">
-    <div class="topo-linha"><a class="marca" href="#inicio" aria-label="Voltar aos links">GP<span class="ponto">.</span></a><a class="aos-links nao-imprimir" href="#inicio">← Voltar aos links</a></div>
+    <div class="topo-linha"><a class="marca" href="#inicio" aria-label="Voltar aos links"><svg class="logo" viewBox="0 0 80 66" aria-hidden="true"><use href="#logo-gp"/></svg></a><a class="aos-links nao-imprimir" href="#inicio">← Voltar aos links</a></div>
     <div class="trilho" aria-hidden="true"><span id="progresso"></span></div>
   </header>
   <main id="app" class="pagina"></main>
@@ -518,7 +506,6 @@ a { color: inherit; }
 window.GP_CONFIG = {
   instagram: "",        // o seu @ sem o arroba, ex.: "studiogp". Ativa o botão do Instagram e o "falar no direct".
   portfolio: "",        // link do portfólio
-  collection: "",       // link da plataforma Casa com Identidade
   premier: "",          // link de agendamento da Premier. Vazio: o botão leva ao diagnóstico.
   whatsapp: "",         // NÃO preencher antes de confirmar o número oficial.
   foto: "",             // link da sua foto (quadrada). Vazio: mostra o monograma GP.
@@ -663,7 +650,7 @@ window.GP_CONFIG = {
   var C = window.GP_CONFIG || {};
   var urls = {
     instagram: C.instagram ? "https://instagram.com/" + encodeURIComponent(C.instagram) : "",
-    portfolio: C.portfolio, collection: C.collection, impressum: C.impressum, privacidade: C.privacidade,
+    portfolio: C.portfolio, impressum: C.impressum, privacidade: C.privacidade,
     whatsapp: C.whatsapp ? "https://wa.me/" + String(C.whatsapp).replace(/\D/g, "") : ""
   };
   document.querySelectorAll("[data-cfg]").forEach(function (el) {

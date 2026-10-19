@@ -248,8 +248,8 @@ dl.resp dd { margin: 0; }
 .barra span { display: block; height: 100%; border-radius: 9px; background: var(--accent); }
 .codigo-grande small { font-size: 1rem; color: var(--muted); letter-spacing: 0; }
 
-.marca { font: italic 300 1.6rem/1 var(--f-marca); font-variation-settings: "SOFT" 100, "WONK" 1; }
-.marca .ponto { color: #D9336E; }
+.marca { color: var(--fg); }
+.marca .logo { display: block; width: 40px; height: auto; overflow: visible; }
 .eyebrow, th, .pilula, .selo { font-weight: 500; letter-spacing: .24em; }
 .selo, .pilula { color: var(--floresta); }
 .pilula.novo { color: var(--warn); }
@@ -259,7 +259,8 @@ h1, h2 { font-style: normal; }
 </style>
 </head>
 <body>
-<header class="topo-admin"><span class="marca">GP<span class="ponto">.</span></span>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="logo-gp" viewBox="0 0 80 66"><path d="M38.1 15.9A20 20 0 1 0 44 30H30M49 24v40M49 37a13 13 0 1 1 0 .01" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="butt"/></symbol></svg>
+<header class="topo-admin"><span class="marca" aria-label="GP"><svg class="logo" viewBox="0 0 80 66" aria-hidden="true"><use href="#logo-gp"/></svg></span>
 <nav id="abas" class="abas" hidden><button type="button" data-aba="diagnosticos" aria-pressed="true">Diagnósticos</button><button type="button" data-aba="senhas" aria-pressed="false">Senhas</button><button type="button" data-aba="publico" aria-pressed="false">Público</button></nav>
 <button type="button" id="sair" class="voltar" hidden>Sair</button></header>
 <main id="painel" class="pagina larga"></main>
