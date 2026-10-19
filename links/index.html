@@ -187,6 +187,80 @@ a { color: inherit; }
 }
 @media (max-width: 380px) { .l-fatos b { font-size: 1.25rem; } }
 
+
+/* ---------- Movimento ---------- */
+@keyframes subir { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.entra { animation: subir .8s cubic-bezier(.2,.7,.2,1) both; animation-delay: calc(var(--i, 0) * 90ms); }
+.l-gancho.brilho {
+  background: linear-gradient(100deg, var(--amora) 42%, #C9708A 50%, var(--amora) 58%) 0 0 / 260% 100%;
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+  animation: subir .8s cubic-bezier(.2,.7,.2,1) both, brilho 8s ease-in-out 1.2s infinite;
+}
+@keyframes brilho { 0%, 55% { background-position: 100% 0; } 100% { background-position: -60% 0; } }
+
+.l-vivo { display: inline-flex; align-items: center; gap: 10px; width: fit-content; max-width: 100%; margin: 0; padding: 7px 14px 7px 12px; border: 1px solid var(--linha); border-radius: 999px; background: var(--papel); font-size: .8rem; line-height: 1.35; }
+.l-pulso { position: relative; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--pink); }
+.l-pulso::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--pink); animation: pulso 1.8s ease-out infinite; }
+@keyframes pulso { from { transform: scale(1); opacity: .55; } to { transform: scale(3.4); opacity: 0; } }
+
+/* Mini conversa dentro do cartão do diagnóstico */
+.l-pergunta { border-top: 1px solid rgba(246,244,241,.25); padding-top: 16px; margin: 6px 0 14px; }
+.l-perg-t { font: italic 300 1.2rem/1.35 var(--accent); font-variation-settings: "SOFT" 100, "WONK" 1; margin: 0 0 12px !important; }
+.l-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.l-chip {
+  font: 400 .86rem var(--sans); color: var(--porcelana); background: transparent; cursor: pointer;
+  border: 1px solid rgba(246,244,241,.45); border-radius: 999px; padding: 8px 14px; min-height: 40px;
+  transition: background .2s, color .2s, border-color .2s, transform .2s;
+}
+.l-chip:hover { border-color: var(--porcelana); transform: translateY(-1px); }
+.l-chip[aria-pressed=true] { background: var(--porcelana); color: var(--amora); border-color: var(--porcelana); font-weight: 500; }
+.l-chip:focus-visible { outline-color: var(--porcelana); }
+.l-resposta { font-size: .9rem; min-height: 0; margin: 12px 0 0 !important; color: rgba(246,244,241,.9); }
+.l-resposta:empty { display: none; }
+.l-resposta b { color: var(--porcelana); }
+.l-am-linha { transition: opacity .3s; }
+.l-am-linha.foco span:first-child { font-weight: 500; }
+.l-am-linha.foco em { color: var(--porcelana); font-weight: 500; }
+.l-am-barra span { transition: width .9s cubic-bezier(.2,.7,.2,1); }
+@keyframes chama { 0%, 100% { transform: none; } 40% { transform: scale(1.035); } }
+.l-btn.chama { animation: chama .7s ease 2; }
+
+/* Faixa que corre */
+.l-faixa { overflow: hidden; border-block: 1px solid var(--linha); padding-block: 14px; -webkit-mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.l-faixa-trilho { display: flex; width: max-content; align-items: center; animation: correr 36s linear infinite; }
+.l-faixa:hover .l-faixa-trilho { animation-play-state: paused; }
+.l-faixa-trilho span { font: italic 400 1.2rem/1 var(--serif); white-space: nowrap; margin-right: 18px; }
+.l-faixa-trilho .diam { color: var(--amora); margin-right: 18px; }
+@keyframes correr { to { transform: translateX(-50%); } }
+
+/* Hoje x com o projeto */
+.l-antes .sobre { color: var(--cacau-70); }
+.l-troca { position: relative; display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--linha); border-radius: 999px; padding: 3px; margin: 14px 0 18px; background: var(--porcelana); }
+.l-troca button { position: relative; z-index: 1; font: 400 .88rem var(--sans); color: var(--cacau); background: none; border: 0; border-radius: 999px; padding: 9px 10px; min-height: 42px; cursor: pointer; transition: color .3s; }
+.l-troca button[aria-selected=true] { color: var(--porcelana); font-weight: 500; }
+.l-troca-fundo { position: absolute; z-index: 0; top: 3px; bottom: 3px; left: 3px; width: calc(50% - 3px); border-radius: 999px; background: var(--cacau); transition: transform .45s cubic-bezier(.2,.7,.2,1), background .45s; }
+.l-troca[data-lado=depois] .l-troca-fundo { transform: translateX(100%); background: var(--floresta); }
+.l-paineis { display: grid; }
+.l-painel { grid-area: 1 / 1; transition: opacity .45s ease, transform .45s ease; }
+.l-painel[aria-hidden=true] { opacity: 0; transform: translateY(8px); pointer-events: none; visibility: hidden; }
+.l-painel p { font-size: .95rem; }
+.l-painel ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; }
+.l-painel li { display: flex; gap: 12px; align-items: baseline; }
+.l-painel.hoje li::before { content: "×"; color: var(--cacau-45); font-weight: 400; width: 10px; flex: none; }
+.l-painel.depois .diam { color: var(--floresta); }
+.l-painel.depois li span:last-child { font-weight: 400; }
+
+/* Processo: o número acende quando a etapa passa */
+.l-etapas li::before { width: 2.1rem; height: 2.1rem; border-radius: 50%; border: 1px solid rgba(138,21,56,.35); display: grid; place-items: center; font-size: .9rem; line-height: 1; transition: background .4s, color .4s, border-color .4s; }
+.l-etapas li.acesa::before { background: var(--amora); border-color: var(--amora); color: var(--porcelana); }
+
+/* Revelar ao rolar (só quando o JS liga) */
+.revelar { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.revelar.visivel { opacity: 1; transform: none; }
+.l-cartao { transition: box-shadow .3s ease, transform .3s ease; }
+.l-contatos a { transition: border-color .2s, transform .2s; }
+.l-contatos a:hover { transform: translateX(3px); }
+
 /* ---------- Vista Diagnóstico (o aplicativo, com a identidade Amora & Floresta) ---------- */
 .diag {
   --bg: var(--porcelana); --surface: var(--papel); --line: var(--linha); --fg: var(--cacau); --muted: var(--cacau-70);
@@ -322,6 +396,9 @@ a { color: inherit; }
   .diag .convite .eyebrow, .diag .convite .assinatura, .diag .convite .rodape { color: var(--cacau); }
 }
 @media (prefers-reduced-motion: reduce) {
+  .entra, .l-gancho.brilho, .l-pulso::after, .l-faixa-trilho, .l-btn.chama { animation: none !important; }
+  .l-gancho.brilho { -webkit-text-fill-color: var(--amora); background: none; }
+  .revelar { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
   .diag .trilho span, .l-btn .seta, .l-linhas summary::after { transition: none; }
   .l-am-barra span { animation: none; }
@@ -334,18 +411,19 @@ a { color: inherit; }
 <div id="vista-links">
 <main class="l-pagina">
   <header class="l-id">
-    <div class="l-id-topo">
+    <div class="l-id-topo entra" style="--i:0">
       <div class="l-retrato" id="retrato" aria-hidden="true"><span>GP<span class="ponto">.</span></span></div>
       <p class="sobre">Studio GP<br>Design de interiores online</p>
     </div>
-    <h1 class="l-gancho acento">Sua casa ainda não parece sua?</h1>
-    <p class="l-bio">Sou arquiteta e ajudo famílias brasileiras que vivem fora do Brasil a transformar a casa em lar, com identidade e sem desperdício.</p>
-    <ul class="l-fatos">
-      <li><b>+8 anos</b><span>em interiores residenciais</span></li>
-      <li><b>+12 países</b><span>com famílias atendidas</span></li>
-      <li><b>100%</b><span>online, do diagnóstico ao Design Book</span></li>
+    <h1 class="l-gancho acento brilho" style="--i:1">Sua casa ainda não parece sua?</h1>
+    <p class="l-bio entra" style="--i:2">Sou arquiteta e ajudo famílias brasileiras que vivem fora do Brasil a transformar a casa em lar, com identidade e sem desperdício.</p>
+    <p class="l-vivo entra" style="--i:3"><span class="l-pulso" aria-hidden="true"></span>Diagnóstico gratuito · proposta em até 2 dias úteis</p>
+    <ul class="l-fatos entra" style="--i:4">
+      <li><b data-n="8" data-antes="+" data-depois=" anos">+8 anos</b><span>em interiores residenciais</span></li>
+      <li><b data-n="12" data-antes="+" data-depois=" países">+12 países</b><span>com famílias atendidas</span></li>
+      <li><b data-n="100" data-depois="%">100%</b><span>online, do diagnóstico ao Design Book</span></li>
     </ul>
-    <nav aria-label="Nesta página"><ul class="l-atalhos">
+    <nav aria-label="Nesta página" class="entra" style="--i:5"><ul class="l-atalhos">
       <li><a href="#diagnostico">Diagnóstico da Casa</a></li>
       <li><a href="#premier">Premier</a></li>
       <li><a href="#projetos">Projetos</a></li>
@@ -354,7 +432,7 @@ a { color: inherit; }
   </header>
 
   <div class="l-cartoes">
-    <section class="l-cartao l-diag" id="comece" aria-labelledby="t-diag">
+    <section class="l-cartao l-diag entra" style="--i:3" id="comece" aria-labelledby="t-diag">
       <p class="sobre">Comece aqui · cortesia do escritório</p>
       <h2 id="t-diag">Diagnóstico da Casa</h2>
       <p>Toda casa tem um ambiente que tira a nossa paz. Em cerca de 6 minutos, você me conta como se sente na sua casa hoje e recebe:</p>
@@ -363,14 +441,47 @@ a { color: inherit; }
         <li><span class="diam"></span><span>os seus ambientes em ordem de prioridade</span></li>
         <li><span class="diam"></span><span>por onde começar e o serviço indicado para o seu momento</span></li>
       </ul>
-      <div class="l-amostra" role="img" aria-label="Exemplo de resultado: saúde da casa 58 de 100. Sala de estar 42, pede atenção. Cozinha 83, em paz. Hall de entrada 25, pede cuidado.">
-        <div class="l-amostra-cab"><span class="sobre">Exemplo de resultado</span><b>58<small>/100</small></b></div>
+      <div class="l-pergunta">
+        <p class="l-perg-t" id="perg-t">Para começar: qual ambiente mais tira a sua paz hoje?</p>
+        <div class="l-chips" role="group" aria-labelledby="perg-t">
+          <button type="button" class="l-chip" aria-pressed="false">Sala de estar</button>
+          <button type="button" class="l-chip" aria-pressed="false">Quarto de casal</button>
+          <button type="button" class="l-chip" aria-pressed="false">Home office</button>
+          <button type="button" class="l-chip" aria-pressed="false">Cozinha</button>
+          <button type="button" class="l-chip" aria-pressed="false">Hall de entrada</button>
+        </div>
+        <p class="l-resposta" id="resposta" aria-live="polite"></p>
+      </div>
+      <div class="l-amostra" id="amostra" role="img" aria-label="Exemplo de resultado: saúde da casa 58 de 100. Sala de estar 42, pede atenção. Cozinha 83, em paz. Hall de entrada 25, pede cuidado.">
+        <div class="l-amostra-cab"><span class="sobre">Exemplo de resultado</span><b><span id="am-total">58</span><small>/100</small></b></div>
         <div class="l-am-linha"><span>Sala de estar</span><em>pede atenção</em><span class="l-am-barra"><span style="width:42%"></span></span></div>
         <div class="l-am-linha"><span>Cozinha</span><em>em paz</em><span class="l-am-barra"><span style="width:83%"></span></span></div>
         <div class="l-am-linha"><span>Hall de entrada</span><em>pede cuidado</em><span class="l-am-barra"><span style="width:25%"></span></span></div>
       </div>
       <a class="l-btn largo" href="#diagnostico" id="cta-diag"><span id="cta-diag-txt">Fazer o meu diagnóstico</span> <span class="seta" aria-hidden="true">→</span></a>
       <p class="l-diag-nota" id="nota-senha">Você vai precisar da senha que eu envio no direct. Ainda não tem? Envie <b>DIAGNÓSTICO</b> no direct do meu Instagram.</p>
+    </section>
+
+    <div class="l-faixa" aria-hidden="true"><div class="l-faixa-trilho"><span>Sala de estar</span><i class="diam"></i><span>Hall de entrada</span><i class="diam"></i><span>Home office</span><i class="diam"></i><span>Quarto de casal</span><i class="diam"></i><span>Cozinha</span><i class="diam"></i><span>Varanda</span><i class="diam"></i><span>Quarto infantil</span><i class="diam"></i><span>Sala de jantar</span><i class="diam"></i><span>Sala de estar</span><i class="diam"></i><span>Hall de entrada</span><i class="diam"></i><span>Home office</span><i class="diam"></i><span>Quarto de casal</span><i class="diam"></i><span>Cozinha</span><i class="diam"></i><span>Varanda</span><i class="diam"></i><span>Quarto infantil</span><i class="diam"></i><span>Sala de jantar</span><i class="diam"></i></div></div>
+
+    <section class="l-cartao l-antes" aria-labelledby="t-antes">
+      <p class="sobre">Mudar de país muda tudo</p>
+      <h2 id="t-antes">A rotina, as lojas, as medidas, o idioma.</h2>
+      <div class="l-troca" role="tablist" aria-label="Compare" data-lado="hoje">
+        <span class="l-troca-fundo" aria-hidden="true"></span>
+        <button type="button" role="tab" id="tab-hoje" aria-selected="true" aria-controls="p-hoje">Como está hoje</button>
+        <button type="button" role="tab" id="tab-depois" aria-selected="false" aria-controls="p-depois">Com o projeto</button>
+      </div>
+      <div class="l-paineis">
+        <div class="l-painel hoje" id="p-hoje" role="tabpanel" aria-labelledby="tab-hoje" aria-hidden="false">
+          <p>A casa costuma ficar para depois.</p>
+          <ul><li><span>Móveis provisórios que viraram definitivos</span></li><li><span>Compras que não conversam entre si</span></li><li><span>A sensação de que sempre falta alguma coisa</span></li><li><span>Não saber por onde começar</span></li></ul>
+        </div>
+        <div class="l-painel depois" id="p-depois" role="tabpanel" aria-labelledby="tab-depois" aria-hidden="true">
+          <p>Você não precisa resolver isso sozinho(a).</p>
+          <ul><li><span class="diam"></span><span>Uma casa que conta a sua história</span></li><li><span class="diam"></span><span>Compras certas na primeira vez</span></li><li><span class="diam"></span><span>Cada móvel no lugar e na medida certa</span></li><li><span class="diam"></span><span>Clareza do começo ao fim</span></li><li><span class="diam"></span><span>A sensação de chegar em casa</span></li></ul>
+        </div>
+      </div>
     </section>
 
     <section class="l-cartao l-premier" id="premier" aria-labelledby="t-premier">
@@ -710,6 +821,95 @@ window.GP_CONFIG = {
   }
   window.addEventListener("hashchange", function () { temSenhaNoLink = false; mostra(); });
   mostra();
+})();
+</script>
+<script>
+/* Movimento: contadores, conversa do diagnóstico, comparação, etapas e revelar ao rolar */
+(function () {
+  var calmo = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var temIO = "IntersectionObserver" in window;
+  function aoVer(el, fn, limiar) {
+    if (!temIO) return fn();
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { io.disconnect(); fn(); } }); }, { threshold: limiar || 0.3 });
+    io.observe(el);
+  }
+  function contar(el, de, ate, ms, fmt) {
+    if (calmo) { el.textContent = fmt(ate); return; }
+    var t0 = performance.now();
+    (function passo(t) {
+      var k = Math.min(1, (t - t0) / ms), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = fmt(Math.round(de + (ate - de) * e));
+      if (k < 1) requestAnimationFrame(passo);
+    })(t0);
+  }
+
+  // Números do topo sobem contando
+  document.querySelectorAll(".l-fatos [data-n]").forEach(function (el) {
+    var n = +el.dataset.n, a = el.dataset.antes || "", d = el.dataset.depois || "";
+    aoVer(el, function () { contar(el, 0, n, 1400, function (v) { return a + v + d; }); }, 0.6);
+  });
+
+  // Conversa curta: a escolha muda o exemplo de resultado
+  var PESO = { "Sala de estar": 54, "Quarto de casal": 71, "Home office": 47, "Cozinha": 83, "Hall de entrada": 62 };
+  var ART = { "Sala de estar": "na sala de estar", "Quarto de casal": "no quarto de casal", "Home office": "no home office", "Cozinha": "na cozinha", "Hall de entrada": "no hall de entrada" };
+  var estado = function (v) { return v >= 70 ? "em paz" : v >= 40 ? "pede atenção" : "pede cuidado"; };
+  var amostra = document.getElementById("amostra"), total = document.getElementById("am-total"), resp = document.getElementById("resposta"), cta = document.getElementById("cta-diag");
+  var linhas = amostra.querySelectorAll(".l-am-linha");
+  document.querySelectorAll(".l-chip").forEach(function (b) {
+    b.addEventListener("click", function () {
+      document.querySelectorAll(".l-chip").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+      var esc = b.textContent, outros = Object.keys(PESO).filter(function (k) { return k !== esc; }).slice(0, 2);
+      var dados = [[esc, 28]].concat(outros.map(function (k) { return [k, PESO[k]]; }));
+      dados.forEach(function (d, i) {
+        var l = linhas[i];
+        l.classList.toggle("foco", i === 0);
+        l.children[0].textContent = d[0]; l.children[1].textContent = estado(d[1]);
+        l.querySelector(".l-am-barra span").style.width = d[1] + "%";
+      });
+      var media = Math.round(dados.reduce(function (s, d) { return s + d[1]; }, 0) / dados.length);
+      contar(total, +total.textContent, media, 900, String);
+      amostra.setAttribute("aria-label", "Exemplo de resultado: saúde da casa " + media + " de 100. " + dados.map(function (d) { return d[0] + " " + d[1] + ", " + estado(d[1]); }).join(". ") + ".");
+      resp.innerHTML = "Anotado. No diagnóstico completo, você descobre o que está tirando a sua paz <b>" + ART[esc] + "</b> e por onde começar na casa inteira.";
+      cta.classList.remove("chama"); void cta.offsetWidth; cta.classList.add("chama");
+    });
+  });
+
+  // Como está hoje x com o projeto: alterna sozinho até a pessoa tocar
+  var troca = document.querySelector(".l-troca"), tabs = troca.querySelectorAll("[role=tab]");
+  var pHoje = document.getElementById("p-hoje"), pDepois = document.getElementById("p-depois"), auto = null;
+  function lado(qual) {
+    troca.dataset.lado = qual;
+    tabs[0].setAttribute("aria-selected", String(qual === "hoje")); tabs[1].setAttribute("aria-selected", String(qual === "depois"));
+    pHoje.setAttribute("aria-hidden", String(qual !== "hoje")); pDepois.setAttribute("aria-hidden", String(qual !== "depois"));
+  }
+  tabs[0].addEventListener("click", function () { clearInterval(auto); lado("hoje"); });
+  tabs[1].addEventListener("click", function () { clearInterval(auto); lado("depois"); });
+  if (!calmo) aoVer(troca, function () {
+    setTimeout(function () { lado("depois"); }, 1800);
+    auto = setInterval(function () { lado(troca.dataset.lado === "hoje" ? "depois" : "hoje"); }, 4500);
+  }, 0.8);
+
+  // Etapas acendem conforme a rolagem
+  var etapas = document.querySelectorAll(".l-etapas li");
+  function acende() {
+    var lim = window.innerHeight * 0.72;
+    etapas.forEach(function (li) { li.classList.toggle("acesa", li.offsetParent !== null && li.getBoundingClientRect().top < lim); });
+  }
+  window.addEventListener("scroll", acende, { passive: true }); window.addEventListener("resize", acende);
+  document.getElementById("mais-etapas").addEventListener("click", function () { setTimeout(acende, 50); });
+  acende();
+
+  // Cartões abaixo da dobra sobem ao aparecer
+  if (temIO && !calmo) {
+    var alvos = document.querySelectorAll(".l-cartoes > .l-cartao:not(.entra), .l-faixa, .l-cartoes > section:not(.l-cartao)");
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("visivel"); io.unobserve(e.target); } });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    alvos.forEach(function (el) {
+      if (el.getBoundingClientRect().top > window.innerHeight) { el.classList.add("revelar"); io.observe(el); }
+    });
+    setTimeout(function () { alvos.forEach(function (el) { el.classList.add("visivel"); }); }, 6000);
+  }
 })();
 </script>
 </body>
