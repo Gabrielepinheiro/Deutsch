@@ -118,6 +118,14 @@ begin
 end;
 $$;
 
+-- Acesso às tabelas: visitantes não tocam nelas; a equipe só pelo que as regras acima permitem.
+-- Funciona com "Automatically expose new tables" ligado ou desligado.
+grant usage on schema public to anon, authenticated;
+revoke all on public.equipe, public.senhas, public.diagnosticos from anon;
+revoke all on public.equipe from authenticated;
+grant select, insert, update on public.senhas to authenticated;
+grant select, update on public.diagnosticos to authenticated;
+
 revoke execute on function public.verificar_senha(text) from public;
 revoke execute on function public.enviar_diagnostico(text, jsonb, jsonb) from public;
 revoke execute on function public.e_equipe() from public;
