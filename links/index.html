@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Links Gabriele Pinheiro</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Gabriele Pinheiro, arquiteta. Design de interiores online para famílias brasileiras que vivem fora do Brasil. Comece pelo Diagnóstico da Casa.">
+<meta property="og:title" content="Gabriele Pinheiro · Design de interiores online">
+<meta property="og:description" content="Sua casa ainda não parece sua? Comece pelo Diagnóstico da Casa.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F6F4F1">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@1,9..144,300,100,1;1,9..144,400,100,1&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500;600&display=swap">
+<style>
+/* Paleta Amora & Floresta. Uso: Porcelana 50 · Cacau 20 · Amora 12 · Floresta 10 · Rosé 6 · Pink 2 (só como ponto).
+   Layout: no celular, uma coluna como uma pasta de projeto; no computador, a identidade fica fixa à esquerda e os cartões rolam à direita. */
+:root {
+  --porcelana: #F6F4F1; --rose: #F0DEDD; --amora: #8A1538; --floresta: #2E5530; --cacau: #3E2620; --pink: #D9336E;
+  --papel: #FBFAF8; --linha: rgba(62,38,32,.16); --cacau-70: rgba(62,38,32,.72); --cacau-45: rgba(62,38,32,.45);
+  --amora-escuro: #6E0F2B; --floresta-clara: #E3EAE1; --trilho: #EDE6E2;
+  --serif: "Playfair Display", "Didot", Georgia, serif;
+  --accent: "Fraunces", "Playfair Display", Georgia, serif;
+  --sans: "Poppins", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body { margin: 0; background: var(--porcelana); color: var(--cacau); font: 300 1rem/1.65 var(--sans); }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--amora); outline-offset: 3px; }
+.acento { font-family: var(--accent); font-style: italic; font-weight: 300; font-variation-settings: "SOFT" 100, "WONK" 1; }
+.diam { display: inline-block; flex: none; width: 8px; height: 8px; border: 1px solid currentColor; transform: rotate(45deg); }
+.ponto { color: var(--pink); }
+.sobre { font: 500 .6875rem/1.4 var(--sans); letter-spacing: .32em; text-transform: uppercase; }
+
+/* ---------- Vista links ---------- */
+.l-pagina {
+  max-width: 1080px; margin: 0 auto;
+  padding: 28px max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px));
+  display: grid; gap: 28px;
+}
+.l-id { display: grid; gap: 18px; align-content: start; max-width: 560px; width: 100%; margin: 0 auto; }
+.l-id-topo { display: flex; align-items: center; gap: 16px; }
+.l-retrato {
+  width: 84px; height: 84px; border-radius: 50%; flex: none; overflow: hidden;
+  background: var(--rose); color: var(--amora); display: grid; place-items: center;
+  font: italic 300 2rem/1 var(--accent); font-variation-settings: "SOFT" 100, "WONK" 1;
+}
+.l-retrato img { width: 100%; height: 100%; object-fit: cover; }
+.l-id .sobre { color: var(--cacau-70); }
+.l-nome { font: 400 clamp(2rem, 7.4vw, 2.75rem)/1.08 var(--serif); margin: 0; text-wrap: balance; }
+.l-gancho { font-size: clamp(1.45rem, 5vw, 1.75rem); line-height: 1.25; color: var(--amora); margin: 0; text-wrap: balance; }
+.l-bio { margin: 0; max-width: 34em; }
+.l-fatos { list-style: none; margin: 0; padding: 14px 0 0; border-top: 1px solid var(--linha); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.l-fatos b { display: block; font: 400 1.5rem/1.1 var(--serif); }
+.l-fatos span { display: block; font-size: .78rem; line-height: 1.35; color: var(--cacau-70); }
+.l-atalhos { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.l-atalhos a {
+  display: inline-flex; align-items: center; min-height: 40px; padding: 6px 14px; border: 1px solid var(--linha); border-radius: 999px;
+  text-decoration: none; font-size: .86rem; font-weight: 400; background: var(--papel);
+}
+.l-atalhos a:hover { border-color: var(--cacau-45); }
+
+.l-cartoes { display: grid; gap: 18px; max-width: 560px; width: 100%; margin: 0 auto; min-width: 0; }
+.l-cartao { border: 1px solid var(--linha); border-radius: 4px; background: var(--papel); padding: 24px 22px; min-width: 0; scroll-margin-top: 16px; }
+.l-cartao h2 { font: 400 clamp(1.6rem, 6vw, 1.95rem)/1.15 var(--serif); margin: 6px 0 10px; text-wrap: balance; }
+.l-cartao p { margin: 0 0 12px; }
+.l-cartao .sobre { color: var(--cacau-70); margin: 0; }
+.l-lista { list-style: none; margin: 4px 0 18px; padding: 0; display: grid; gap: 9px; }
+.l-lista li { display: flex; gap: 12px; align-items: baseline; }
+.l-lista .diam { transform: rotate(45deg) translateY(-1px); }
+
+.l-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 12px 24px;
+  border-radius: 999px; border: 1px solid var(--amora); background: var(--amora); color: var(--porcelana);
+  font: 500 .95rem var(--sans); letter-spacing: .02em; text-decoration: none; cursor: pointer;
+}
+.l-btn:hover { background: var(--amora-escuro); border-color: var(--amora-escuro); }
+.l-btn .seta { transition: transform .2s ease; }
+.l-btn:hover .seta { transform: translateX(3px); }
+.l-btn.contorno { background: transparent; color: var(--floresta); border-color: var(--floresta); }
+.l-btn.contorno:hover { background: var(--floresta); color: var(--porcelana); }
+.l-btn.largo { width: 100%; }
+
+/* Diagnóstico: o bloco de capa, em amora */
+.l-diag { background: var(--amora); color: var(--porcelana); border-color: var(--amora); padding: 28px 22px 24px; }
+.l-diag .sobre { color: var(--rose); }
+.l-diag h2 { font-size: clamp(2rem, 8vw, 2.5rem); }
+.l-diag .l-lista .diam { color: var(--rose); }
+.l-diag .l-btn { background: var(--porcelana); color: var(--amora); border-color: var(--porcelana); }
+.l-diag .l-btn:hover { background: var(--rose); border-color: var(--rose); }
+.l-diag-nota { font-size: .86rem; color: rgba(246,244,241,.82); margin: 14px 0 0 !important; }
+.l-diag-nota a { color: var(--porcelana); text-underline-offset: 3px; }
+.l-amostra { border: 1px solid rgba(246,244,241,.28); border-radius: 4px; padding: 14px 16px; margin: 4px 0 20px; display: grid; gap: 10px; }
+.l-amostra-cab { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.l-amostra-cab .sobre { color: rgba(246,244,241,.7); letter-spacing: .24em; }
+.l-amostra-cab b { font: 400 1.6rem/1 var(--serif); }
+.l-amostra-cab b small { font: 300 .8rem var(--sans); opacity: .75; }
+.l-am-linha { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; font-size: .84rem; }
+.l-am-linha em { font-style: normal; color: rgba(246,244,241,.75); font-size: .78rem; }
+.l-am-barra { grid-column: 1 / -1; height: 6px; border-radius: 6px; background: rgba(246,244,241,.18); overflow: hidden; }
+.l-am-barra span { display: block; height: 100%; border-radius: 6px; background: var(--porcelana); transform-origin: left; animation: encher 1.1s cubic-bezier(.2,.7,.2,1) both; }
+.l-am-linha:nth-child(3) .l-am-barra span { animation-delay: .12s; }
+.l-am-linha:nth-child(4) .l-am-barra span { animation-delay: .24s; }
+@keyframes encher { from { transform: scaleX(.08); } to { transform: scaleX(1); } }
+
+/* Premier: Floresta + Porcelana */
+.l-premier { border-color: rgba(46,85,48,.4); }
+.l-premier .sobre { color: var(--floresta); }
+.l-premier-cab { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.l-preco { font: 400 1.9rem/1 var(--serif); color: var(--floresta); white-space: nowrap; }
+.l-premier .l-lista .diam { color: var(--floresta); }
+.l-upgrade { background: var(--floresta-clara); border-radius: 4px; padding: 12px 14px; font-size: .9rem; margin: 0 0 18px !important; }
+.l-miudo { font-size: .82rem; color: var(--cacau-70); }
+
+/* Projetos por ambiente */
+.l-linhas { display: grid; margin: 6px 0 16px; border-top: 1px solid var(--linha); }
+.l-linhas details { border-bottom: 1px solid var(--linha); }
+.l-linhas summary {
+  list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 12px; align-items: center;
+  padding: 15px 2px; min-height: 56px;
+}
+.l-linhas summary::-webkit-details-marker { display: none; }
+.l-linhas summary strong { font: 400 1.3rem/1.2 var(--serif); }
+.l-linhas summary span { grid-column: 1; font-size: .86rem; color: var(--cacau-70); }
+.l-linhas summary::after {
+  content: ""; grid-row: 1 / span 2; grid-column: 2; width: 9px; height: 9px; border-right: 1px solid var(--cacau); border-bottom: 1px solid var(--cacau);
+  transform: rotate(45deg) translate(-3px, -3px); transition: transform .2s ease;
+}
+.l-linhas details[open] summary::after { transform: rotate(225deg) translate(-3px, -3px); }
+.l-linha-corpo { padding: 0 2px 18px; font-size: .92rem; }
+.l-linha-corpo h3 { font: 500 .6875rem/1.4 var(--sans); letter-spacing: .32em; text-transform: uppercase; color: var(--cacau-70); margin: 14px 0 8px; }
+.l-linha-corpo ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+.l-linha-corpo p { margin: 0; }
+.l-selo { font: 500 .66rem/1 var(--sans); letter-spacing: .2em; text-transform: uppercase; color: var(--amora); border: 1px solid currentColor; border-radius: 999px; padding: 5px 9px; vertical-align: middle; margin-left: 8px; white-space: nowrap; }
+.l-ajuda-escolha { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; font-size: .9rem; }
+.l-ajuda-escolha p { margin: 0 !important; }
+.l-link-seta { font-weight: 500; color: var(--amora); text-underline-offset: 4px; }
+
+/* Processo: uma sequência real de 12 etapas */
+.l-etapas { list-style: none; margin: 8px 0 0; padding: 0; counter-reset: et; display: grid; gap: 0; }
+.l-etapas li { counter-increment: et; display: grid; grid-template-columns: 2.4rem minmax(0, 1fr); gap: 2px 10px; padding: 12px 0; border-top: 1px solid var(--linha); }
+.l-etapas li::before { content: counter(et, decimal-leading-zero); grid-row: 1 / span 2; font: 400 1.05rem/1.5 var(--serif); color: var(--amora); }
+.l-etapas strong { font-weight: 500; font-size: .95rem; }
+.l-etapas span { font-size: .88rem; color: var(--cacau-70); }
+.l-etapas.recolhido li:nth-child(n+5) { display: none; }
+.l-mais { margin-top: 10px; font: 500 .9rem var(--sans); color: var(--amora); background: none; border: 0; padding: 10px 0; cursor: pointer; text-decoration: underline; text-underline-offset: 4px; }
+
+/* Citação: bloco floresta */
+.l-citacao { background: var(--floresta); color: var(--porcelana); border-color: var(--floresta); }
+.l-citacao .sobre { color: rgba(246,244,241,.72); }
+.l-citacao blockquote { margin: 10px 0 18px; font-size: clamp(1.45rem, 5.2vw, 1.8rem); line-height: 1.3; text-wrap: balance; }
+.l-citacao ul { list-style: none; padding: 0; margin: 0 0 18px; display: grid; gap: 8px; font-size: .93rem; }
+.l-citacao li { display: flex; gap: 12px; align-items: baseline; }
+.l-citacao li b { font-weight: 500; }
+.l-edesign { border-top: 1px solid rgba(246,244,241,.25); padding-top: 14px; font-size: .9rem; }
+.l-edesign strong { font-weight: 500; display: block; margin-bottom: 2px; }
+
+/* Círculo GP: Amora + Rosé */
+.l-circulo { background: var(--rose); border-color: var(--rose); }
+.l-circulo .sobre { color: var(--amora); }
+.l-circulo h2 { color: var(--amora); }
+.l-circulo dl { display: grid; gap: 10px; margin: 12px 0 0; font-size: .92rem; }
+.l-circulo dt { font-weight: 500; }
+.l-circulo dd { margin: 0; }
+
+/* Contato e rodapé */
+.l-contatos { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.l-contatos a {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 56px; padding: 12px 18px;
+  border: 1px solid var(--linha); border-radius: 4px; background: var(--papel); text-decoration: none; font-weight: 400;
+}
+.l-contatos a:hover { border-color: var(--cacau-45); }
+.l-contatos small { display: block; color: var(--cacau-70); font-size: .8rem; font-weight: 300; }
+.l-contatos .seta { color: var(--amora); }
+.l-rodape { max-width: 1080px; margin: 0 auto; padding: 8px max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px)); display: grid; justify-items: center; gap: 8px; text-align: center; font-size: .82rem; color: var(--cacau-70); }
+.l-assinatura { font: italic 300 2.2rem/1 var(--accent); font-variation-settings: "SOFT" 100, "WONK" 1; color: var(--cacau); }
+.l-legal { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; }
+.l-legal a { text-underline-offset: 3px; }
+
+@media (min-width: 960px) {
+  .l-pagina { grid-template-columns: minmax(0, 400px) minmax(0, 560px); justify-content: space-between; gap: 56px; padding-top: 56px; }
+  .l-id { position: sticky; top: 40px; margin: 0; }
+  .l-cartoes { margin: 0; }
+  .l-retrato { width: 104px; height: 104px; font-size: 2.4rem; }
+  .l-rodape { padding-top: 24px; }
+}
+@media (max-width: 380px) { .l-fatos b { font-size: 1.25rem; } }
+
+/* ---------- Vista Diagnóstico (o aplicativo, com a identidade Amora & Floresta) ---------- */
+.diag {
+  --bg: var(--porcelana); --surface: var(--papel); --line: var(--linha); --fg: var(--cacau); --muted: var(--cacau-70);
+  --accent: var(--amora); --accent-fg: var(--porcelana); --accent-soft: var(--rose); --taupe: var(--cacau-45);
+  --warn: var(--amora); --warn-soft: var(--rose); --selo-fundo: var(--floresta-clara);
+  --saude-boa: var(--floresta); --saude-media: #A9746A; --saude-baixa: var(--amora);
+  --f-display: var(--serif); --f-body: var(--sans);
+  background: var(--bg); color: var(--fg); min-height: 100vh;
+}
+.diag b, .diag strong { font-weight: 600; }
+.diag a { color: var(--accent); }
+.diag h1, .diag h2 { font-family: var(--f-display); font-weight: 400; line-height: 1.15; margin: 0 0 14px; text-wrap: balance; }
+.diag h1 { font-size: clamp(2rem, 7vw, 2.6rem); }
+.diag h2 { font-size: clamp(1.5rem, 5.4vw, 1.9rem); }
+.diag h1:focus, .diag h2:focus { outline: none; }
+.diag p { margin: 0 0 12px; }
+.diag .eyebrow { font: 500 .6875rem/1.4 var(--sans); letter-spacing: .32em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+.diag .lede { font-size: 1.12rem; color: var(--muted); }
+.diag .dica { color: var(--muted); font-size: .9rem; }
+.diag .assinatura { font: italic 300 1.5rem/1.2 var(--accent); font-variation-settings: "SOFT" 100, "WONK" 1; color: var(--fg); margin-top: 28px; }
+.diag .rodape { color: var(--muted); font-size: .85rem; margin-top: -6px; }
+.diag .aviso { background: var(--accent-soft); padding: 10px 14px; border-radius: 4px; font-size: .9rem; margin-top: 18px; }
+.diag .erro { color: var(--warn); font-size: .92rem; min-height: 1.4em; margin: 8px 0 0; font-weight: 400; }
+
+.diag .topo {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: calc(env(safe-area-inset-top, 0px) + 10px) max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px));
+}
+.diag .topo-linha { display: flex; align-items: center; justify-content: space-between; gap: 12px; max-width: 640px; margin: 0 auto 8px; }
+.diag .marca { font: italic 300 1.6rem/1 var(--accent); font-variation-settings: "SOFT" 100, "WONK" 1; color: var(--fg); text-decoration: none; }
+.diag .marca .ponto { color: var(--pink); }
+.diag .aos-links { font-size: .86rem; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; padding: 8px 0; }
+.diag .trilho { height: 2px; background: var(--line); max-width: 640px; margin: 0 auto; }
+.diag .trilho span { display: block; height: 100%; width: 0; background: var(--accent); transition: width .35s ease; }
+.diag .pagina { max-width: 640px; margin: 0 auto; padding: 32px max(16px, env(safe-area-inset-right, 0px)) 56px max(16px, env(safe-area-inset-left, 0px)); }
+
+.diag label.campo, .diag label.sub { display: block; margin: 0 0 18px; font-weight: 400; }
+.diag label.campo small, .diag label.sub small { color: var(--muted); font-weight: 300; }
+.diag label.sub { margin: 10px 0 0; font-size: .9rem; }
+.diag input[type=text], .diag input[type=email], .diag input[type=password], .diag input:not([type]), .diag select {
+  display: block; width: 100%; margin-top: 6px; font: 400 1rem var(--f-body); color: var(--fg);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; min-height: 48px;
+}
+.diag input:focus-visible, .diag select:focus-visible, .diag button:focus-visible, .diag a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.diag fieldset { border: 0; padding: 0; margin: 0 0 26px; min-width: 0; }
+.diag legend { font-weight: 500; margin-bottom: 10px; padding: 0; }
+.diag .senha { margin-top: 24px; }
+.diag .senha label { font-weight: 500; }
+.diag .senha input { font-size: 1.4rem; letter-spacing: .18em; text-transform: uppercase; text-align: center; font-weight: 500; }
+.diag .senha .btn { width: 100%; margin-top: 12px; }
+.diag .ajuda { margin-top: 26px; color: var(--muted); font-size: .92rem; }
+
+.diag .escolhas { display: grid; gap: 8px; }
+.diag .escolha {
+  display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+  font: 400 .98rem/1.4 var(--f-body); color: var(--fg);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+  padding: 13px 16px; min-height: 52px; cursor: pointer;
+}
+.diag .escolha::before { content: ""; flex: none; width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--taupe); background: var(--surface); }
+.diag .escolha.multi::before { border-radius: 3px; }
+.diag .escolha[aria-pressed=true] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); font-weight: 500; }
+.diag .escolha[aria-pressed=true]::before { background: var(--accent); border-color: var(--accent); box-shadow: inset 0 0 0 3px var(--surface); }
+.diag .escolha:disabled { opacity: .45; cursor: not-allowed; }
+.diag .escolha small { display: block; color: var(--muted); font-size: .82rem; font-weight: 300; }
+.diag .detalhes { margin-top: 16px; display: grid; gap: 10px; }
+.diag .detalhe { background: var(--surface); border: 1px dashed var(--taupe); border-radius: 4px; padding: 12px 14px; }
+.diag .detalhe-titulo { font-size: .9rem; margin: 0; font-weight: 400; }
+.diag .consentimento { display: flex; gap: 12px; align-items: flex-start; font-size: .92rem; cursor: pointer; }
+.diag .consentimento input { flex: none; width: 20px; height: 20px; margin-top: 3px; accent-color: var(--accent); }
+
+.diag .btn {
+  display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+  font: 500 .95rem var(--f-body); letter-spacing: .02em; text-decoration: none;
+  background: var(--accent); color: var(--accent-fg); border: 1px solid var(--accent);
+  border-radius: 999px; padding: 12px 26px; min-height: 48px; cursor: pointer;
+}
+.diag .btn:disabled { opacity: .4; cursor: not-allowed; }
+.diag .sec-btn, .diag .btn.sec-btn { background: transparent; color: var(--accent); }
+.diag .voltar { font: 400 .95rem var(--f-body); background: none; border: 0; color: var(--muted); padding: 12px 4px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.diag .nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--line); }
+
+.diag .estado { background: var(--surface); border: 1px solid var(--line); border-left: 3px solid var(--saude-boa); border-radius: 4px; padding: 18px 20px; margin: 22px 0 8px; }
+.diag .estado-atencao { border-left-color: var(--saude-media); }
+.diag .estado-cuidado { border-left-color: var(--saude-baixa); }
+.diag .estado-nome { font: 400 1.7rem/1.2 var(--f-display); margin-bottom: 6px; }
+.diag h2.sec { margin-top: 34px; }
+.diag .ranking { list-style: none; padding: 0; margin: 0; counter-reset: rk; display: grid; gap: 12px; }
+.diag .ranking li { counter-increment: rk; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 16px 18px; font-size: .93rem; scroll-margin-top: 90px; }
+.diag .ranking li p { margin: 6px 0 0; }
+.diag .ranking li:target { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.diag .rk-cab { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; }
+.diag .rk-nome { font: 400 1.3rem/1.3 var(--f-display); }
+.diag .rk-nome::before { content: counter(rk) ". "; color: var(--accent); }
+.diag .selo { font: 500 .66rem/1.4 var(--sans); letter-spacing: .18em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: var(--selo-fundo); color: var(--floresta); }
+.diag .q1 .selo, .diag .q2 .selo { background: var(--accent-soft); color: var(--accent); }
+.diag .acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+
+.diag .saude { margin: 22px 0 18px; }
+.diag .saude-cab { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.diag .saude-cab h2 { margin: 0; }
+.diag .saude-nota { margin: 0; font-size: .95rem; color: var(--muted); }
+.diag .saude-nota b { font: 400 2.2rem var(--f-display); color: var(--fg); }
+.diag .saude-nota.boa b { color: var(--saude-boa); }
+.diag .saude-nota.media b { color: var(--saude-media); }
+.diag .saude-nota.baixa b { color: var(--saude-baixa); }
+.diag .saude .dica { margin: 2px 0 12px; }
+.diag .saude-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.diag .comodo { display: flex; flex-direction: column; gap: 7px; min-width: 0; text-decoration: none; color: var(--fg); background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 11px 12px; }
+.diag .comodo:hover { border-color: var(--taupe); }
+.diag .comodo-nome { font-weight: 500; font-size: .9rem; overflow-wrap: anywhere; }
+.diag .comodo-barra { height: 6px; border-radius: 6px; background: var(--trilho); overflow: hidden; }
+.diag .comodo-barra span { display: block; height: 100%; border-radius: 6px; }
+.diag .comodo.boa .comodo-barra span { background: var(--saude-boa); }
+.diag .comodo.media .comodo-barra span { background: var(--saude-media); }
+.diag .comodo.baixa .comodo-barra span { background: var(--saude-baixa); }
+.diag .comodo small { color: var(--muted); font-size: .75rem; }
+.diag .comodo.baixa small { color: var(--saude-baixa); font-weight: 500; }
+.diag .convite { background: var(--amora); color: var(--porcelana); border-radius: 4px; padding: 24px 22px; margin-top: 28px; }
+.diag .convite .eyebrow { color: var(--rose); }
+.diag .convite-abre { font: italic 300 1.45rem/1.35 var(--accent); font-variation-settings: "SOFT" 100, "WONK" 1; margin-bottom: 12px; }
+.diag .convite .passo-titulo { margin-top: 22px; padding-top: 16px; border-top: 1px solid rgba(246,244,241,.25); }
+.diag .convite .assinatura { margin-top: 18px; color: var(--porcelana); }
+.diag .convite .rodape { color: rgba(246,244,241,.75); }
+@media (min-width: 560px) { .diag .saude-grade { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+@media print {
+  .diag .topo, .nao-imprimir, #vista-links { display: none !important; }
+  body, .diag { background: #fff; }
+  .diag .pagina { padding-top: 0; }
+  .diag .ranking li { break-inside: avoid; }
+  .diag .convite { background: #fff; color: var(--cacau); border: 1px solid var(--amora); }
+  .diag .convite .eyebrow, .diag .convite .assinatura, .diag .convite .rodape { color: var(--cacau); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .diag .trilho span, .l-btn .seta, .l-linhas summary::after { transition: none; }
+  .l-am-barra span { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- =================== LINKS =================== -->
+<div id="vista-links">
+<main class="l-pagina">
+  <header class="l-id">
+    <div class="l-id-topo">
+      <div class="l-retrato" id="retrato" aria-hidden="true"><span>GP<span class="ponto">.</span></span></div>
+      <p class="sobre">Studio GP<br>Design de interiores online</p>
+    </div>
+    <h1 class="l-nome">Gabriele Pinheiro</h1>
+    <p class="l-gancho acento">Sua casa ainda não parece sua?</p>
+    <p class="l-bio">Sou arquiteta e ajudo famílias brasileiras que vivem fora do Brasil a transformar a casa em lar, com identidade e sem desperdício.</p>
+    <ul class="l-fatos">
+      <li><b>+8 anos</b><span>em interiores residenciais</span></li>
+      <li><b>+12 países</b><span>com famílias atendidas</span></li>
+      <li><b>100%</b><span>online, do diagnóstico ao Design Book</span></li>
+    </ul>
+    <nav aria-label="Nesta página"><ul class="l-atalhos">
+      <li><a href="#diagnostico">Diagnóstico da Casa</a></li>
+      <li><a href="#premier">Premier</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#processo">Como funciona</a></li>
+    </ul></nav>
+  </header>
+
+  <div class="l-cartoes">
+    <section class="l-cartao l-diag" id="comece" aria-labelledby="t-diag">
+      <p class="sobre">Comece aqui · cortesia do escritório</p>
+      <h2 id="t-diag">Diagnóstico da Casa</h2>
+      <p>Toda casa tem um ambiente que tira a nossa paz. Em cerca de 6 minutos, você me conta como se sente na sua casa hoje e recebe:</p>
+      <ul class="l-lista">
+        <li><span class="diam"></span><span>a saúde da sua casa, de 0 a 100</span></li>
+        <li><span class="diam"></span><span>os seus ambientes em ordem de prioridade</span></li>
+        <li><span class="diam"></span><span>por onde começar e o serviço indicado para o seu momento</span></li>
+      </ul>
+      <div class="l-amostra" role="img" aria-label="Exemplo de resultado: saúde da casa 58 de 100. Sala de estar 42, pede atenção. Cozinha 83, em paz. Hall de entrada 25, pede cuidado.">
+        <div class="l-amostra-cab"><span class="sobre">Exemplo de resultado</span><b>58<small>/100</small></b></div>
+        <div class="l-am-linha"><span>Sala de estar</span><em>pede atenção</em><span class="l-am-barra"><span style="width:42%"></span></span></div>
+        <div class="l-am-linha"><span>Cozinha</span><em>em paz</em><span class="l-am-barra"><span style="width:83%"></span></span></div>
+        <div class="l-am-linha"><span>Hall de entrada</span><em>pede cuidado</em><span class="l-am-barra"><span style="width:25%"></span></span></div>
+      </div>
+      <a class="l-btn largo" href="#diagnostico" id="cta-diag"><span id="cta-diag-txt">Fazer o meu diagnóstico</span> <span class="seta" aria-hidden="true">→</span></a>
+      <p class="l-diag-nota" id="nota-senha">Você vai precisar da senha que eu envio no direct. Ainda não tem? Envie <b>DIAGNÓSTICO</b> no direct do meu Instagram.</p>
+    </section>
+
+    <section class="l-cartao l-premier" id="premier" aria-labelledby="t-premier">
+      <p class="sobre">Para a casa inteira</p>
+      <div class="l-premier-cab"><h2 id="t-premier">Premier</h2><span class="l-preco">200€</span></div>
+      <p>Para quem tem muitas demandas na casa e quer clareza antes de investir.</p>
+      <ul class="l-lista">
+        <li><span class="diam"></span><span>Call de 1h30 com todas as demandas da casa</span></li>
+        <li><span class="diam"></span><span>Diagnóstico ambiente por ambiente</span></li>
+        <li><span class="diam"></span><span>Estratégia de execução: prioridades, ordem das compras e o que cada ambiente precisa</span></li>
+        <li><span class="diam"></span><span>Plano Premier por escrito, em até 5 dias úteis</span></li>
+      </ul>
+      <p class="l-upgrade">Seguiu para Essence, Maison ou Personalité em até 60 dias? Você tem <b>10% de desconto</b> nos ambientes do seu plano.</p>
+      <a class="l-btn contorno largo" id="cta-premier" href="#diagnostico">Começar pelo diagnóstico <span class="seta" aria-hidden="true">→</span></a>
+      <p class="l-miudo" style="margin:12px 0 0">Não inclui layout, shopping list ou projeto de ambientes.</p>
+    </section>
+
+    <section class="l-cartao" id="projetos" aria-labelledby="t-projetos">
+      <p class="sobre">Projetos por ambiente</p>
+      <h2 id="t-projetos">Escolha pelo tipo de trabalho</h2>
+      <p>Os nomes descrevem o tipo de trabalho, não uma posição numa escada.</p>
+      <div class="l-linhas">
+        <details>
+          <summary><strong>Essence</strong><span>A casa já tem base. Falta a decoração.</span></summary>
+          <div class="l-linha-corpo">
+            <h3>Contempla, por ambiente</h3>
+            <ul><li>Moodboard: paleta de cores e composição</li><li>Proposta de decoração sobre a foto do ambiente atual</li><li>Shopping list com links: tapetes, cortinas, almofadas, quadros, objetos, plantas e luminárias de apoio</li><li>Guia de instalação</li><li>1 rodada de ajustes</li><li>Suporte de 15 dias por e-mail após a entrega</li></ul>
+            <h3>Não inclui</h3><p>Layout, mobiliário principal, prévias ultrarrealistas, pintura e papel de parede.</p>
+          </div>
+        </details>
+        <details>
+          <summary><strong>Maison</strong><span>Mobiliar e decorar, sem mexer no imóvel.</span></summary>
+          <div class="l-linha-corpo">
+            <p>Ideal para apartamentos alugados ou de uso temporário.</p>
+            <h3>Contempla, por ambiente</h3>
+            <ul><li>Moodboard: materiais, paleta de cores e composição</li><li>Layout com medidas</li><li>2 prévias de imagem ultrarrealistas</li><li>Plano de iluminação geral e decorativa</li><li>Shopping list com links</li><li>Guia de instalação</li><li>1 rodada de ajustes</li><li>Suporte de 30 dias por e-mail após a entrega</li></ul>
+            <h3>Não inclui</h3><p>Pintura, papel de parede e projeto técnico.</p>
+          </div>
+        </details>
+        <details>
+          <summary><strong>Personalité</strong><span>Transformar também as paredes, com acompanhamento de perto.</span></summary>
+          <div class="l-linha-corpo">
+            <h3>Contempla, por ambiente</h3>
+            <ul><li>Tudo do Maison, com 4 prévias ultrarrealistas</li><li>Especificação de pintura e papel de parede com quantitativos</li><li>Medidas para execução e alturas de todos os elementos</li><li>Planilha de custos</li><li>Concierge de 12 semanas: WhatsApp direto, follow-up semanal e uma videochamada</li></ul>
+            <h3>Não inclui</h3><p>Projeto técnico, troca de pisos e revestimentos, e obras.</p>
+          </div>
+        </details>
+        <details>
+          <summary><strong>Collection</strong><span>Para quem prefere fazer sozinho(a).</span></summary>
+          <div class="l-linha-corpo">
+            <p>Curadoria de produtos e combinações na plataforma Casa com Identidade, para escolher e comprar por conta própria com uma seleção de confiança como guia.</p>
+            <h3>Não inclui</h3><p>Atendimento individual, layout ou acompanhamento.</p>
+            <p style="margin-top:12px" hidden data-cfg="collection"><a class="l-link-seta" href="#" target="_blank" rel="noopener">Conhecer a Casa com Identidade →</a></p>
+          </div>
+        </details>
+        <details>
+          <summary><strong>Atelier <span class="l-selo">Em breve</span></strong><span>Espaços comerciais: salões, estúdios e consultórios.</span></summary>
+          <div class="l-linha-corpo"><p>Linha em definição. Investimento sob consulta.</p></div>
+        </details>
+      </div>
+      <div class="l-ajuda-escolha"><p>Não sabe qual escolher? O diagnóstico indica.</p><a class="l-link-seta" href="#diagnostico">Fazer o diagnóstico →</a></div>
+    </section>
+
+    <section class="l-cartao" id="processo" aria-labelledby="t-processo">
+      <p class="sobre">Nosso processo</p>
+      <h2 id="t-processo">Do diagnóstico ao Design Book</h2>
+      <ol class="l-etapas" id="etapas">
+        <li><strong>Diagnóstico &amp; Análise</strong><span>Você me conta as demandas da sua casa e eu indico o serviço que melhor atende você.</span></li>
+        <li><strong>Proposta &amp; Contratação</strong><span>Uma proposta clara, com o que está incluído, os prazos e o investimento.</span></li>
+        <li><strong>Onboarding &amp; Deep Dive</strong><span>Você recebe o Welcome Book e, na reunião, revisamos cada detalhe da casa e das suas necessidades.</span></li>
+        <li><strong>Moodboard</strong><span>Materiais, cores e texturas mostram a direção do projeto.</span></li>
+        <li><strong>Layout &amp; Análise do espaço</strong><span>Circulação, proporções e a posição de cada móvel.</span></li>
+        <li><strong>Prévias ultrarrealistas</strong><span>Você vê a sua casa pela primeira vez, antes de comprar qualquer item.</span></li>
+        <li><strong>Seleção de produtos &amp; Shopping list</strong><span>Uma seleção feita para você, com links prontos para comprar.</span></li>
+        <li><strong>Detalhamento</strong><span>Pintura, papel de parede, medidas de execução e alturas de instalação. Exclusivo do Personalité.</span></li>
+        <li><strong>Apresentação</strong><span>O projeto apresentado em reunião, ambiente por ambiente.</span></li>
+        <li><strong>Refinamento</strong><span>Você revê o projeto com calma e os ajustes entram numa rodada única.</span></li>
+        <li><strong>Design Book</strong><span>A entrega final: tudo organizado e pronto para executar.</span></li>
+        <li><strong>Suporte &amp; Concierge</strong><span>Suporte por e-mail após a entrega. No Personalité, o Concierge acompanha de perto por 12 semanas.</span></li>
+      </ol>
+      <button type="button" class="l-mais" id="mais-etapas" aria-controls="etapas" aria-expanded="true" hidden>Ver as 12 etapas</button>
+    </section>
+
+    <section class="l-cartao l-citacao" aria-labelledby="t-como">
+      <p class="sobre" id="t-como">Como eu trabalho</p>
+      <blockquote class="acento">Cuidar da sua casa não precisa ser complicado. Precisa ser bem pensado.</blockquote>
+      <ul>
+        <li><span class="diam"></span><span><b>Pensado</b> para a sua rotina real</span></li>
+        <li><span class="diam"></span><span><b>Resolvido:</b> um layout, a melhor solução para o seu espaço</span></li>
+        <li><span class="diam"></span><span><b>Possível:</b> com lojas que entregam onde você mora</span></li>
+        <li><span class="diam"></span><span><b>Sem obra:</b> a transformação vem dos móveis, da luz, da cor e dos objetos</span></li>
+        <li><span class="diam"></span><span><b>Acompanhado:</b> você não fica sozinho(a) na hora de executar</span></li>
+      </ul>
+      <p class="l-edesign"><strong>O que é e-design?</strong>Design de interiores feito 100% online. Você me envia as medidas e as fotos da sua casa, eu desenvolvo o projeto e entrego tudo no Design Book, pronto para você executar de qualquer lugar do mundo.</p>
+    </section>
+
+    <section class="l-cartao l-circulo" id="circulo" aria-labelledby="t-circulo">
+      <p class="sobre">Para quem já é cliente</p>
+      <h2 id="t-circulo">Círculo GP</h2>
+      <p>Clientes Maison e Personalité, com o projeto entregue, podem contar a sua experiência e ganham reconhecimentos a cada gesto, como semanas extras de suporte.</p>
+      <dl>
+        <dt>Indicou e a pessoa contratou?</dt>
+        <dd>Você recebe 10% de crédito no seu próximo projeto, acumulável até 30%. Quem foi indicado ganha 2 semanas a mais de concierge. Basta a pessoa informar o seu nome no Diagnóstico da Casa.</dd>
+      </dl>
+    </section>
+
+    <section aria-label="Contato e redes">
+      <ul class="l-contatos">
+        <li hidden data-cfg="instagram"><a href="#" target="_blank" rel="noopener"><span>Instagram<small data-cfg-txt="instagram"></small></span><span class="seta" aria-hidden="true">→</span></a></li>
+        <li hidden data-cfg="portfolio"><a href="#" target="_blank" rel="noopener"><span>Portfólio<small>projetos entregues</small></span><span class="seta" aria-hidden="true">→</span></a></li>
+        <li hidden data-cfg="whatsapp"><a href="#" target="_blank" rel="noopener"><span>WhatsApp<small>para agendamentos</small></span><span class="seta" aria-hidden="true">→</span></a></li>
+        <li><a href="https://www.gabrielepinheiro.com" target="_blank" rel="noopener"><span>Site<small>gabrielepinheiro.com</small></span><span class="seta" aria-hidden="true">→</span></a></li>
+      </ul>
+    </section>
+  </div>
+</main>
+<footer class="l-rodape">
+  <span class="l-assinatura" aria-hidden="true">GP<span class="ponto">.</span></span>
+  <span>Gabriele Pinheiro · Design de interiores online</span>
+  <nav class="l-legal" aria-label="Informações legais">
+    <a hidden data-cfg="impressum" href="#" target="_blank" rel="noopener">Impressum</a>
+    <a hidden data-cfg="privacidade" href="#" target="_blank" rel="noopener">Privacidade · Datenschutz</a>
+  </nav>
+  <span>© <span id="ano">2026</span> Studio GP</span>
+</footer>
+</div>
+
+<!-- =================== DIAGNÓSTICO DA CASA =================== -->
+<div id="vista-diagnostico" class="diag" hidden>
+  <header class="topo">
+    <div class="topo-linha"><a class="marca" href="#inicio" aria-label="Voltar aos links">GP<span class="ponto">.</span></a><a class="aos-links nao-imprimir" href="#inicio">← Voltar aos links</a></div>
+    <div class="trilho" aria-hidden="true"><span id="progresso"></span></div>
+  </header>
+  <main id="app" class="pagina"></main>
+</div>
+
+<script>
+/* =========================================================
+   CONFIGURAÇÃO · preencha aqui. Campo vazio = item escondido.
+   ========================================================= */
+window.GP_CONFIG = {
+  instagram: "",        // o seu @ sem o arroba, ex.: "studiogp". Ativa o botão do Instagram e o "falar no direct".
+  portfolio: "",        // link do portfólio
+  collection: "",       // link da plataforma Casa com Identidade
+  premier: "",          // link de agendamento da Premier. Vazio: o botão leva ao diagnóstico.
+  whatsapp: "",         // NÃO preencher antes de confirmar o número oficial.
+  foto: "",             // link da sua foto (quadrada). Vazio: mostra o monograma GP.
+  impressum: "",        // obrigatório na Alemanha: link da página de Impressum
+  privacidade: "",      // link da política de privacidade (Datenschutzerklärung)
+  // Diagnóstico da Casa. Sem Supabase, funciona em modo de teste (senha DEMO, dados só no navegador).
+  supabaseUrl: "",
+  supabaseKey: "",
+  palavraChave: "DIAGNÓSTICO",
+  validadeDias: 14
+};
+</script>
+<script>(()=>{var g=Object.assign({supabaseUrl:"",supabaseKey:"",instagram:"",palavraChave:"DIAGN\xD3STICO",validadeDias:14},window.GP_CONFIG);var O=[{id:"hall",art:"o",nome:"Hall de entrada"},{id:"estar",art:"a",nome:"Sala de estar"},{id:"jantar",art:"a",nome:"Sala de jantar",obs:"ou estar e jantar integradas"},{id:"cozinha",art:"a",nome:"Cozinha"},{id:"casal",art:"o",nome:"Quarto de casal"},{id:"infantil",art:"o",nome:"Quarto infantil"},{id:"office",art:"o",nome:"Home office"},{id:"banheiro",art:"o",nome:"Banheiro"},{id:"lavanderia",art:"a",nome:"Lavanderia"},{id:"servico",art:"a",nome:"\xC1rea de servi\xE7o"},{id:"keller",art:"o",nome:"Keller",obs:"por\xE3o ou dep\xF3sito"},{id:"varanda",art:"a",nome:"Varanda ou terra\xE7o"}],B=e=>O.find(a=>a.id===e)?.art??"o",A=e=>O.find(a=>a.id===e)?.nome??e,H=[{id:"sozinho",t:"Moro sozinho(a)"},{id:"parceiro",t:"Com parceiro(a)"},{id:"criancas",t:"Com crian\xE7as"},{id:"animais",t:"Com animais"}],J=[{v:0,t:"Nada, gosto dele como est\xE1"},{v:1,t:"Um pouco"},{v:2,t:"Bastante"},{v:3,t:"Muito, \xE9 o que mais me incomoda"}],X=[{v:3,t:"Todos os dias"},{v:2,t:"Algumas vezes por semana"},{v:1,t:"Raramente"}],C=[{id:"gosto",t:"Gosto de como ele est\xE1",leve:!0},{id:"moveis",t:"Tem os m\xF3veis, falta deixar com a nossa cara",leve:!0},{id:"provisorio",t:"Tem m\xF3veis provis\xF3rios ou que n\xE3o combinam",leve:!1},{id:"vazio",t:"Est\xE1 vazio ou quase vazio",leve:!1},{id:"nao_funciona",t:"Est\xE1 completo, mas n\xE3o funciona para a nossa rotina",leve:!1}],q=[{id:"guarda_roupa",t:"O guarda-roupa n\xE3o tem mais espa\xE7o",amb:"casal"},{id:"chegada",t:"N\xE3o tenho onde deixar casacos, sapatos, chaves e bolsas ao chegar",amb:"hall"},{id:"trabalho",t:"Trabalho na mesa de jantar, no sof\xE1 ou na cama",amb:"office"},{id:"roupa",t:"A roupa secando fica espalhada pela casa",amb:["lavanderia","servico"]},{id:"brinquedos",t:"Os brinquedos se espalham pela casa inteira",amb:"infantil"},{id:"receber",t:"N\xE3o consigo receber pessoas \xE0 mesa com conforto",amb:"jantar"},{id:"descansar_juntos",t:"N\xE3o temos um lugar gostoso para descansar juntos",amb:"estar"},{id:"cozinha",t:"A cozinha n\xE3o tem bancada ou arm\xE1rio suficiente",amb:"cozinha"},{id:"luz",t:"Falta luz boa \xE0 noite, a casa fica escura e fria",amb:null},{id:"quarto",t:"O quarto n\xE3o me deixa descansar de verdade",amb:"casal"},{id:"banheiro",t:"Falta lugar para guardar no banheiro",amb:"banheiro"},{id:"outra",t:"Outra",amb:null,outra:!0}],x=[{id:"trabalhar",t:"Um lugar para trabalhar ou estudar",amb:"office"},{id:"receber",t:"Um lugar para receber fam\xEDlia e amigos",amb:"jantar"},{id:"guardar",t:"Um lugar para guardar malas, bicicleta, coisas de esta\xE7\xE3o",amb:["hall","lavanderia","servico","keller"]},{id:"cantinho",t:"Um cantinho s\xF3 meu, para ler ou descansar",amb:"estar"},{id:"brincar",t:"Um lugar para as crian\xE7as brincarem",amb:"infantil"},{id:"hospedar",t:"Um lugar para hospedar quem vem do Brasil",amb:null},{id:"nada",t:"Nada me falta, o problema \xE9 como as coisas est\xE3o",nenhum:!0},{id:"outra",t:"Outra",amb:null,outra:!0}],K=[{id:"menos2",t:"Menos de 2 anos"},{id:"2a5",t:"De 2 a 5 anos"},{id:"mais5",t:"Mais de 5 anos, ou \xE9 o nosso lar"},{id:"indeterminado",t:"Tempo indeterminado"}],Z=[{id:"instagram",t:"Instagram"},{id:"indicacao",t:"Indica\xE7\xE3o"},{id:"google",t:"Google"},{id:"outro",t:"Outro"}],W=[{id:"proprio",t:"Pr\xF3prio"},{id:"alugado",t:"Alugado"}],Y=[{id:"sim",t:"Sim, gostaria de mudar as paredes"},{id:"talvez",t:"Talvez, se fizer sentido no projeto"},{id:"nao",t:"N\xE3o, quero manter as paredes como est\xE3o"}],ee=[{id:"mes",t:"Ainda este m\xEAs"},{id:"tres_meses",t:"Nos pr\xF3ximos 3 meses"},{id:"pesquisando",t:"Ainda estou pesquisando"}],ae=[{id:"diario",t:"Todos os dias, adoro"},{id:"semana",t:"Algumas vezes por semana"},{id:"as_vezes",t:"De vez em quando"},{id:"quase_nunca",t:"Quase nunca"}],oe=[{id:"pinterest",t:"Salvo no Pinterest"},{id:"instagram",t:"Salvo nos favoritos do Instagram"},{id:"prints",t:"Tiro prints e guardo no celular"},{id:"lojas",t:"Guardo links de lojas e produtos"},{id:"nao",t:"N\xE3o costumo salvar",nenhum:!0}],te=[{id:"gosto_pratica",t:"Sinto que tenho bom gosto, mas n\xE3o sei colocar em pr\xE1tica"},{id:"medo_errar",t:"Tenho medo de gastar e me arrepender"},{id:"combinar",t:"N\xE3o sei se as coisas v\xE3o combinar entre si"},{id:"medidas",t:"N\xE3o sei as medidas certas (tamanho do sof\xE1, do tapete, altura dos quadros)"},{id:"decidir",t:"Tenho muitas refer\xEAncias e n\xE3o consigo decidir"},{id:"tempo",t:"Falta tempo para pesquisar e comprar"},{id:"encontrar",t:"N\xE3o encontro onde moro as coisas no estilo que eu gosto"},{id:"opinioes",t:"Cada pessoa da casa quer uma coisa"},{id:"comecar",t:"N\xE3o sei por onde come\xE7ar"}],se=[{id:"sim",t:"Sim, quero receber a proposta no meu e-mail"},{id:"nao",t:"N\xE3o, por enquanto quero s\xF3 o diagn\xF3stico"}],w=3;var ye=6,ne=12,Ce=[{id:"boa",min:70,nome:"em paz"},{id:"media",min:40,nome:"pede aten\xE7\xE3o"},{id:"baixa",min:0,nome:"pede cuidado"}],D=e=>Ce.find(a=>e>=a.min),Te=e=>Math.round(100*(1-Math.min(e,ne)/ne)),ie={1:{nome:"Comece por aqui",direcao:"Os m\xF3veis j\xE1 est\xE3o aqui. Luz, tecidos, arte e objetos certos devolvem a sensa\xE7\xE3o de lar com poucas compras."},2:{nome:"O cora\xE7\xE3o do projeto",direcao:"Este ambiente pede um layout pensado para a sua rotina antes de qualquer compra. Comprar sem esse plano \xE9 o caminho mais caro."},3:{nome:"Toques finais",direcao:"Quando o essencial estiver resolvido, alguns detalhes completam este ambiente. N\xE3o h\xE1 pressa."},4:{nome:"Pode esperar",direcao:"Hoje ele n\xE3o pesa na sua rotina. Guarde para uma segunda etapa e concentre a energia nos primeiros da lista."}},Ie="Este ambiente pede um layout pensado para a sua rotina antes de qualquer compra. Como voc\xEA pretende ficar menos de 2 anos neste im\xF3vel, a escolha vai para solu\xE7\xF5es que v\xE3o junto na mudan\xE7a.",ze={paz:{nome:"Em paz",frase:"A sua casa j\xE1 tem uma boa base. O que falta s\xE3o toques que trazem ainda mais de voc\xEA para ela."},atencao:{nome:"Pede aten\xE7\xE3o",frase:"H\xE1 pontos espec\xEDficos tirando a sua paz. Resolvendo esses ambientes, a casa inteira muda de sensa\xE7\xE3o."},cuidado:{nome:"Pede cuidado",frase:"V\xE1rios ambientes pesam na sua rotina ao mesmo tempo. Antes de comprar qualquer coisa, vale ter uma estrat\xE9gia para a casa inteira."}},re={3:"todos os dias",2:"algumas vezes por semana",1:"raramente"},Ne={1:"um pouco",2:"bastante"},E=e=>e.charAt(0).toLowerCase()+e.slice(1);function ce(e,a){return a.texto?a.texto.trim():e.find(o=>o.id===a.id)?.t??""}function de(e){return e.length<=1?e.join(""):e.slice(0,-1).join("; ")+" e "+e[e.length-1]}function _e(e,a){let o=[];return e.existe&&e.paz>0&&o.push(e.paz===3?`Voc\xEA usa este ambiente ${re[e.freq]} e ele \xE9 o que mais tira a sua paz.`:`Voc\xEA usa este ambiente ${re[e.freq]} e ele tira ${Ne[e.paz]} a sua paz.`),e.existe||o.push("Ele ainda n\xE3o existe na sua casa, mas faz falta."),e.atritos.length===1&&o.push(`\xC9 aqui que mora um dos atritos da sua rotina: ${E(e.atritos[0])}.`),e.atritos.length>1&&o.push(`\xC9 aqui que moram atritos da sua rotina: ${de(e.atritos.map(E))}.`),e.faltas.length&&o.push(`\xC9 o que falta na sua casa hoje: ${de(e.faltas.map(E))}.`),e.prioridade&&o.push("\xC9 o ambiente que voc\xEA gostaria de ver pronto primeiro."),e.evita&&o.push("\xC9 o ambiente que voc\xEA evita mostrar quando recebe visitas."),o.length||o.push(e.paz===0?"Voc\xEA gosta dele como est\xE1, e ele pesa pouco na sua rotina.":"Hoje ele pesa pouco na sua rotina."),o.join(" ")}function P(e){let a=e.map(o=>`**${o==="keller"?A(o):E(A(o))}**`);return a.length<=1?a.join(""):a.slice(0,-1).join(", ")+" e "+a[a.length-1]}var je={sim:"Em at\xE9 2 dias \xFAteis, voc\xEA receber\xE1 no e-mail cadastrado uma proposta personalizada, com um plano de execu\xE7\xE3o para a sua casa.",nao:"Se quiser seguir comigo depois, \xE9 s\xF3 me chamar no direct."};function we(e,a,o){let i=De(e,a,o),r=je[o.proposta];return{...i,frase:r?`${i.frase} ${r}`:i.frase,proposta:o.proposta||""}}function De(e,a,o){let i=a[0],r=(...s)=>a.filter(d=>s.includes(d.quadrante)).map(d=>d.id);if(e==="cuidado")return{linha:"Premier",ambientes:r(1,2),frase:"Com base no seu diagn\xF3stico, o servi\xE7o que mais te atenderia neste momento \xE9 a **Premier**, uma call para montar a estrat\xE9gia da casa inteira.",nota:"3 ou mais ambientes de impacto alto: Premier."};if(e==="paz"){let s=a.slice(0,2).map(d=>d.id);return{linha:"Collection ou Essence",ambientes:s,frase:`Com base no seu diagn\xF3stico, o servi\xE7o que mais te atenderia neste momento \xE9 a **Collection** ou o **Essence** para ${P(s)}, conforme o quanto de acompanhamento voc\xEA quer.`,nota:"Casa em paz: Collection ou Essence, conforme o acompanhamento desejado."}}if(i.quadrante===1){let s=r(1);return{linha:"Essence",ambientes:s,frase:`Com base no seu diagn\xF3stico, o servi\xE7o que mais te atenderia neste momento \xE9 o **Essence** para ${P(s)}.`,nota:"Primeiro da lista no quadrante 1: Essence."+(o.pintura==="sim"?" Quer mudar paredes: avaliar Personalit\xE9.":"")}}let n=r(1,2);return o.pintura==="sim"?{linha:"Personalit\xE9",ambientes:n,frase:`Com base no seu diagn\xF3stico, o servi\xE7o que mais te atenderia neste momento \xE9 o **Personalit\xE9** para ${P(n)}, que inclui a pintura e o papel de parede que voc\xEA quer.`,nota:"Primeiro da lista no quadrante 2 e vontade de mudar paredes: Personalit\xE9."}:o.pintura==="nao"?{linha:"Maison",ambientes:n,frase:`Com base no seu diagn\xF3stico, o servi\xE7o que mais te atenderia neste momento \xE9 o **Maison** para ${P(n)}.`,nota:"Primeiro da lista no quadrante 2, sem mudar paredes: Maison."}:{linha:"Maison",ambientes:n,frase:`Com base no seu diagn\xF3stico, o servi\xE7o que mais te atenderia neste momento \xE9 o **Maison** para ${P(n)}. Se voc\xEA tiver vontade de pintar ou colocar papel de parede, o servi\xE7o passa a ser o **Personalit\xE9**.`,nota:"Primeiro da lista no quadrante 2: Maison. Se houver vontade de mudar paredes (pintura, papel de parede): Personalit\xE9. Confirmar no briefing."}}var Re={1:"Voc\xEA j\xE1 usa muito este ambiente e, com poucos ajustes, ele pode mudar a forma como voc\xEA se sente em casa j\xE1 nas pr\xF3ximas semanas.",2:"\xC9 ali que est\xE1 a maior transforma\xE7\xE3o da sua casa. Quando ele estiver resolvido, a rotina inteira fica mais leve.",3:"A sua casa j\xE1 tem uma boa base. Come\xE7ar por aqui \xE9 o jeito de trazer ainda mais de voc\xEA para ela, com calma.",4:"A sua casa j\xE1 tem uma boa base. Come\xE7ar por aqui \xE9 o jeito de trazer ainda mais de voc\xEA para ela, com calma."};function ke(e,a){let o=a.id==="keller"?a.nome:E(a.nome),i=B(a.id)==="a"?"pela":"pelo",r=(e||"").trim().split(/\s+/)[0];return{abertura:`${r?r+", pelo":"Pelo"} que voc\xEA me contou, eu sugiro que voc\xEA comece ${i} ${o}.`,texto:Re[a.quadrante],fecho:"Uma casa n\xE3o fica pronta de uma vez. Ela vai ficando sua, um ambiente de cada vez."}}function R(e){let a=new Set(e.ambientes),o=Array.isArray(e.evita)?e.evita:e.evita?[e.evita]:[],i=e.atritos.filter(m=>a.has(m.amb)),r=e.faltas.filter(m=>a.has(m.amb)),n=[...e.ambientes],s=n.map(m=>{let p=a.has(m),j=p?e.porAmbiente[m]:null,F=j?.paz??0,G=j?.freq??0,Q=j?.estado??"vazio",u={id:m,nome:A(m),existe:p,paz:F,freq:G,estado:Q,atritos:i.filter(v=>v.amb===m).map(v=>ce(q,v)),faltas:r.filter(v=>v.amb===m).map(v=>ce(x,v)),evita:o.includes(m),prioridade:e.prioridade===m};return u.pontos={pazFrequencia:F*G,atritos:u.atritos.length*2,faltas:u.faltas.length*2,evita:u.evita?1:0,prioridade:u.prioridade?2:0},u.impacto=Object.values(u.pontos).reduce((v,Pe)=>v+Pe,0),u.impactoAlto=u.impacto>=ye,u.esforcoLeve=p&&!!C.find(v=>v.id===Q)?.leve,u.quadrante=u.impactoAlto?u.esforcoLeve?1:2:u.esforcoLeve?3:4,u.quadranteNome=ie[u.quadrante].nome,u.direcao=u.quadrante===2&&e.tempo==="menos2"?Ie:ie[u.quadrante].direcao,u.porque=_e(u,e.tempo),u.saude=Te(u.impacto),u});s.sort((m,p)=>m.quadrante-p.quadrante||p.impacto-m.impacto||Number(p.prioridade)-Number(m.prioridade)||p.freq-m.freq||n.indexOf(m.id)-n.indexOf(p.id));let d=s.filter(m=>m.impactoAlto).length,c=d===0?"paz":d<=2?"atencao":"cuidado",b=m=>m.existe?m.freq:1;return{versao:2,saude:Math.round(s.reduce((m,p)=>m+p.saude*b(p),0)/s.reduce((m,p)=>m+b(p),0)),estado:{id:c,...ze[c],impactoAlto:d},ambientes:s,convite:ke(e.nome,s[0]),caminho:we(c,s,e)}}var me=e=>e.replace(/\*\*(.+?)\*\*/g,"<b>$1</b>");var T=!g.supabaseUrl||!g.supabaseKey;var le="gp-diagnostico-demo";function S(e){return String(e||"").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/\s+/g,"").toUpperCase()}function Me(e){let a={apikey:g.supabaseKey,"Content-Type":"application/json"};return e?a.Authorization="Bearer "+e:g.supabaseKey.startsWith("eyJ")&&(a.Authorization="Bearer "+g.supabaseKey),a}async function ue(e,{metodo:a="GET",corpo:o,token:i,prefer:r}={}){let n=Me(i);r&&(n.Prefer=r);let s=await fetch(g.supabaseUrl.replace(/\/$/,"")+e,{method:a,headers:n,body:o===void 0?void 0:JSON.stringify(o)}),d=await s.text(),c=null;try{c=d?JSON.parse(d):null}catch{c={message:d}}if(!s.ok){let b=new Error(c?.message||c?.msg||c?.error_description||`Erro ${s.status}`);throw b.status=s.status,b.code=c?.code,b}return c}function pe(){try{let e=JSON.parse(localStorage.getItem(le));if(e?.senhas)return e}catch{}return{senhas:[{id:"demo",codigo:"DEMO",tipo:"campanha",nome:null,instagram:null,nota:"Senha de teste",usos_max:null,usos:0,valida_ate:null,ativa:!0,criada_em:new Date().toISOString()}],diagnosticos:[]}}function Ue(e){localStorage.setItem(le,JSON.stringify(e))}function fe(e){return!e||!e.ativa?{ok:!1,motivo:"invalida"}:e.valida_ate&&new Date(e.valida_ate)<new Date?{ok:!1,motivo:"expirada"}:e.usos_max!=null&&e.usos>=e.usos_max?{ok:!1,motivo:"usada"}:{ok:!0,nome:e.nome,tipo:e.tipo}}async function be(e){let a=S(e);return T?fe(pe().senhas.find(o=>o.codigo===a)):ue("/rest/v1/rpc/verificar_senha",{metodo:"POST",corpo:{p_codigo:a}})}async function he(e,a,o){let i=S(e);if(T){let r=pe(),n=r.senhas.find(c=>c.codigo===i),s=fe(n);if(!s.ok)return s;let d=crypto.randomUUID();return r.diagnosticos.unshift({id:d,senha_id:n.id,codigo:i,nome:a.nome,email:a.email,instagram:a.instagram,respostas:a,resultado:o,estado:o.estado.nome,caminho:o.caminho.linha,status:"novo",criado_em:new Date().toISOString()}),n.usos+=1,Ue(r),{ok:!0,id:d}}return ue("/rest/v1/rpc/enviar_diagnostico",{metodo:"POST",corpo:{p_codigo:i,p_respostas:a,p_resultado:o}})}var xe="gp-diagnostico-rascunho",$=document.getElementById("app"),Le=document.getElementById("progresso"),l=e=>String(e??"").replace(/[&<>"']/g,a=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[a]),Ve=e=>/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e.trim());function y(){return{passo:"senha",codigo:"",r:{nome:"",email:"",instagram:"",moradores:[],proposta:"",ambientes:[],porAmbiente:{},atritos:[],faltas:[],evita:[],prioridade:"",imovel:"",tempo:"",pintura:"",inicio:"",acompanha:"",referencias:[],travas:[],origem:"",indicacao:"",consentimento:!1},resultado:null}}var t=Fe(),M=!1;function Fe(){try{let e=JSON.parse(localStorage.getItem(xe));if(e?.r&&e.passo)return Array.isArray(e.r.evita)||(e.r.evita=e.r.evita?[e.r.evita]:[]),e.r={...y().r,...e.r},e.resultado&&(e.resultado=R(e.r)),e}catch{}return y()}function _(){try{localStorage.setItem(xe,JSON.stringify(t))}catch{}}function U(){return["senha","abertura","voce","casa",...t.r.ambientes.map(e=>"amb:"+e),"atritos","faltas","sente","planos","decoracao","momento","resultado"]}var Ge=()=>g.instagram?`https://ig.me/m/${encodeURIComponent(g.instagram)}`:"";function f(e,a,o,{multi:i=!1,desativados:r=[]}={}){return`<div class="escolhas" role="group">${a.map(n=>{let s=n.v??n.id,d=i?o.includes(s):o===s,c=!d&&r.includes(s);return`<button type="button" class="escolha${i?" multi":""}" data-grupo="${e}" data-v="${l(s)}" aria-pressed="${d}"${c?" disabled":""}>
+      <span>${l(n.t??n.nome)}${n.obs?`<small>${l(n.obs)}</small>`:""}</span></button>`}).join("")}</div>`}function Qe(e,a,o,i){return`<label class="sub">Em qual ambiente?
+    <select data-amb="${e}" data-i="${a}">
+      <option value="">Escolha</option>
+      ${i.map(r=>`<option value="${r}"${o===r?" selected":""}>${l(A(r))}</option>`).join("")}
+    </select></label>`}var Be={estar:["jantar"],jantar:["estar"],lavanderia:["servico"],servico:["lavanderia"]};function Se(e){let a=t.r.ambientes;if(e.nenhum)return[];if(typeof e.amb=="string"){if(a.includes(e.amb))return[e.amb];let o=(Be[e.amb]||[]).filter(i=>a.includes(i));return o.length?o:a}if(Array.isArray(e.amb)){let o=e.amb.filter(i=>a.includes(i));return o.length?o:a}return a}function He(e){if(e.nenhum)return null;let a=Se(e);return a.length===1?null:a}function ge(e){let a=Se(e);return a.length===1?a[0]:""}function ve(e,a){let o=t.r[e],i=o.map(c=>c.id),n=o.length>=w?a.map(c=>c.id):[],s=f(e,a,i,{multi:!0,desativados:n}),d=o.map((c,b)=>{let h=a.find(p=>p.id===c.id),m=He(h);return m===null?"":`<div class="detalhe"><p class="detalhe-titulo">${l(h.outra?"Outra":h.t)}</p>
+      ${h.outra?`<label class="sub">Qual?<input type="text" data-texto="${e}" data-i="${b}" value="${l(c.texto)}" maxlength="140"></label>`:""}
+      ${Qe(e,b,c.amb,m)}</div>`}).join("");return d&&(s+=`<div class="detalhes">${d}</div>`),s}var $e={senha:{html:()=>`
+      <p class="eyebrow">Gabriele Pinheiro \xB7 Design de interiores online</p>
+      <h1 tabindex="-1">Diagn\xF3stico da Casa</h1>
+      <p class="lede">Para come\xE7ar, digite a senha que voc\xEA recebeu no direct do Instagram.</p>
+      <form id="f-senha" class="senha" novalidate>
+        <label for="codigo">Senha</label>
+        <input id="codigo" name="codigo" autocomplete="off" autocapitalize="characters" spellcheck="false" value="${l(t.codigo)}" required>
+        <p class="erro" id="erro-senha" role="alert"></p>
+        <button class="btn" type="submit">Entrar</button>
+      </form>
+      <p class="ajuda">Ainda n\xE3o tem a senha? Envie <b>${l(g.palavraChave)}</b> no direct ${g.instagram?`de <a href="https://instagram.com/${encodeURIComponent(g.instagram)}" target="_blank" rel="noopener">@${l(g.instagram)}</a>`:"do meu Instagram"} e eu envio a sua.</p>
+      ${T?'<p class="aviso">Modo de teste: use a senha <b>DEMO</b>.</p>':""}`,semContinuar:!0},abertura:{html:()=>`
+      <p class="eyebrow">Diagn\xF3stico da Casa</p>
+      <h1 tabindex="-1">Toda casa tem um ambiente que tira a nossa paz.</h1>
+      <p class="lede">\xC0s vezes sabemos qual \xE9; \xE0s vezes s\xF3 sentimos que algo n\xE3o est\xE1 bem.</p>
+      <p>Em cerca de 6 minutos, voc\xEA me conta como se sente na sua casa hoje. No fim, recebe os seus ambientes em ordem de prioridade e uma dire\xE7\xE3o de por onde come\xE7ar.</p>
+      <p>Se tiver interesse em continuar essa jornada comigo, voc\xEA tamb\xE9m pode pedir uma proposta personalizada. Se n\xE3o tiver, n\xE3o tem problema: o seu diagn\xF3stico chega do mesmo jeito.</p>
+      <p class="assinatura">Gabriele Pinheiro</p>`,botao:"Come\xE7ar",valido:()=>!0},voce:{html:()=>`
+      <p class="eyebrow">1 \xB7 Voc\xEA</p>
+      <h2 tabindex="-1">Primeiro, um pouco sobre voc\xEA</h2>
+      <label class="campo">Seu nome<input type="text" data-campo="nome" value="${l(t.r.nome)}" autocomplete="name" maxlength="120"></label>
+      <label class="campo">E-mail <small>para receber o diagn\xF3stico</small><input type="email" data-campo="email" value="${l(t.r.email)}" autocomplete="email" inputmode="email" maxlength="160"></label>
+      <label class="campo">Seu @ no Instagram <small>opcional</small><input type="text" data-campo="instagram" value="${l(t.r.instagram)}" autocapitalize="none" spellcheck="false" maxlength="60" placeholder="@"></label>
+      <fieldset><legend>Quem mora na casa com voc\xEA?</legend>
+      ${f("moradores",H,t.r.moradores,{multi:!0})}</fieldset>
+      <fieldset><legend>Voc\xEA gostaria de receber tamb\xE9m uma proposta personalizada?</legend>
+        <p class="dica">No fim do question\xE1rio, voc\xEA recebe o seu diagn\xF3stico. Se tiver interesse em continuar essa jornada comigo, posso enviar ao seu e-mail uma proposta personalizada, com um plano de execu\xE7\xE3o para a sua casa. Se n\xE3o tiver interesse, n\xE3o tem problema: voc\xEA recebe o seu diagn\xF3stico do mesmo jeito.</p>
+        ${f("proposta",se,t.r.proposta)}</fieldset>`,valido:()=>t.r.nome.trim()&&Ve(t.r.email)&&t.r.moradores.length&&t.r.proposta},casa:{html:()=>`
+      <p class="eyebrow">2 \xB7 A sua casa</p>
+      <h2 tabindex="-1">Quais destes ambientes existem na sua casa?</h2>
+      <p class="dica">Marque todos que existem. Em seguida, uma tela r\xE1pida para cada um.</p>
+      ${f("ambientes",O,t.r.ambientes,{multi:!0})}`,valido:()=>t.r.ambientes.length>0},amb:{html:e=>{let a=t.r.porAmbiente[e]||{};return`
+      <p class="eyebrow">Ambiente ${t.r.ambientes.indexOf(e)+1} de ${t.r.ambientes.length}</p>
+      <h2 tabindex="-1">${l(A(e))}</h2>
+      <fieldset><legend>Quanto este ambiente tira a sua paz hoje?</legend>${f("paz",J,a.paz)}</fieldset>
+      <fieldset><legend>Com que frequ\xEAncia voc\xEA usa este ambiente?</legend>${f("freq",X,a.freq)}</fieldset>
+      <fieldset><legend>Como ele est\xE1 hoje?</legend>${f("estado",C,a.estado)}</fieldset>`},valido:e=>{let a=t.r.porAmbiente[e];return a&&a.paz!=null&&a.freq!=null&&a.estado}},atritos:{html:()=>`
+      <p class="eyebrow">3 \xB7 O que atrapalha a sua rotina</p>
+      <h2 tabindex="-1">Se voc\xEA fosse listar at\xE9 3 coisas que atrapalham a sua rotina hoje, quais seriam?</h2>
+      <p class="dica">At\xE9 3 op\xE7\xF5es.</p>
+      ${ve("atritos",q)}`,valido:()=>Ae("atritos",q)},faltas:{html:()=>`
+      <p class="eyebrow">4 \xB7 O que falta na sua casa</p>
+      <h2 tabindex="-1">Existe alguma coisa que a sua casa precisa ter, n\xE3o tem, e isso te atrapalha?</h2>
+      <p class="dica">At\xE9 3 op\xE7\xF5es.</p>
+      ${ve("faltas",x)}`,valido:()=>t.r.faltas.length>0&&Ae("faltas",x)},sente:{html:()=>{let e=t.r.ambientes.map(a=>({id:a,t:A(a)}));return`
+      <p class="eyebrow">5 \xB7 Como voc\xEA se sente</p>
+      <h2 tabindex="-1">Duas perguntas r\xE1pidas</h2>
+      <fieldset><legend>Quais ambientes voc\xEA evita mostrar quando recebe visitas?</legend>
+        <p class="dica">Pode marcar mais de um.</p>
+        ${f("evita",[...e,{id:"nenhum",t:"Nenhum"}],t.r.evita,{multi:!0})}</fieldset>
+      <fieldset><legend>Se s\xF3 um ambiente pudesse ficar pronto este m\xEAs, qual seria?</legend>
+        ${f("prioridade",e,t.r.prioridade)}</fieldset>`},valido:()=>t.r.evita.length&&t.r.prioridade},planos:{html:()=>`
+      <p class="eyebrow">6 \xB7 Os seus planos</p>
+      <h2 tabindex="-1">O momento da casa</h2>
+      <fieldset><legend>O im\xF3vel \xE9 pr\xF3prio ou alugado?</legend>${f("imovel",W,t.r.imovel)}</fieldset>
+      <fieldset><legend>Por quanto tempo voc\xEA pretende ficar neste im\xF3vel?</legend>${f("tempo",K,t.r.tempo)}</fieldset>
+      <fieldset><legend>Voc\xEA tem vontade de pintar paredes ou colocar papel de parede?</legend>${f("pintura",Y,t.r.pintura)}</fieldset>
+      <fieldset><legend>Quando voc\xEA gostaria de come\xE7ar?</legend>${f("inicio",ee,t.r.inicio)}</fieldset>`,valido:()=>t.r.imovel&&t.r.tempo&&t.r.pintura&&t.r.inicio},decoracao:{html:()=>`
+      <p class="eyebrow">7 \xB7 Voc\xEA e a decora\xE7\xE3o</p>
+      <h2 tabindex="-1">Agora, um pouco sobre voc\xEA e a decora\xE7\xE3o</h2>
+      <fieldset><legend>O quanto voc\xEA acompanha perfis de decora\xE7\xE3o?</legend>${f("acompanha",ae,t.r.acompanha)}</fieldset>
+      <fieldset><legend>Voc\xEA costuma salvar refer\xEAncias?</legend>
+        <p class="dica">Pode marcar mais de uma.</p>${f("referencias",oe,t.r.referencias,{multi:!0})}</fieldset>
+      <fieldset><legend>Quando voc\xEA vai decorar ou comprar um m\xF3vel, o que mais te trava?</legend>
+        <p class="dica">Pode marcar mais de uma.</p>${f("travas",te,t.r.travas,{multi:!0})}</fieldset>`,valido:()=>t.r.acompanha&&t.r.referencias.length&&t.r.travas.length},momento:{html:()=>`
+      <p class="eyebrow">8 \xB7 Para fechar</p>
+      <h2 tabindex="-1">\xDAltima tela</h2>
+      <fieldset><legend>Como voc\xEA conheceu o escrit\xF3rio?</legend>${f("origem",Z,t.r.origem)}
+        ${t.r.origem==="indicacao"?`<label class="sub">Nome de quem indicou<input type="text" data-campo="indicacao" value="${l(t.r.indicacao)}" maxlength="120"></label>`:""}</fieldset>
+      <label class="consentimento"><input type="checkbox" data-campo="consentimento"${t.r.consentimento?" checked":""}>
+        <span>Concordo que o escrit\xF3rio GP. guarde estas respostas para preparar o meu diagn\xF3stico e entrar em contato comigo. Posso pedir a exclus\xE3o a qualquer momento.</span></label>
+      <p class="erro" id="erro-envio" role="alert"></p>`,botao:"Ver o meu diagn\xF3stico",valido:()=>t.r.origem&&t.r.consentimento},resultado:{html:()=>Je(),semContinuar:!0}};function Ae(e,a){return t.r[e].every(o=>{let i=a.find(r=>r.id===o.id);return i.nenhum?!0:i.outra&&!o.texto?.trim()?!1:t.r.ambientes.includes(o.amb)})}function Je(){let e=t.resultado;if(!e)return"";let a=t.r.nome.trim().split(/\s+/)[0],o=Ge(),i=[...e.ambientes].sort((n,s)=>t.r.ambientes.indexOf(n.id)-t.r.ambientes.indexOf(s.id)||(n.existe?0:1)-(s.existe?0:1)),r=D(e.saude);return`
+    <p class="eyebrow">O diagn\xF3stico da sua casa</p>
+    <h1 tabindex="-1">Preparado para ${l(a)}</h1>
+    <section class="saude" aria-labelledby="t-saude">
+      <div class="saude-cab">
+        <h2 id="t-saude">Sa\xFAde da casa</h2>
+        <p class="saude-nota ${r.id}"><b>${e.saude}</b>/100</p>
+      </div>
+      <p class="dica">Toque num ambiente para ver o porqu\xEA.</p>
+      <div class="saude-grade">
+        ${i.map(n=>{let s=D(n.saude);return`<a class="comodo ${s.id}" href="#r-${l(n.id)}">
+            <span class="comodo-nome">${l(n.nome)}</span>
+            <span class="comodo-barra" role="img" aria-label="Sa\xFAde ${n.saude} de 100"><span style="width:${Math.max(n.saude,4)}%"></span></span>
+            <small>${n.existe?s.nome:"ainda n\xE3o existe"}</small></a>`}).join("")}
+      </div>
+    </section>
+    <section class="estado estado-${e.estado.id}">
+      <p class="eyebrow">Estado geral</p>
+      <p class="estado-nome">${l(e.estado.nome)}</p>
+      <p>${l(e.estado.frase)}</p>
+    </section>
+    <h2 class="sec">Por onde come\xE7ar</h2>
+    <ol class="ranking">
+      ${e.ambientes.map(n=>`
+        <li class="q${n.quadrante}" id="r-${l(n.id)}">
+          <div class="rk-cab"><span class="rk-nome">${l(n.nome)}</span><span class="selo">${n.quadrante} \xB7 ${l(n.quadranteNome)}</span></div>
+          <p><b>Por qu\xEA:</b> ${l(n.porque)}</p>
+          <p><b>Dire\xE7\xE3o:</b> ${l(n.direcao)}</p>
+        </li>`).join("")}
+    </ol>
+    <section class="convite">
+      <p class="convite-abre">${l(e.convite.abertura)}</p>
+      <p>${l(e.convite.texto)}</p>
+      <p>${l(e.convite.fecho)}</p>
+      <p class="eyebrow passo-titulo">O seu pr\xF3ximo passo</p>
+      <p>${me(l(e.caminho.frase))}</p>
+      <p class="assinatura">Gabriele Pinheiro</p>
+      <p class="rodape">Design de interiores online</p>
+    </section>
+    <div class="acoes nao-imprimir">
+      ${o?`<a class="btn" href="${o}" target="_blank" rel="noopener">Falar comigo no direct</a>`:""}
+      <button class="btn sec-btn" type="button" id="imprimir">Salvar em PDF</button>
+    </div>`}function L(){try{qe()}catch(e){console.error(e);let a=t.codigo;t=y(),t.codigo=a,_(),qe()}}function qe(){let e=U();t.passo==="resultado"&&!t.resultado&&(t.passo="momento"),e.includes(t.passo)||(t.passo="casa");let[a,o]=t.passo.split(":"),i=$e[a],r=e.indexOf(t.passo),n=r>1&&a!=="resultado";document.body.dataset.tela=a,Le.style.width=a==="senha"?"0%":`${Math.round(r/(e.length-1)*100)}%`,$.innerHTML=`
+    ${i.html(o)}
+    ${i.semContinuar?"":`
+      <div class="nav">
+        ${n?'<button type="button" class="voltar" id="voltar">Voltar</button>':"<span></span>"}
+        <button type="button" class="btn" id="continuar">${i.botao||"Continuar"}</button>
+      </div>`}`,z()}function z(){let e=document.getElementById("continuar");if(!e)return;let[a,o]=t.passo.split(":");e.disabled=M||!$e[a].valido(o)}function V(e){t.passo=e,_(),L(),window.scrollTo({top:0}),$.querySelector('[tabindex="-1"]')?.focus({preventScroll:!0})}function Oe(){let e=U();V(e[e.indexOf(t.passo)+1])}function I(e,a){let o=e.indexOf(a);o>=0?e.splice(o,1):e.push(a)}function Xe(e,a){let o=t.r,[i,r]=t.passo.split(":");if(i==="amb"){let s=o.porAmbiente[r]||={};s[e]=e==="estado"?a:Number(a)}else if(["moradores","travas"].includes(e))I(o[e],a);else if(e==="referencias")a==="nao"?o.referencias=o.referencias.includes("nao")?[]:["nao"]:(o.referencias=o.referencias.filter(s=>s!=="nao"),I(o.referencias,a));else if(e==="ambientes"){I(o.ambientes,a);let s=O.map(d=>d.id);o.ambientes.sort((d,c)=>s.indexOf(d)-s.indexOf(c)),o.evita=o.evita.filter(d=>d==="nenhum"||o.ambientes.includes(d)),[["atritos",q],["faltas",x]].forEach(([d,c])=>o[d].forEach(b=>{let h=c.find(m=>m.id===b.id);!h.nenhum&&!o.ambientes.includes(b.amb)&&(b.amb=ge(h))})),o.ambientes.includes(o.prioridade)||(o.prioridade="")}else if(e==="evita")a==="nenhum"?o.evita=o.evita.includes("nenhum")?[]:["nenhum"]:(o.evita=o.evita.filter(s=>s!=="nenhum"),I(o.evita,a));else if(e==="atritos"||e==="faltas"){let s=e==="atritos"?q:x,d=s.find(h=>h.id===a),c=o[e],b=c.findIndex(h=>h.id===a);if(b>=0)c.splice(b,1);else if(d.nenhum)c.splice(0,c.length,{id:a,amb:""});else{let h=c.findIndex(m=>s.find(p=>p.id===m.id).nenhum);h>=0&&c.splice(h,1),c.length<w&&c.push({id:a,amb:ge(d),texto:""})}}else o[e]=a,e==="origem"&&a!=="indicacao"&&(o.indicacao="");_();let n=window.scrollY;L(),window.scrollTo({top:n}),$.querySelector(`[data-grupo="${e}"][data-v="${CSS.escape(a)}"]`)?.focus({preventScroll:!0})}$.addEventListener("click",e=>{let a=e.target.closest("button");if(!(!a||a.disabled)){if(a.dataset.grupo)return Xe(a.dataset.grupo,a.dataset.v);if(a.id==="voltar"){let o=U();return V(o[Math.max(1,o.indexOf(t.passo)-1)])}if(a.id==="continuar")return t.passo==="momento"?Ke():Oe();if(a.id==="imprimir")return window.print()}});$.addEventListener("input",e=>{let a=e.target;if(a.dataset.campo)t.r[a.dataset.campo]=a.type==="checkbox"?a.checked:a.value;else if(a.dataset.texto)t.r[a.dataset.texto][Number(a.dataset.i)].texto=a.value;else if(a.dataset.amb)t.r[a.dataset.amb][Number(a.dataset.i)].amb=a.value;else if(a.id==="codigo"){t.codigo=a.value;return}else return;_(),z()});var N={invalida:"N\xE3o encontrei essa senha. Confira as letras e tente de novo.",usada:"Essa senha j\xE1 foi usada. Se quiser refazer o diagn\xF3stico, me chama no direct.",expirada:"Essa senha expirou. Me chama no direct que eu envio uma nova.",consentimento:"Para enviar, marque a caixa de consentimento.",dados:"Algo nas respostas n\xE3o ficou certo. Recarregue a p\xE1gina e tente de novo."};$.addEventListener("submit",async e=>{if(e.target.id!=="f-senha")return;e.preventDefault();let a=document.getElementById("erro-senha"),o=e.target.querySelector("button"),i=S(document.getElementById("codigo").value);if(!i){a.textContent="Digite a senha.";return}o.disabled=!0,a.textContent="";try{let r=await be(i);if(!r.ok){a.textContent=N[r.motivo]||N.invalida;return}t.codigo&&S(t.codigo)!==i&&t.passo!=="senha"&&(t=y()),t.codigo=i,r.nome&&!t.r.nome&&(t.r.nome=r.nome),Oe()}catch{a.textContent="N\xE3o consegui conferir a senha agora. Verifique a internet e tente de novo."}finally{o.disabled=!1}});async function Ke(){let e=document.getElementById("erro-envio");M=!0,z(),e.textContent="";let a={...t.r,nome:t.r.nome.trim(),email:t.r.email.trim(),instagram:t.r.instagram.trim().replace(/^@/,"")},o=R(a);try{let i=await he(t.codigo,a,o);if(!i.ok){e.textContent=N[i.motivo]||N.dados;return}t.resultado=o,V("resultado")}catch{e.textContent='N\xE3o consegui enviar agora. Verifique a internet e toque de novo em "Ver o meu diagn\xF3stico". As suas respostas est\xE3o guardadas.'}finally{M=!1,z()}}var k=new URLSearchParams(location.search).get("s");k&&(t.passo==="senha"||t.passo==="resultado"&&S(k)!==t.codigo)&&(t.passo==="resultado"&&(t=y()),t.codigo=S(k));L();})();</script>
+<script>
+(function () {
+  var C = window.GP_CONFIG || {};
+  var urls = {
+    instagram: C.instagram ? "https://instagram.com/" + encodeURIComponent(C.instagram) : "",
+    portfolio: C.portfolio, collection: C.collection, impressum: C.impressum, privacidade: C.privacidade,
+    whatsapp: C.whatsapp ? "https://wa.me/" + String(C.whatsapp).replace(/\D/g, "") : ""
+  };
+  document.querySelectorAll("[data-cfg]").forEach(function (el) {
+    var u = urls[el.dataset.cfg];
+    if (!u) return;
+    var a = el.tagName === "A" ? el : el.querySelector("a");
+    a.href = u; el.hidden = false;
+  });
+  document.querySelectorAll("[data-cfg-txt=instagram]").forEach(function (el) { el.textContent = "@" + C.instagram; });
+  if (C.foto) document.getElementById("retrato").innerHTML = '<img src="' + encodeURI(C.foto) + '" alt="">';
+  if (C.premier) {
+    var p = document.getElementById("cta-premier");
+    p.href = C.premier; p.target = "_blank"; p.rel = "noopener";
+    p.firstChild.textContent = "Agendar a Premier ";
+  }
+  var nota = document.getElementById("nota-senha");
+  nota.querySelector("b").textContent = C.palavraChave || "DIAGNÓSTICO";
+  if (C.instagram) {
+    nota.lastChild.textContent = " no direct de ";
+    var a = document.createElement("a");
+    a.href = "https://ig.me/m/" + encodeURIComponent(C.instagram); a.target = "_blank"; a.rel = "noopener";
+    a.textContent = "@" + C.instagram; nota.appendChild(a); nota.appendChild(document.createTextNode("."));
+  }
+  document.getElementById("ano").textContent = new Date().getFullYear();
+
+  // Etapas: no celular mostra 4 e abre as 12 com um toque
+  var lista = document.getElementById("etapas"), mais = document.getElementById("mais-etapas");
+  if (window.matchMedia("(max-width: 959px)").matches) {
+    lista.classList.add("recolhido"); mais.hidden = false; mais.setAttribute("aria-expanded", "false");
+    mais.addEventListener("click", function () {
+      var aberto = lista.classList.toggle("recolhido") === false;
+      mais.setAttribute("aria-expanded", String(aberto));
+      mais.textContent = aberto ? "Ver menos" : "Ver as 12 etapas";
+    });
+  }
+
+  // Quem já começou o diagnóstico continua de onde parou
+  function atualizaCta() {
+    var txt = "Fazer o meu diagnóstico";
+    try {
+      var r = JSON.parse(localStorage.getItem("gp-diagnostico-rascunho"));
+      if (r && r.passo === "resultado") txt = "Ver o meu diagnóstico";
+      else if (r && r.passo && r.passo !== "senha") txt = "Continuar o meu diagnóstico";
+    } catch (e) {}
+    document.getElementById("cta-diag-txt").textContent = txt;
+  }
+
+  // Duas vistas na mesma página: #diagnostico abre o aplicativo
+  var vLinks = document.getElementById("vista-links"), vDiag = document.getElementById("vista-diagnostico");
+  var temSenhaNoLink = /[?&]s=/.test(location.search);
+  function mostra() {
+    var diag = location.hash === "#diagnostico" || (temSenhaNoLink && location.hash === "");
+    vDiag.hidden = !diag; vLinks.hidden = diag;
+    if (diag) {
+      window.scrollTo(0, 0);
+      var h = document.querySelector("#app [tabindex='-1']"); if (h) h.focus({ preventScroll: true });
+    } else {
+      atualizaCta();
+      if (location.hash === "#inicio") { window.scrollTo(0, 0); }
+    }
+  }
+  window.addEventListener("hashchange", function () { temSenhaNoLink = false; mostra(); });
+  mostra();
+})();
+</script>
+</body>
+</html>
