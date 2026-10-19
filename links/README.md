@@ -8,16 +8,51 @@ Cores e fontes: Paleta Amora & Floresta. Conteúdo: Jornada do Cliente GP.
 | `index.html` | A página pública. Os links ficam em `/links`; o diagnóstico abre em `/links#diagnostico`. |
 | `painel.html` | O painel do escritório: diagnósticos recebidos, senhas e público. Não tem link na página e não aparece no Google. |
 
-## Para colocar no ar
+## Colocar no ar com o diagnóstico funcionando
 
-1. Suba `index.html` para que ele responda em `www.gabrielepinheiro.com/links`. O painel vai junto, em `/links/painel.html`.
-2. Preencha o bloco `GP_CONFIG` no fim do `index.html`. Campo vazio = item escondido:
-   - `instagram`, `portfolio`, `foto`
-   - `premier`: link de agendamento. Vazio: o botão leva ao diagnóstico.
-   - `impressum` e `privacidade`: obrigatórios na Alemanha.
-   - `whatsapp`: só depois de confirmar o número oficial.
-3. Para receber os diagnósticos de verdade, preencha `supabaseUrl` e `supabaseKey` **nos dois arquivos**.
-   Sem eles, tudo funciona em **modo de teste**: senha `DEMO`, e os dados ficam só no navegador de quem respondeu.
+Sem o Supabase, o diagnóstico roda em **modo de teste**: senha `DEMO`, e as respostas ficam só no celular de quem respondeu. Você não recebe nada.
+
+### 1. Supabase, onde chegam as respostas (cerca de 10 min, plano grátis)
+
+1. Em supabase.com, clique em **New project**.
+   - Nome: `diagnostico-gp`.
+   - Região: **Frankfurt** (Europa).
+   - Guarde a senha do banco.
+2. Abra **SQL Editor → New query**.
+   - Cole o arquivo `supabase.sql`.
+   - Na última linha, troque `SEU-EMAIL-AQUI` pelo seu e-mail.
+   - Clique em **Run**.
+3. Em **Authentication → Users → Add user → Create new user**:
+   - use o mesmo e-mail e uma senha;
+   - marque **Auto Confirm User**.
+4. Em **Authentication → Sign In / Providers**, desligue **Allow new users to sign up**.
+5. Em **Project Settings → API Keys**, copie a **Project URL** e a chave **publishable** (ou **anon**).
+
+### 2. Configuração (2 min)
+
+Em `index.html` e em `painel.html`, preencha no bloco `GP_CONFIG`:
+- `supabaseUrl` e `supabaseKey`;
+- `instagram`.
+
+A chave publishable pode ficar na página: ela foi feita para isso. Quem protege os dados são as regras do `supabase.sql`.
+
+### 3. Wix (cerca de 10 min)
+
+Siga a seção "Colocar no Wix" abaixo, para `links` e para `painel`.
+
+### 4. Primeira senha e teste (2 min)
+
+1. Abra `gabrielepinheiro.com/painel` e entre com o seu e-mail e senha.
+2. Vá em **Senhas → Senha da campanha**, crie `CASA` com a validade que quiser.
+3. Abra `gabrielepinheiro.com/links`, faça o diagnóstico com `CASA` e confira se ele aparece em **Diagnósticos**.
+
+### 5. Instagram
+
+1. Coloque `gabrielepinheiro.com/links` na bio.
+2. Quem enviar **DIAGNÓSTICO** no direct recebe a senha. No painel, o botão **Copiar mensagem para o direct** gera o texto pronto.
+3. Para responder sozinho, crie uma resposta automática para a palavra DIAGNÓSTICO nas automações do Meta Business Suite ou no ManyChat, com a mensagem da senha `CASA`.
+
+> O plano grátis do Supabase pode pausar o projeto depois de uma semana sem uso. Se o diagnóstico parar, abra o painel do Supabase e clique em **Restore**.
 
 ## Painel e segurança
 
