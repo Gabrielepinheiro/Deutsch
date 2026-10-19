@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel Diagnóstico da Casa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@1,9..144,300,100,1&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Poppins:wght@300;400;500;600&display=swap">
+<style>
+/* Painel do escritório · Paleta Amora & Floresta */
+:root {
+  --bg: #F6F4F1; --surface: #FBFAF8; --line: rgba(62,38,32,.16); --fg: #3E2620; --muted: rgba(62,38,32,.72);
+  --accent: #8A1538; --accent-fg: #F6F4F1; --accent-soft: #F0DEDD; --taupe: rgba(62,38,32,.45); --selo-fundo: #E3EAE1; --floresta: #2E5530;
+  --warn: #8A1538; --warn-soft: #F0DEDD; --trilho: #EDE6E2;
+  --f-display: "Playfair Display", "Didot", Georgia, serif;
+  --f-body: "Poppins", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+  --f-marca: "Fraunces", "Playfair Display", Georgia, serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg);
+  font: 300 1rem/1.65 var(--f-body);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+b, strong { font-weight: 600; }
+a { color: var(--accent); }
+h1, h2 { font-family: var(--f-display); font-weight: 400; font-style: italic; line-height: 1.15; margin: 0 0 14px; text-wrap: balance; }
+h1 { font-size: clamp(2rem, 7vw, 2.6rem); }
+h2 { font-size: clamp(1.5rem, 5.4vw, 1.9rem); }
+h1:focus, h2:focus { outline: none; }
+p { margin: 0 0 12px; }
+
+.eyebrow {
+  font-family: var(--f-body); font-weight: 600; font-size: .78rem; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 10px;
+}
+.lede { font-size: 1.12rem; color: var(--muted); }
+.dica { color: var(--muted); font-size: .9rem; }
+.assinatura { font-family: var(--f-display); font-size: 1.25rem; color: var(--fg); margin-top: 28px; }
+.rodape { color: var(--muted); font-size: .85rem; margin-top: -6px; }
+.aviso { background: var(--accent-soft); padding: 10px 14px; border-radius: 4px; font-size: .9rem; margin-top: 18px; }
+.erro { color: var(--warn); font-size: .92rem; min-height: 1.4em; margin: 8px 0 0; font-weight: 400; }
+
+/* Topo */
+.topo {
+  position: sticky; top: 0; z-index: 5; background: var(--bg);
+  padding: calc(env(safe-area-inset-top, 0px) + 12px) max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px));
+}
+.marca { font-family: var(--f-display); font-weight: 500; color: var(--fg); font-size: 1.35rem; letter-spacing: .02em; display: block; max-width: 640px; margin: 0 auto 8px; }
+.trilho { height: 2px; background: var(--line); max-width: 640px; margin: 0 auto; }
+.trilho span { display: block; height: 100%; width: 0; background: var(--accent); transition: width .35s ease; }
+
+.pagina {
+  max-width: 640px; margin: 0 auto;
+  padding: 32px max(16px, env(safe-area-inset-right, 0px)) 48px max(16px, env(safe-area-inset-left, 0px));
+}
+
+/* Campos */
+label.campo, label.sub { display: block; margin: 0 0 18px; font-weight: 400; }
+label.campo small, label.sub small { color: var(--muted); font-weight: 300; }
+label.sub { margin: 10px 0 0; font-size: .9rem; }
+input[type=text], input[type=email], input[type=password], input[type=date], input[type=number], input:not([type]), select, textarea {
+  display: block; width: 100%; margin-top: 6px; font: 400 1rem var(--f-body); color: var(--fg);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 12px 14px; min-height: 48px;
+}
+input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, a:focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 2px;
+}
+fieldset { border: 0; padding: 0; margin: 0 0 26px; min-width: 0; }
+legend { font-weight: 500; margin-bottom: 10px; padding: 0; }
+
+.senha { margin-top: 24px; }
+.senha label { font-weight: 500; }
+.senha input { font-size: 1.4rem; letter-spacing: .18em; text-transform: uppercase; text-align: center; font-weight: 500; }
+.senha .btn { width: 100%; margin-top: 12px; }
+.ajuda { margin-top: 26px; color: var(--muted); font-size: .92rem; }
+
+/* Escolhas de um toque */
+.escolhas { display: grid; gap: 8px; }
+.escolha {
+  display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+  font: 400 .98rem/1.4 var(--f-body); color: var(--fg);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+  padding: 13px 16px; min-height: 52px; cursor: pointer;
+}
+.escolha::before {
+  content: ""; flex: none; width: 18px; height: 18px; border-radius: 50%;
+  border: 1.5px solid var(--taupe); background: var(--surface);
+}
+.escolha.multi::before { border-radius: 3px; }
+.escolha[aria-pressed=true] { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); font-weight: 500; }
+.escolha[aria-pressed=true]::before { background: var(--accent); border-color: var(--accent); box-shadow: inset 0 0 0 3px var(--surface); }
+.escolha:disabled { opacity: .45; cursor: not-allowed; }
+.escolha small { display: block; color: var(--muted); font-size: .82rem; }
+
+.detalhes { margin-top: 16px; display: grid; gap: 10px; }
+.detalhe { background: var(--surface); border: 1px dashed var(--taupe); border-radius: 6px; padding: 12px 14px; }
+.detalhe-titulo { font-size: .9rem; margin: 0; font-weight: 400; }
+
+.consentimento { display: flex; gap: 12px; align-items: flex-start; font-size: .92rem; cursor: pointer; }
+.consentimento input { flex: none; width: 20px; height: 20px; margin-top: 3px; accent-color: var(--accent); }
+
+/* Botões */
+.btn {
+  display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+  font: 500 .95rem var(--f-body); letter-spacing: .03em; text-decoration: none;
+  background: var(--accent); color: var(--accent-fg); border: 1px solid var(--accent);
+  border-radius: 999px; padding: 12px 26px; min-height: 48px; cursor: pointer;
+}
+.btn:disabled { opacity: .4; cursor: not-allowed; }
+.sec-btn, .btn.sec-btn { background: transparent; color: var(--accent); }
+.voltar { font: 400 .95rem var(--f-body); background: none; border: 0; color: var(--muted); padding: 12px 4px; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.nav { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--line); }
+
+/* Resultado */
+.estado { background: var(--accent-soft); border: 0; border-left: 4px solid var(--accent); border-radius: 4px; padding: 18px 20px; margin: 22px 0 8px; }
+.estado-atencao { border-left-color: var(--taupe); }
+.estado-cuidado { border-left-color: var(--warn); }
+.estado-nome { font-family: var(--f-display); font-size: 1.7rem; font-style: italic; margin-bottom: 6px; }
+h2.sec { margin-top: 34px; }
+.ranking { list-style: none; padding: 0; margin: 0; counter-reset: rk; display: grid; gap: 12px; }
+.ranking li { counter-increment: rk; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 16px 18px; font-size: .93rem; }
+.ranking li p { margin: 6px 0 0; }
+.rk-cab { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; }
+.rk-nome { font-family: var(--f-display); font-size: 1.3rem; }
+.rk-nome::before { content: counter(rk) ". "; color: var(--muted); }
+.selo { font-family: var(--f-body); font-weight: 600; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; background: var(--selo-fundo); }
+.q1 .selo, .q2 .selo { background: var(--accent-soft); }
+.passo { background: var(--accent-soft); border-radius: 4px; padding: 18px 20px; margin-top: 26px; }
+.acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+
+@media print {
+  .topo, .nao-imprimir { display: none !important; }
+  body { background: #fff; color: #000; }
+  .pagina { padding-top: 0; }
+  .ranking li { break-inside: avoid; }
+}
+@media (prefers-reduced-motion: reduce) { .trilho span { transition: none; } }
+
+/* Saúde da casa (como no quadro da família) */
+:root { --saude-boa: #2E5530; --saude-media: #A9746A; --saude-baixa: #8A1538; }
+.saude { margin: 22px 0 18px; }
+.saude-cab { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.saude-cab h2 { margin: 0; }
+.saude-nota { margin: 0; font-size: .95rem; color: var(--muted); }
+.saude-nota b { font: 500 2rem var(--f-display); color: var(--fg); }
+.saude-nota.boa b { color: var(--saude-boa); }
+.saude-nota.media b { color: #A9746A; }
+.saude-nota.baixa b { color: var(--saude-baixa); }
+.saude .dica { margin: 2px 0 12px; }
+.saude-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.comodo { display: flex; flex-direction: column; gap: 7px; min-width: 0; text-decoration: none; color: var(--fg);
+  border: 1px solid var(--line); border-radius: 12px; padding: 11px 12px; }
+.comodo:hover { border-color: var(--taupe); }
+.comodo-nome { font-weight: 500; font-size: .9rem; overflow-wrap: anywhere; }
+.comodo-barra { height: 8px; border-radius: 9px; background: var(--trilho); overflow: hidden; }
+.comodo-barra span { display: block; height: 100%; border-radius: 9px; }
+.comodo.boa .comodo-barra span { background: var(--saude-boa); }
+.comodo.media .comodo-barra span { background: var(--saude-media); }
+.comodo.baixa .comodo-barra span { background: var(--saude-baixa); }
+.comodo small { color: var(--muted); font-size: .75rem; }
+.comodo.baixa small { color: var(--saude-baixa); font-weight: 500; }
+.ranking li { scroll-margin-top: 80px; }
+.ranking li:target { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+
+/* Convite final */
+.convite { background: var(--accent-soft); border-radius: 4px; padding: 22px 20px; margin-top: 28px; }
+.convite-abre { font: italic 400 1.35rem/1.35 var(--f-display); margin-bottom: 12px; }
+.convite .passo-titulo { margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--line); }
+.convite .assinatura { margin-top: 18px; }
+@media (min-width: 560px) { .saude-grade { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.pagina.larga { max-width: 980px; }
+.topo-admin {
+  position: sticky; top: 0; z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  padding: calc(env(safe-area-inset-top, 0px) + 10px) max(16px, env(safe-area-inset-right, 0px)) 10px max(16px, env(safe-area-inset-left, 0px));
+}
+.topo-admin .marca { margin: 0; }
+.abas { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--surface); }
+.abas button { font: 400 .88rem var(--f-body); border: 0; background: transparent; color: var(--fg); padding: 7px 16px; border-radius: 999px; cursor: pointer; }
+.abas button[aria-pressed=true] { background: var(--accent); color: var(--accent-fg); }
+.abas .cont { font-size: .75rem; margin-left: 4px; }
+#sair { margin-left: auto; }
+
+.login { max-width: 420px; margin: 40px auto; }
+.cartao { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 20px 22px; margin-bottom: 16px; min-width: 0; }
+.cartao h2 { font-size: 1.45rem; }
+.grade2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.linha-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0 14px; }
+.linha-form label { margin-bottom: 12px; font-size: .9rem; font-weight: 400; display: block; }
+
+.filtros { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.filtros button { font: 400 .85rem var(--f-body); border: 1px solid var(--line); background: var(--surface); color: var(--fg); padding: 6px 14px; border-radius: 999px; cursor: pointer; }
+.filtros button[aria-pressed=true] { border-color: var(--accent); background: var(--accent-soft); }
+
+.lista { display: grid; gap: 10px; }
+.item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 16px; align-items: center; text-align: left; width: 100%;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 14px 18px; font: inherit; color: inherit; cursor: pointer; }
+.item:hover { border-color: var(--taupe); }
+.item .nome { font-weight: 500; }
+.item .meta { color: var(--muted); font-size: .85rem; }
+.item .dir { text-align: right; display: grid; gap: 4px; justify-items: end; }
+.pilula { font-family: var(--f-body); font-weight: 600; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; padding: 3px 10px; border-radius: 999px; background: var(--selo-fundo); white-space: nowrap; }
+.pilula.novo { background: var(--warn-soft); color: var(--warn); }
+.pilula.ok { background: var(--accent-soft); }
+.vazio { color: var(--muted); padding: 30px 0; text-align: center; }
+
+.mensagem { white-space: pre-wrap; font: 300 .92rem/1.6 var(--f-body); background: var(--bg); border: 1px dashed var(--taupe); border-radius: 4px; padding: 14px 16px; margin: 12px 0; }
+.codigo-grande { font: 500 2rem var(--f-body); letter-spacing: .2em; color: var(--accent); }
+
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+.tabela { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--f-body); font-weight: 600; font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+td .mini { font: 400 .8rem var(--f-body); border: 1px solid var(--line); background: transparent; color: var(--accent); border-radius: 999px; padding: 4px 10px; cursor: pointer; white-space: nowrap; }
+.inativa td { color: var(--muted); }
+
+.det-cab { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; align-items: flex-start; }
+.det-acoes { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 6px; }
+.det-acoes .btn { min-height: 40px; padding: 8px 18px; font-size: .88rem; }
+.pontos { color: var(--muted); font-size: .82rem; margin-top: 6px; }
+dl.resp { display: grid; grid-template-columns: minmax(140px, 220px) minmax(0, 1fr); gap: 8px 16px; margin: 0; font-size: .9rem; }
+dl.resp dt { color: var(--muted); }
+dl.resp dd { margin: 0; }
+.nota-interna { background: var(--warn-soft); border-radius: 4px; padding: 12px 14px; font-size: .9rem; margin-top: 12px; }
+
+.toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); opacity: 0;
+  background: var(--fg); color: var(--bg); padding: 10px 18px; border-radius: 999px; font-size: .9rem; pointer-events: none; transition: opacity .2s, transform .2s; }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+@media (max-width: 720px) {
+  .grade2 { grid-template-columns: 1fr; }
+  dl.resp { grid-template-columns: 1fr; gap: 2px; }
+  dl.resp dd { margin-bottom: 8px; }
+  .item { grid-template-columns: 1fr; }
+  .item .dir { justify-items: start; text-align: left; grid-auto-flow: column; justify-content: start; gap: 8px; }
+}
+
+/* Público */
+.barras { display: grid; gap: 12px; margin-top: 6px; }
+.barra-linha { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; font-size: .88rem; }
+.barra-n { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.barra { grid-column: 1 / -1; height: 8px; border-radius: 9px; background: var(--trilho); overflow: hidden; }
+.barra span { display: block; height: 100%; border-radius: 9px; background: var(--accent); }
+.codigo-grande small { font-size: 1rem; color: var(--muted); letter-spacing: 0; }
+
+.marca { font: italic 300 1.6rem/1 var(--f-marca); font-variation-settings: "SOFT" 100, "WONK" 1; }
+.marca .ponto { color: #D9336E; }
+.eyebrow, th, .pilula, .selo { font-weight: 500; letter-spacing: .24em; }
+.selo, .pilula { color: var(--floresta); }
+.pilula.novo { color: var(--warn); }
+h1, h2 { font-style: normal; }
+@media (max-width: 720px) { .item .dir { display: flex; flex-wrap: wrap; } .pilula { white-space: normal; } .topo-admin { gap: 10px; } }
+.pagina { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+</style>
+</head>
+<body>
+<header class="topo-admin"><span class="marca">GP<span class="ponto">.</span></span>
+<nav id="abas" class="abas" hidden><button type="button" data-aba="diagnosticos" aria-pressed="true">Diagnósticos</button><button type="button" data-aba="senhas" aria-pressed="false">Senhas</button><button type="button" data-aba="publico" aria-pressed="false">Público</button></nav>
+<button type="button" id="sair" class="voltar" hidden>Sair</button></header>
+<main id="painel" class="pagina larga"></main>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script>
+/* Use os mesmos valores de supabaseUrl e supabaseKey da página de links.
+   linkDiagnostico é o endereço que vai nas mensagens com a senha. */
+window.GP_CONFIG = {
+  supabaseUrl: "https://lneuhaqbfbgcxbbjlmou.supabase.co",
+  supabaseKey: "sb_publishable_xszK5v6eFY7Hia37LxlXaQ_4y7CUNoJ",
+  instagram: "gabrielepinhheiro",
+  palavraChave: "DIAGNÓSTICO",
+  validadeDias: 14,
+  linkDiagnostico: "https://www.gabrielepinheiro.com/links#diagnostico"
+};
+</script>
+<script>(()=>{var p=Object.assign({supabaseUrl:"",supabaseKey:"",instagram:"",palavraChave:"DIAGN\xD3STICO",validadeDias:14},window.GP_CONFIG);var J=[{id:"hall",art:"o",nome:"Hall de entrada"},{id:"estar",art:"a",nome:"Sala de estar"},{id:"jantar",art:"a",nome:"Sala de jantar",obs:"ou estar e jantar integradas"},{id:"cozinha",art:"a",nome:"Cozinha"},{id:"casal",art:"o",nome:"Quarto de casal"},{id:"infantil",art:"o",nome:"Quarto infantil"},{id:"office",art:"o",nome:"Home office"},{id:"banheiro",art:"o",nome:"Banheiro"},{id:"lavanderia",art:"a",nome:"Lavanderia"},{id:"servico",art:"a",nome:"\xC1rea de servi\xE7o"},{id:"keller",art:"o",nome:"Keller",obs:"por\xE3o ou dep\xF3sito"},{id:"varanda",art:"a",nome:"Varanda ou terra\xE7o"}];var l=e=>J.find(a=>a.id===e)?.nome??e,x=[{id:"sozinho",t:"Moro sozinho(a)"},{id:"parceiro",t:"Com parceiro(a)"},{id:"criancas",t:"Com crian\xE7as"},{id:"animais",t:"Com animais"}],sa=[{v:0,t:"Nada, gosto dele como est\xE1"},{v:1,t:"Um pouco"},{v:2,t:"Bastante"},{v:3,t:"Muito, \xE9 o que mais me incomoda"}],ia=[{v:3,t:"Todos os dias"},{v:2,t:"Algumas vezes por semana"},{v:1,t:"Raramente"}],T=[{id:"gosto",t:"Gosto de como ele est\xE1",leve:!0},{id:"moveis",t:"Tem os m\xF3veis, falta deixar com a nossa cara",leve:!0},{id:"provisorio",t:"Tem m\xF3veis provis\xF3rios ou que n\xE3o combinam",leve:!1},{id:"vazio",t:"Est\xE1 vazio ou quase vazio",leve:!1},{id:"nao_funciona",t:"Est\xE1 completo, mas n\xE3o funciona para a nossa rotina",leve:!1}],C=[{id:"guarda_roupa",t:"O guarda-roupa n\xE3o tem mais espa\xE7o",amb:"casal"},{id:"chegada",t:"N\xE3o tenho onde deixar casacos, sapatos, chaves e bolsas ao chegar",amb:"hall"},{id:"trabalho",t:"Trabalho na mesa de jantar, no sof\xE1 ou na cama",amb:"office"},{id:"roupa",t:"A roupa secando fica espalhada pela casa",amb:["lavanderia","servico"]},{id:"brinquedos",t:"Os brinquedos se espalham pela casa inteira",amb:"infantil"},{id:"receber",t:"N\xE3o consigo receber pessoas \xE0 mesa com conforto",amb:"jantar"},{id:"descansar_juntos",t:"N\xE3o temos um lugar gostoso para descansar juntos",amb:"estar"},{id:"cozinha",t:"A cozinha n\xE3o tem bancada ou arm\xE1rio suficiente",amb:"cozinha"},{id:"luz",t:"Falta luz boa \xE0 noite, a casa fica escura e fria",amb:null},{id:"quarto",t:"O quarto n\xE3o me deixa descansar de verdade",amb:"casal"},{id:"banheiro",t:"Falta lugar para guardar no banheiro",amb:"banheiro"},{id:"outra",t:"Outra",amb:null,outra:!0}],I=[{id:"trabalhar",t:"Um lugar para trabalhar ou estudar",amb:"office"},{id:"receber",t:"Um lugar para receber fam\xEDlia e amigos",amb:"jantar"},{id:"guardar",t:"Um lugar para guardar malas, bicicleta, coisas de esta\xE7\xE3o",amb:["hall","lavanderia","servico","keller"]},{id:"cantinho",t:"Um cantinho s\xF3 meu, para ler ou descansar",amb:"estar"},{id:"brincar",t:"Um lugar para as crian\xE7as brincarem",amb:"infantil"},{id:"hospedar",t:"Um lugar para hospedar quem vem do Brasil",amb:null},{id:"nada",t:"Nada me falta, o problema \xE9 como as coisas est\xE3o",nenhum:!0},{id:"outra",t:"Outra",amb:null,outra:!0}],w=[{id:"menos2",t:"Menos de 2 anos"},{id:"2a5",t:"De 2 a 5 anos"},{id:"mais5",t:"Mais de 5 anos, ou \xE9 o nosso lar"},{id:"indeterminado",t:"Tempo indeterminado"}],R=[{id:"instagram",t:"Instagram"},{id:"indicacao",t:"Indica\xE7\xE3o"},{id:"google",t:"Google"},{id:"outro",t:"Outro"}],_=[{id:"proprio",t:"Pr\xF3prio"},{id:"alugado",t:"Alugado"}],N=[{id:"sim",t:"Sim, gostaria de mudar as paredes"},{id:"talvez",t:"Talvez, se fizer sentido no projeto"},{id:"nao",t:"N\xE3o, quero manter as paredes como est\xE3o"}],j=[{id:"mes",t:"Ainda este m\xEAs"},{id:"tres_meses",t:"Nos pr\xF3ximos 3 meses"},{id:"pesquisando",t:"Ainda estou pesquisando"}],z=[{id:"diario",t:"Todos os dias, adoro"},{id:"semana",t:"Algumas vezes por semana"},{id:"as_vezes",t:"De vez em quando"},{id:"quase_nunca",t:"Quase nunca"}],D=[{id:"pinterest",t:"Salvo no Pinterest"},{id:"instagram",t:"Salvo nos favoritos do Instagram"},{id:"prints",t:"Tiro prints e guardo no celular"},{id:"lojas",t:"Guardo links de lojas e produtos"},{id:"nao",t:"N\xE3o costumo salvar",nenhum:!0}],M=[{id:"gosto_pratica",t:"Sinto que tenho bom gosto, mas n\xE3o sei colocar em pr\xE1tica"},{id:"medo_errar",t:"Tenho medo de gastar e me arrepender"},{id:"combinar",t:"N\xE3o sei se as coisas v\xE3o combinar entre si"},{id:"medidas",t:"N\xE3o sei as medidas certas (tamanho do sof\xE1, do tapete, altura dos quadros)"},{id:"decidir",t:"Tenho muitas refer\xEAncias e n\xE3o consigo decidir"},{id:"tempo",t:"Falta tempo para pesquisar e comprar"},{id:"encontrar",t:"N\xE3o encontro onde moro as coisas no estilo que eu gosto"},{id:"opinioes",t:"Cada pessoa da casa quer uma coisa"},{id:"comecar",t:"N\xE3o sei por onde come\xE7ar"}],k=[{id:"sim",t:"Sim, quero receber a proposta no meu e-mail"},{id:"nao",t:"N\xE3o, por enquanto quero s\xF3 o diagn\xF3stico"}];var qa=[{id:"boa",min:70,nome:"em paz"},{id:"media",min:40,nome:"pede aten\xE7\xE3o"},{id:"baixa",min:0,nome:"pede cuidado"}],Oa=e=>qa.find(a=>e>=a.min);var Ea=e=>String(e??"").replace(/\*\*/g,"");function K(e,a){let o=["O DIAGN\xD3STICO DA SUA CASA",`Preparado para ${e}`,"",a.saude!=null?`SA\xDADE DA CASA: ${a.saude}/100 \xB7 ${a.estado.nome}`:`ESTADO GERAL: ${a.estado.nome}`,a.estado.frase,"",...[...a.ambientes].filter(s=>s.saude!=null).sort((s,t)=>s.saude-t.saude).map(s=>`   ${s.nome}: ${s.saude}/100 \xB7 ${Oa(s.saude).nome}`),"","POR ONDE COME\xC7AR",""];return a.ambientes.forEach((s,t)=>{o.push(`${t+1}. ${s.nome}  \xB7  ${s.quadranteNome}`),o.push(`   Por qu\xEA: ${s.porque}`),o.push(`   Dire\xE7\xE3o: ${s.direcao}`),o.push("")}),a.convite&&o.push("POR ONDE EU COME\xC7ARIA",`${a.convite.abertura} ${a.convite.texto}`,a.convite.fecho,""),o.push("O SEU PR\xD3XIMO PASSO",Ea(a.caminho.frase),"","Gabriele Pinheiro \xB7 Design de interiores online"),o.join(`
+`)}var d=!p.supabaseUrl||!p.supabaseKey,U="gp-diagnostico-sessao",ca="gp-diagnostico-demo";function Z(e){return String(e||"").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/\s+/g,"").toUpperCase()}var ra="ABCDEFGHJKMNPQRSTUVWXYZ23456789";function da(e=6){let a=crypto.getRandomValues(new Uint32Array(e));return Array.from(a,o=>ra[o%ra.length]).join("")}function ya(e){let a={apikey:p.supabaseKey,"Content-Type":"application/json"};return e?a.Authorization="Bearer "+e:p.supabaseKey.startsWith("eyJ")&&(a.Authorization="Bearer "+p.supabaseKey),a}async function h(e,{metodo:a="GET",corpo:o,token:s,prefer:t}={}){let i=ya(s);t&&(i.Prefer=t);let c=await fetch(p.supabaseUrl.replace(/\/$/,"")+e,{method:a,headers:i,body:o===void 0?void 0:JSON.stringify(o)}),A=await c.text(),v=null;try{v=A?JSON.parse(A):null}catch{v={message:A}}if(!c.ok){let B=new Error(v?.message||v?.msg||v?.error_description||`Erro ${c.status}`);throw B.status=c.status,B.code=v?.code,B}return v}function O(){try{let e=JSON.parse(localStorage.getItem(ca));if(e?.senhas)return e}catch{}return{senhas:[{id:"demo",codigo:"DEMO",tipo:"campanha",nome:null,instagram:null,nota:"Senha de teste",usos_max:null,usos:0,valida_ate:null,ativa:!0,criada_em:new Date().toISOString()}],diagnosticos:[]}}function W(e){localStorage.setItem(ca,JSON.stringify(e))}function L(){try{return JSON.parse(localStorage.getItem(U))}catch{return null}}function X(e){let a={access_token:e.access_token,refresh_token:e.refresh_token,expires_at:e.expires_at||Math.floor(Date.now()/1e3)+(e.expires_in||3600),email:e.user?.email};return localStorage.setItem(U,JSON.stringify(a)),a}async function ma(e,a){if(d)return X({access_token:"demo",refresh_token:"demo",expires_in:86400*365,user:{email:e}});let o=await h("/auth/v1/token?grant_type=password",{metodo:"POST",corpo:{email:e,password:a}});return X(o)}async function Q(){let e=L();localStorage.removeItem(U),!d&&e&&await h("/auth/v1/logout",{metodo:"POST",token:e.access_token}).catch(()=>{})}async function S(){let e=L();if(!e)throw Object.assign(new Error("Sess\xE3o encerrada"),{status:401});if(d)return e.access_token;if(e.expires_at*1e3-Date.now()<6e4)try{let a=await h("/auth/v1/token?grant_type=refresh_token",{metodo:"POST",corpo:{refresh_token:e.refresh_token}});e=X(a)}catch(a){throw localStorage.removeItem(U),Object.assign(a,{status:401})}return e.access_token}async function ua(){return d?!0:h("/rest/v1/rpc/e_equipe",{metodo:"POST",corpo:{},token:await S()})}async function la(){return d?O().diagnosticos:h("/rest/v1/diagnosticos?select=*&order=criado_em.desc",{token:await S()})}async function pa(e,a){if(d){let o=O();Object.assign(o.diagnosticos.find(s=>s.id===e),a),W(o);return}await h(`/rest/v1/diagnosticos?id=eq.${encodeURIComponent(e)}`,{metodo:"PATCH",corpo:a,token:await S()})}async function ha(){return d?O().senhas:h("/rest/v1/senhas?select=*&order=criada_em.desc",{token:await S()})}async function Y(e){let a={...e,codigo:Z(e.codigo)};if(d){let s=O();if(s.senhas.some(i=>i.codigo===a.codigo))throw Object.assign(new Error("Essa senha j\xE1 existe"),{code:"23505"});let t={id:crypto.randomUUID(),usos:0,ativa:!0,criada_em:new Date().toISOString(),...a};return s.senhas.unshift(t),W(s),t}let[o]=await h("/rest/v1/senhas",{metodo:"POST",corpo:a,token:await S(),prefer:"return=representation"});return o}async function fa(e,a){if(d){let o=O();Object.assign(o.senhas.find(s=>s.id===e),a),W(o);return}await h(`/rest/v1/senhas?id=eq.${encodeURIComponent(e)}`,{metodo:"PATCH",corpo:a,token:await S()})}var f=document.getElementById("painel"),E=document.getElementById("abas"),oa=document.getElementById("sair"),aa=document.getElementById("toast"),n=e=>String(e??"").replace(/[&<>"']/g,a=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[a]),Ta=e=>e?new Date(e).toLocaleDateString("pt-BR",{day:"2-digit",month:"short",year:"numeric"}):"",ta=e=>e?new Date(e).toLocaleString("pt-BR",{day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"}):"",ba=()=>p.linkDiagnostico||new URL("./#diagnostico",location.href).href,Ca=e=>{let u=new URL(ba());u.searchParams.set("s",e);return u.href},G={novo:"Novo",respondido:"Respondido",arquivado:"Arquivado"},F="diagnosticos",V="novo",g=null,u=[],P=[],$=null;function q(e){aa.textContent=e,aa.classList.add("on"),clearTimeout(q.t),q.t=setTimeout(()=>aa.classList.remove("on"),2200)}async function ea(e,a="Copiado"){try{await navigator.clipboard.writeText(e),q(a)}catch{window.prompt("Copie o texto:",e)}}async function y(e){try{return await e()}catch(a){if(a.status===401){await Q(),na("A sess\xE3o expirou. Entre de novo.");return}throw q(a.code==="23505"?"Essa senha j\xE1 existe. Escolha outra.":"N\xE3o deu certo: "+a.message),a}}function va(e){return`${e.nome?`Oi, ${e.nome.trim().split(/\s+/)[0]}!`:"Oi!"} Que bom que voc\xEA quer olhar para a sua casa com calma.
+
+A sua senha para o Diagn\xF3stico da Casa \xE9: ${e.codigo}
+
+\xC9 s\xF3 abrir ${e.tipo==="individual"?Ca(e.codigo):ba()} e digitar a senha. Leva cerca de 6 minutos e, no fim, voc\xEA recebe os seus ambientes em ordem de prioridade e por onde come\xE7ar.
+
+Qualquer d\xFAvida, \xE9 s\xF3 me chamar aqui.
+Gabriele`}function na(e=""){E.hidden=!0,oa.hidden=!0,f.innerHTML=`
+    <form class="login cartao" id="f-login">
+      <p class="eyebrow">Painel do escrit\xF3rio</p>
+      <h1>Diagn\xF3stico da Casa</h1>
+      ${d?'<p class="aviso">Modo de teste: o Supabase ainda n\xE3o est\xE1 configurado. Entre com qualquer e-mail e senha. Os dados ficam s\xF3 neste navegador.</p>':""}
+      <label class="campo">E-mail<input type="email" name="email" autocomplete="username" required></label>
+      <label class="campo">Senha<input type="password" name="senha" autocomplete="current-password" required></label>
+      <p class="erro" role="alert">${n(e)}</p>
+      <button class="btn" type="submit">Entrar</button>
+    </form>`}f.addEventListener("submit",async e=>{e.preventDefault();let a=e.target;if(a.id==="f-login")return Ia(a);if(a.id==="f-individual")return Da(a);if(a.id==="f-campanha")return Ma(a)});async function Ia(e){let a=e.querySelector(".erro"),o=e.querySelector("button");o.disabled=!0,a.textContent="";try{if(await ma(e.email.value.trim(),e.senha.value),!await ua()){await Q(),a.textContent='Este e-mail entrou, mas n\xE3o est\xE1 na tabela "equipe" do Supabase. Veja o passo 2 do GUIA.md.';return}ga()}catch(s){a.textContent=s.status===400?"E-mail ou senha incorretos.":"N\xE3o consegui entrar: "+s.message}finally{o.disabled=!1}}oa.addEventListener("click",async()=>{await Q(),na()});E.addEventListener("click",e=>{let a=e.target.closest("button[data-aba]");a&&(F=a.dataset.aba,g=null,b())});async function ga(){E.hidden=!1,oa.hidden=!1,f.innerHTML='<p class="vazio">Carregando\u2026</p>',await $a()}async function $a(){[u,P]=await y(()=>Promise.all([la(),ha()]))||[[],[]],b()}function b(){let e=u.filter(a=>a.status==="novo").length;E.querySelectorAll("button").forEach(a=>a.setAttribute("aria-pressed",String(a.dataset.aba===F))),E.querySelector("[data-aba=diagnosticos]").innerHTML=`Diagn\xF3sticos${e?` <span class="cont">(${e})</span>`:""}`,F==="senhas"?f.innerHTML=ja():F==="publico"?f.innerHTML=Na():g?f.innerHTML=Ra(u.find(a=>a.id===g)):f.innerHTML=wa()}function wa(){let e=V==="todos"?u:u.filter(o=>o.status===V),a=o=>u.filter(s=>s.status===o).length;return`
+    ${d?'<p class="aviso">Modo de teste: os dados ficam s\xF3 neste navegador.</p>':""}
+    <div class="filtros" role="group" aria-label="Filtrar">
+      ${["novo","respondido","arquivado","todos"].map(o=>`<button type="button" data-filtro="${o}" aria-pressed="${V===o}">${o==="todos"?`Todos (${u.length})`:`${G[o]} (${a(o)})`}</button>`).join("")}
+      <button type="button" data-acao="recarregar">Atualizar</button>
+    </div>
+    <div class="lista">
+      ${e.length?e.map(o=>`
+        <button type="button" class="item" data-abrir="${n(o.id)}">
+          <span><span class="nome">${n(o.nome)}</span>
+            <span class="meta">${o.instagram?"@"+n(o.instagram)+" \xB7 ":""}${n(ta(o.criado_em))}</span><br>
+            <span class="meta">${n(o.estado)} \xB7 Caminho: ${n(o.caminho)} \xB7 N\xBA 1: ${n(o.resultado?.ambientes?.[0]?.nome)}</span></span>
+          <span class="dir"><span class="pilula ${o.status==="novo"?"novo":""}">${n(G[o.status])}</span>
+            ${o.respostas?.proposta==="sim"?'<span class="pilula novo">Quer proposta</span>':""}
+            ${o.respostas?.inicio==="mes"?'<span class="pilula ok">Quer come\xE7ar este m\xEAs</span>':""}</span>
+        </button>`).join(""):'<p class="vazio">Nenhum diagn\xF3stico aqui ainda.</p>'}
+    </div>`}function Aa(e){let a=(Array.isArray(e)?e:[e]).filter(o=>o&&o!=="nenhum");return a.length?a.map(l).join(", "):"Nenhum"}function H(e,a){return(a||[]).map(o=>r(e,o)).join(" \xB7 ")||"\u2014"}function r(e,a){return e.find(o=>(o.v??o.id)===a)?.t??a}function Ra(e){if(!e)return'<p class="vazio">Diagn\xF3stico n\xE3o encontrado.</p>';let a=e.respostas,o=e.resultado,s=(t,i)=>`${i.texto||r(t,i.id)}${i.amb?` \u2192 ${l(i.amb)}`:""}`;return`
+    <button type="button" class="voltar" data-acao="voltar">\u2190 Todos os diagn\xF3sticos</button>
+    <div class="cartao">
+      <div class="det-cab">
+        <div><p class="eyebrow">Recebido em ${n(ta(e.criado_em))} \xB7 senha ${n(e.codigo)}</p>
+          <h1>${n(e.nome)}</h1>
+          <p><a href="mailto:${n(e.email)}">${n(e.email)}</a>${e.instagram?` \xB7 <a href="https://instagram.com/${encodeURIComponent(e.instagram)}" target="_blank" rel="noopener">@${n(e.instagram)}</a>`:""}</p></div>
+        <label class="sub">Status
+          <select data-status="${n(e.id)}">${Object.entries(G).map(([t,i])=>`<option value="${t}"${e.status===t?" selected":""}>${i}</option>`).join("")}</select></label>
+      </div>
+      <div class="det-acoes">
+        <button type="button" class="btn" data-acao="email">Enviar por e-mail</button>
+        <button type="button" class="btn sec-btn" data-acao="copiar-texto">Copiar resultado</button>
+        <button type="button" class="btn sec-btn" data-acao="copiar-notion">Copiar para o Notion</button>
+      </div>
+    </div>
+    <div class="grade2">
+      <section class="cartao">
+        <p class="eyebrow">Estado geral</p>
+        <h2>${n(o.estado.nome)}</h2>
+        <p>${n(o.estado.frase)}</p>
+        <p class="pontos">${n(o.estado.impactoAlto)} ambiente(s) com impacto alto${o.saude!=null?` \xB7 Sa\xFAde da casa ${n(o.saude)}/100`:""}</p>
+      </section>
+      <section class="cartao">
+        <p class="eyebrow">Caminho indicado</p>
+        <h2>${n(o.caminho.linha)}</h2>
+        <p>${n(o.caminho.ambientes.map(l).join(", ")||"Casa inteira")}</p>
+        <p class="nota-interna"><b>Para o escrit\xF3rio:</b> ${n(o.caminho.nota)}</p>
+      </section>
+    </div>
+    <section class="cartao">
+      <p class="eyebrow">Ambientes em ordem</p>
+      <ol class="ranking">
+        ${o.ambientes.map(t=>`
+          <li class="q${n(t.quadrante)}">
+            <div class="rk-cab"><span class="rk-nome">${n(t.nome)}${t.existe?"":" <small>(n\xE3o existe hoje)</small>"}</span><span class="selo">${n(t.quadrante)} \xB7 ${n(t.quadranteNome)}</span></div>
+            <p><b>Por qu\xEA:</b> ${n(t.porque)}</p>
+            <p class="pontos">${t.saude!=null?`Sa\xFAde ${n(t.saude)} \xB7 `:""}Impacto ${n(t.impacto)} = paz \xD7 uso ${n(t.pontos.pazFrequencia)} + atritos ${n(t.pontos.atritos)} + faltas ${n(t.pontos.faltas)} + evita ${n(t.pontos.evita)} + prioridade ${n(t.pontos.prioridade)}
+              \xB7 Esfor\xE7o ${t.esforcoLeve?"leve":"maior"}${t.existe?` (${n(r(T,t.estado))})`:""}</p>
+          </li>`).join("")}
+      </ol>
+    </section>
+    <section class="cartao">
+      <p class="eyebrow">Respostas</p>
+      <dl class="resp">
+        <dt>Quer proposta</dt><dd>${n(r(k,a.proposta))}</dd>
+        <dt>Quem mora</dt><dd>${n(a.moradores.map(t=>r(x,t)).join(", "))}</dd>
+        ${a.ambientes.map(t=>{let i=a.porAmbiente[t];return`<dt>${n(l(t))}</dt><dd>Paz: ${n(r(sa,i.paz))} \xB7 Uso: ${n(r(ia,i.freq))} \xB7 ${n(r(T,i.estado))}</dd>`}).join("")}
+        <dt>Atritos da rotina (P8)</dt><dd>${n(a.atritos.map(t=>s(C,t)).join(" \xB7 ")||"Nenhum")}</dd>
+        <dt>O que falta (P9)</dt><dd>${n(a.faltas.map(t=>s(I,t)).join(" \xB7 "))}</dd>
+        <dt>Evita mostrar (P10)</dt><dd>${n(Aa(a.evita))}</dd>
+        <dt>Pronto este m\xEAs (P11)</dt><dd>${n(l(a.prioridade))}</dd>
+        <dt>Im\xF3vel</dt><dd>${n(r(_,a.imovel))}</dd>
+        <dt>Tempo no im\xF3vel</dt><dd>${n(r(w,a.tempo))}</dd>
+        <dt>Mudar paredes</dt><dd>${n(r(N,a.pintura))}</dd>
+        <dt>Quando come\xE7ar</dt><dd>${n(r(j,a.inicio))}</dd>
+        <dt>Acompanha decora\xE7\xE3o</dt><dd>${n(r(z,a.acompanha))}</dd>
+        <dt>Refer\xEAncias</dt><dd>${n(H(D,a.referencias))}</dd>
+        <dt>O que trava</dt><dd>${n(H(M,a.travas))}</dd>
+        <dt>Como conheceu</dt><dd>${n(r(R,a.origem))}${a.indicacao?` \xB7 indica\xE7\xE3o de ${n(a.indicacao)}`:""}</dd>
+      </dl>
+    </section>`}function _a(e,a){let o={};return a.forEach(s=>[].concat(s??[]).forEach(t=>{o[t]=(o[t]||0)+1})),e.map(s=>({t:s.t,n:o[s.v??s.id]||0})).sort((s,t)=>t.n-s.n)}function m(e,a,o,s=""){let t=o.filter(c=>c!=null&&c!==""&&!(Array.isArray(c)&&!c.length)).length,i=_a(a,o).filter(c=>c.n);return`<section class="cartao">
+    <p class="eyebrow">${n(e)}</p>
+    ${s?`<p class="dica">${n(s)}</p>`:""}
+    ${i.length?`<div class="barras">${i.map(c=>{let A=Math.round(c.n/t*100);return`<div class="barra-linha"><span class="barra-t">${n(c.t)}</span><span class="barra-n">${A}% \xB7 ${c.n}</span>
+        <span class="barra"><span style="width:${A}%"></span></span></div>`}).join("")}</div>`:'<p class="vazio">Ainda sem respostas.</p>'}
+  </section>`}function Na(){let e=u.map(i=>i.respostas||{}),a=u.map(i=>i.resultado||{});if(!e.length)return'<p class="vazio">Quando chegarem os primeiros diagn\xF3sticos, o resumo do seu p\xFAblico aparece aqui.</p>';let o=a.map(i=>i.saude).filter(i=>typeof i=="number"),s=o.length?Math.round(o.reduce((i,c)=>i+c,0)/o.length):null,t=a.map(i=>i.ambientes?.[0]?.id);return`
+    <div class="grade2">
+      <section class="cartao"><p class="eyebrow">Diagn\xF3sticos</p><p class="codigo-grande">${u.length}</p></section>
+      <section class="cartao"><p class="eyebrow">Sa\xFAde m\xE9dia das casas</p><p class="codigo-grande">${s??"\u2014"}${s!=null?"<small>/100</small>":""}</p></section>
+    </div>
+    <p class="dica">Porcentagem sobre quem respondeu cada pergunta. Nas perguntas de v\xE1rias op\xE7\xF5es, a soma passa de 100%.</p>
+    <div class="grade2">
+      ${m("O que mais trava na hora de decorar",M,e.map(i=>i.travas),"Bom ponto de partida para conte\xFAdo e para a sua comunica\xE7\xE3o.")}
+      ${m("Acompanha perfis de decora\xE7\xE3o",z,e.map(i=>i.acompanha))}
+      ${m("Onde salva refer\xEAncias",D,e.map(i=>i.referencias))}
+      ${m("Ambiente n\xBA 1 do diagn\xF3stico",J.map(i=>({id:i.id,t:i.nome})),t)}
+      ${m("Caminho indicado",["Premier","Essence","Maison","Personalit\xE9","Collection ou Essence"].map(i=>({id:i,t:i})),a.map(i=>i.caminho?.linha))}
+      ${m("Quer receber proposta",k,e.map(i=>i.proposta))}
+      ${m("Quando quer come\xE7ar",j,e.map(i=>i.inicio))}
+      ${m("Im\xF3vel",_,e.map(i=>i.imovel))}
+      ${m("Mudar paredes",N,e.map(i=>i.pintura))}
+      ${m("Quem mora na casa",x,e.map(i=>i.moradores))}
+      ${m("Tempo no im\xF3vel",w,e.map(i=>i.tempo))}
+      ${m("Como conheceu o escrit\xF3rio",R,e.map(i=>i.origem))}
+    </div>`}function ja(){let e=$?`
+    <div class="cartao">
+      <p class="eyebrow">Senha criada</p>
+      <p class="codigo-grande">${n($.codigo)}</p>
+      <div class="mensagem">${n(va($))}</div>
+      <button type="button" class="btn" data-copiar-msg="${n($.id)}">Copiar mensagem para o direct</button>
+    </div>`:"";return`
+    ${d?'<p class="aviso">Modo de teste: as senhas ficam s\xF3 neste navegador e funcionam s\xF3 aqui.</p>':""}
+    ${e}
+    <div class="grade2">
+      <form class="cartao" id="f-individual">
+        <p class="eyebrow">Para uma pessoa</p>
+        <h2>Senha individual</h2>
+        <p class="dica">Vale uma vez. Use quando voc\xEA responde o direct \xE0 m\xE3o.</p>
+        <div class="linha-form">
+          <label>Nome<input type="text" name="nome" maxlength="120" placeholder="Opcional"></label>
+          <label>@ no Instagram<input type="text" name="instagram" maxlength="60" placeholder="Opcional" autocapitalize="none"></label>
+          <label>Validade (dias)<input type="number" name="dias" min="1" max="365" value="${p.validadeDias}"></label>
+        </div>
+        <button class="btn" type="submit">Gerar senha</button>
+      </form>
+      <form class="cartao" id="f-campanha">
+        <p class="eyebrow">Para a resposta autom\xE1tica</p>
+        <h2>Senha da campanha</h2>
+        <p class="dica">Uma palavra que todos recebem, por exemplo CASA. Vale para muitas pessoas, at\xE9 a data que voc\xEA escolher.</p>
+        <div class="linha-form">
+          <label>Senha<input type="text" name="codigo" required maxlength="20" placeholder="CASA" autocapitalize="characters"></label>
+          <label>V\xE1lida at\xE9<input type="date" name="ate"></label>
+          <label>Limite de usos<input type="number" name="limite" min="1" placeholder="Sem limite"></label>
+        </div>
+        <button class="btn" type="submit">Criar senha</button>
+      </form>
+    </div>
+    <h2 class="sec">Todas as senhas</h2>
+    <div class="tabela"><table>
+      <thead><tr><th>Senha</th><th>Tipo</th><th>Para</th><th>Usos</th><th>Validade</th><th></th></tr></thead>
+      <tbody>
+        ${P.map(a=>`
+          <tr class="${a.ativa?"":"inativa"}">
+            <td><b>${n(a.codigo)}</b></td>
+            <td>${a.tipo==="individual"?"Individual":"Campanha"}</td>
+            <td>${n([a.nome,a.instagram&&"@"+a.instagram,a.nota].filter(Boolean).join(" \xB7 "))}</td>
+            <td>${n(a.usos)}${a.usos_max!=null?" / "+n(a.usos_max):""}</td>
+            <td>${a.valida_ate?n(Ta(a.valida_ate)):"Sem data"}</td>
+            <td><button type="button" class="mini" data-copiar-msg="${n(a.id)}">Copiar mensagem</button>
+              <button type="button" class="mini" data-ativar="${n(a.id)}">${a.ativa?"Desativar":"Reativar"}</button></td>
+          </tr>`).join("")||'<tr><td colspan="6">Nenhuma senha ainda.</td></tr>'}
+      </tbody>
+    </table></div>`}function za(e){let a=e.respostas,o=e.resultado;return[`## Diagn\xF3stico da Casa \xB7 ${e.nome}`,`Recebido em ${ta(e.criado_em)} \xB7 ${e.email}${e.instagram?" \xB7 @"+e.instagram:""}`,"",`**Estado geral:** ${o.estado.nome} (${o.estado.impactoAlto} ambiente(s) de impacto alto)`,`**Caminho indicado:** ${o.caminho.linha} para ${o.caminho.ambientes.map(l).join(", ")||"a casa inteira"}`,`> ${o.caminho.nota}`,"","| # | Ambiente | Quadrante | Impacto | Esfor\xE7o |","|---|---|---|---|---|",...o.ambientes.map((t,i)=>`| ${i+1} | ${t.nome}${t.existe?"":" (n\xE3o existe hoje)"} | ${t.quadrante} \xB7 ${t.quadranteNome} | ${t.impacto} | ${t.esforcoLeve?"leve":"maior"} |`),"","**Atritos da rotina (P8)**",...a.atritos.length?a.atritos.map(t=>`- ${t.texto||r(C,t.id)} \u2192 ${l(t.amb)}`):["- Nenhum"],"","**O que falta (P9)**",...a.faltas.map(t=>`- ${t.texto||r(I,t.id)}${t.amb?" \u2192 "+l(t.amb):""}`),"",`**Evita mostrar:** ${Aa(a.evita)} \xB7 **Pronto este m\xEAs:** ${l(a.prioridade)}`,`**Tempo no im\xF3vel:** ${r(w,a.tempo)} \xB7 **Quem mora:** ${a.moradores.map(t=>r(x,t)).join(", ")}`,`**Como conheceu:** ${r(R,a.origem)}${a.indicacao?" ("+a.indicacao+")":""}`,`**Quer proposta:** ${r(k,a.proposta)}`,`**Im\xF3vel:** ${r(_,a.imovel)} \xB7 **Mudar paredes:** ${r(N,a.pintura)} \xB7 **Quando come\xE7ar:** ${r(j,a.inicio)}`,"",`**Acompanha decora\xE7\xE3o:** ${r(z,a.acompanha)}`,`**Refer\xEAncias:** ${H(D,a.referencias)}`,`**O que trava:** ${H(M,a.travas)}`].join(`
+`)}f.addEventListener("click",async e=>{let a=e.target.closest("button");if(!a)return;let o=g&&u.find(s=>s.id===g);if(a.dataset.filtro)return V=a.dataset.filtro,b();if(a.dataset.abrir)return g=a.dataset.abrir,b(),window.scrollTo({top:0});if(a.dataset.copiarMsg)return ea(va(P.find(s=>s.id===a.dataset.copiarMsg)),"Mensagem copiada. Cole no direct.");if(a.dataset.ativar){let s=P.find(t=>t.id===a.dataset.ativar);return await y(()=>fa(s.id,{ativa:!s.ativa})),s.ativa=!s.ativa,b()}switch(a.dataset.acao){case"recarregar":return $a();case"voltar":return g=null,b();case"copiar-texto":return ea(K(o.nome,o.resultado),"Resultado copiado");case"copiar-notion":return ea(za(o),"Copiado. Cole na P\xE1gina do Cliente.");case"email":{let s="O diagn\xF3stico da sua casa",t=`Oi, ${o.nome.split(/\s+/)[0]}!
+
+Aqui est\xE1 o diagn\xF3stico da sua casa.
+
+${K(o.nome,o.resultado)}`;location.href=`mailto:${encodeURIComponent(o.email)}?subject=${encodeURIComponent(s)}&body=${encodeURIComponent(t)}`,o.status==="novo"&&await Sa(o,"respondido");return}}});f.addEventListener("change",async e=>{let a=e.target.dataset.status;a&&await Sa(u.find(o=>o.id===a),e.target.value)});async function Sa(e,a){await y(()=>pa(e.id,{status:a})),e.status=a,b(),q(`Marcado como ${G[a].toLowerCase()}`)}async function Da(e){let a=Math.max(1,Number(e.dias.value)||p.validadeDias),o={tipo:"individual",nome:e.nome.value.trim()||null,instagram:e.instagram.value.trim().replace(/^@/,"")||null,usos_max:1,valida_ate:new Date(Date.now()+a*864e5).toISOString()};for(let s=0;s<3;s++)try{$=await Y({...o,codigo:da()});break}catch(t){if(t.code!=="23505"||s===2)return y(()=>Promise.reject(t)).catch(()=>{})}P.unshift($),b(),window.scrollTo({top:0})}async function Ma(e){let a=Z(e.codigo.value);if(a.length<3)return q("Use pelo menos 3 letras.");let o=e.ate.value?new Date(e.ate.value+"T23:59:59").toISOString():null,s=await y(()=>Y({tipo:"campanha",codigo:a,usos_max:e.limite.value?Number(e.limite.value):null,valida_ate:o,nota:"Resposta autom\xE1tica"})).catch(()=>null);s&&($=s,P.unshift(s),b(),window.scrollTo({top:0}))}L()?ga():na();})();</script>
+</body>
+</html>

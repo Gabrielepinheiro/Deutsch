@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Diagnóstico do Espaço</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --paper: #E9ECE6;
+    --sheet: #F6F7F3;
+    --ink: #1E2420;
+    --ink-2: #58625B;
+    --line: #B7BFB8;
+    --grid: rgba(61, 91, 72, .07);
+    --accent: #3D5B48;
+    --accent-ink: #F4F6F2;
+    --accent-soft: #DCE5DE;
+    --mark: #A8792A;
+    --display: "Syne", "Avenir Next", "Segoe UI", sans-serif;
+    --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #111412; --sheet: #191D1A; --ink: #E3E7E1; --ink-2: #9BA59D;
+      --line: #3A433D; --grid: rgba(143, 181, 156, .06); --accent: #8FB59C;
+      --accent-ink: #0F1411; --accent-soft: #24302A; --mark: #D6AE5E;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #111412; --sheet: #191D1A; --ink: #E3E7E1; --ink-2: #9BA59D;
+    --line: #3A433D; --grid: rgba(143, 181, 156, .06); --accent: #8FB59C;
+    --accent-ink: #0F1411; --accent-soft: #24302A; --mark: #D6AE5E;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { margin: 0; }
+  body {
+    min-height: 100vh;
+    font: 15px/1.5 var(--body);
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 24px 24px;
+    padding-inline: 16px;
+    padding-block: 28px 40px;
+  }
+  .wrap { max-width: 440px; margin: 0 auto; display: grid; gap: 20px; }
+  button { font: inherit; color: inherit; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--mark); outline-offset: 3px; }
+
+  .label {
+    font: 500 11px/1.3 var(--mono);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+
+  /* ---------- Perfil ---------- */
+  .perfil { display: grid; justify-items: center; text-align: center; gap: 10px; }
+  .monograma { width: 88px; height: 88px; color: var(--accent); }
+  .perfil h1 {
+    margin: 0;
+    font: 700 24px/1.15 var(--display);
+    letter-spacing: -.01em;
+    text-wrap: balance;
+  }
+  .perfil p { margin: 0; color: var(--ink-2); max-width: 32ch; }
+
+  /* ---------- Chamada principal ---------- */
+  .chamada {
+    display: grid;
+    gap: 14px;
+    padding: 22px 20px 20px;
+    background: var(--sheet);
+    border: 1px solid var(--line);
+    position: relative;
+  }
+  .chamada::before, .chamada::after {
+    content: "";
+    position: absolute;
+    width: 10px; height: 10px;
+    border: 1px solid var(--mark);
+  }
+  .chamada::before { top: -6px; left: -6px; border-right: 0; border-bottom: 0; }
+  .chamada::after { bottom: -6px; right: -6px; border-left: 0; border-top: 0; }
+  .chamada h2 { margin: 0; font: 700 21px/1.2 var(--display); text-wrap: balance; }
+  .chamada p { margin: 0; color: var(--ink-2); }
+  .btn {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    width: 100%;
+    padding: 15px 18px;
+    border: 0;
+    background: var(--accent);
+    color: var(--accent-ink);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform .15s ease, filter .15s ease;
+  }
+  .btn:hover { filter: brightness(1.08); }
+  .btn:active { transform: translateY(1px); }
+  .btn .seta { font-family: var(--mono); }
+
+  /* ---------- Links diretos ---------- */
+  .direto { display: grid; gap: 8px; }
+  .direto h3 { margin: 4px 0 2px; }
+  .link {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 13px 16px;
+    background: var(--sheet);
+    border: 1px solid var(--line);
+    text-decoration: none;
+    transition: border-color .15s ease;
+  }
+  .link:hover { border-color: var(--accent); }
+  .link small { display: block; color: var(--ink-2); font-size: 13px; }
+  .link .seta { font-family: var(--mono); color: var(--accent); }
+
+  .slot {
+    padding: 16px;
+    border: 1px dashed var(--line);
+    color: var(--ink-2);
+    font-size: 13px;
+    text-align: center;
+  }
+
+  /* ---------- Questionário ---------- */
+  .topo { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .voltar {
+    background: none; border: 0; padding: 6px 0; cursor: pointer;
+    font: 500 12px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2);
+  }
+  .voltar:hover { color: var(--ink); }
+
+  /* progresso em forma de linha de cota */
+  .cota { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 0; }
+  .cota .tick { width: 1px; height: 14px; background: var(--mark); }
+  .cota .trilho { position: relative; height: 1px; background: var(--line); }
+  .cota .preenche {
+    position: absolute; left: 0; top: -0.5px; height: 2px; background: var(--mark);
+    transition: width .35s ease;
+  }
+  .cota-texto { display: flex; justify-content: space-between; margin-top: 6px; }
+
+  .pergunta { display: grid; gap: 16px; }
+  .pergunta h2 { margin: 0; font: 700 24px/1.2 var(--display); text-wrap: balance; }
+  .pergunta .ajuda { margin: -6px 0 0; color: var(--ink-2); }
+  .opcoes { display: grid; gap: 10px; }
+  .opcao {
+    display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: start;
+    width: 100%;
+    padding: 15px 16px;
+    text-align: left;
+    background: var(--sheet);
+    border: 1px solid var(--line);
+    cursor: pointer;
+    transition: border-color .15s ease, background .15s ease;
+  }
+  .opcao:hover { border-color: var(--accent); }
+  .opcao[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+  .opcao .cod { font: 500 12px/1.6 var(--mono); color: var(--mark); }
+  .opcao strong { display: block; font-weight: 600; }
+  .opcao span.dica { display: block; color: var(--ink-2); font-size: 13px; margin-top: 2px; }
+
+  /* ---------- Resultado ---------- */
+  .prancha { background: var(--sheet); border: 1px solid var(--ink); display: grid; }
+  .prancha-corpo { padding: 22px 20px; display: grid; gap: 14px; }
+  .prancha h2 { margin: 0; font: 700 25px/1.15 var(--display); text-wrap: balance; }
+  .prancha .resumo { margin: 0; }
+  .porque { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+  .porque li { display: grid; grid-template-columns: 18px 1fr; gap: 8px; color: var(--ink-2); }
+  .porque li::before { content: "—"; color: var(--mark); font-family: var(--mono); }
+  .inclui { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+  .fatos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .fatos div { display: grid; gap: 2px; }
+  .fatos strong { font-weight: 600; font-variant-numeric: tabular-nums; }
+
+  /* carimbo: o quadro de legenda de uma prancha técnica */
+  .carimbo {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--ink);
+    font: 12px/1.35 var(--mono);
+  }
+  .carimbo div { padding: 8px 10px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); min-width: 0; }
+  .carimbo div:nth-child(2n) { border-right: 0; }
+  .carimbo div:nth-last-child(-n+2) { border-bottom: 0; }
+  .carimbo span { display: block; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-2); }
+  .carimbo b { font-weight: 500; overflow-wrap: anywhere; }
+
+  .nota { margin: 0; padding: 12px 14px; background: var(--accent-soft); font-size: 14px; }
+  .alternativa {
+    display: grid; gap: 4px; padding: 14px 16px;
+    border: 1px solid var(--line); background: var(--sheet);
+    text-align: left; cursor: pointer; width: 100%;
+  }
+  .alternativa:hover { border-color: var(--accent); }
+  .refazer { justify-self: center; }
+
+  .rodape { text-align: center; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .entra { animation: entra .35s ease both; }
+    @keyframes entra { from { opacity: .001; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  }
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <!-- ================= INÍCIO ================= -->
+  <section id="tela-inicio" class="wrap entra" aria-labelledby="nome">
+    <header class="perfil">
+      <svg class="monograma" viewBox="0 0 88 88" aria-hidden="true">
+        <!-- símbolo de porta em planta: parede, folha e arco de abertura -->
+        <rect x="1" y="1" width="86" height="86" fill="none" stroke="currentColor" stroke-width="1"/>
+        <line x1="14" y1="70" x2="36" y2="70" stroke="currentColor" stroke-width="4"/>
+        <line x1="70" y1="70" x2="74" y2="70" stroke="currentColor" stroke-width="4"/>
+        <line x1="36" y1="70" x2="36" y2="36" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M36 36 A34 34 0 0 1 70 70" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3"/>
+        <text id="iniciais" x="54" y="30" text-anchor="middle" font-family="Syne, sans-serif" font-weight="700" font-size="17" fill="currentColor">GP</text>
+      </svg>
+      <div class="label" id="profissao">Arquitetura de interiores · Consultoria</div>
+      <h1 id="nome">Gabriele Pinheiro</h1>
+      <p id="bio">Projetos que partem de como você vive. Presencial em Cidade/UF e online para todo o Brasil.</p>
+    </header>
+
+    <div class="chamada">
+      <div class="label">Diagnóstico do espaço · 4 perguntas · 1 min</div>
+      <h2>Qual serviço faz sentido para a sua casa agora?</h2>
+      <p>Responda rápido e eu te mostro o caminho certo, com o que está incluído e o próximo passo.</p>
+      <button class="btn" id="comecar" type="button">Começar o diagnóstico <span class="seta">→</span></button>
+    </div>
+
+    <nav class="direto" aria-label="Links diretos">
+      <h3 class="label">Ou vá direto</h3>
+      <a class="link" id="link-portfolio" href="#" target="_blank" rel="noopener">
+        <span>Projetos entregues<small>Antes, depois e o que mudou em cada casa</small></span><span class="seta">↗</span>
+      </a>
+      <a class="link" id="link-guia" href="#" target="_blank" rel="noopener">
+        <span>Guia gratuito<small>12 decisões para tomar antes de reformar</small></span><span class="seta">↗</span>
+      </a>
+      <a class="link" id="link-whats" href="#" target="_blank" rel="noopener">
+        <span>Falar comigo no WhatsApp<small>Já sabe o que quer? Me chama direto</small></span><span class="seta">↗</span>
+      </a>
+    </nav>
+
+    <div class="slot">Espaço para 1 depoimento real de cliente, com foto do ambiente entregue</div>
+  </section>
+
+  <!-- ================= PERGUNTAS ================= -->
+  <section id="tela-pergunta" class="wrap" hidden aria-live="polite">
+    <div class="topo">
+      <button class="voltar" id="voltar" type="button">← Voltar</button>
+      <span class="label" id="folha">Folha 01 / 04</span>
+    </div>
+    <div>
+      <div class="cota" aria-hidden="true">
+        <span class="tick"></span>
+        <div class="trilho"><div class="preenche" id="preenche"></div></div>
+        <span class="tick"></span>
+      </div>
+      <div class="cota-texto label"><span>Início</span><span>Indicação</span></div>
+    </div>
+    <div class="pergunta entra" id="pergunta"></div>
+  </section>
+
+  <!-- ================= RESULTADO ================= -->
+  <section id="tela-resultado" class="wrap" hidden aria-live="polite"></section>
+
+  <p class="rodape label">Arquitetura de interiores · CAU nº 000000-0</p>
+</main>
+
+<script>
+/* ============================================================
+   CONFIGURAÇÃO — edite aqui seus dados, preços e links.
+   ============================================================ */
+const CONFIG = {
+  nome: "Gabriele Pinheiro",
+  iniciais: "GP",
+  cidade: "Cidade/UF",
+  whatsapp: "5500000000000",           // DDI + DDD + número, só dígitos
+  portfolio: "https://instagram.com/",  // destaque de projetos, site ou Pinterest
+  guia: "https://example.com/guia",     // página de captura do guia gratuito
+};
+
+const SERVICOS = {
+  completo: {
+    nome: "Projeto de Interiores Completo",
+    resumo: "A casa inteira pensada como um conjunto, do levantamento de medidas ao detalhamento que vai para a obra e para a marcenaria.",
+    inclui: [
+      "Visita técnica e levantamento de medidas",
+      "Estudo de layout com duas alternativas",
+      "Imagens 3D de todos os ambientes",
+      "Executivo de marcenaria, iluminação, elétrica e revestimentos",
+      "Lista de compras com quantidades e links",
+    ],
+    prazo: "8 a 12 semanas",
+    investimento: "Sob orçamento, por m²",
+    cta: "Quero agendar o briefing",
+  },
+  ambiente: {
+    nome: "Projeto de Ambiente",
+    resumo: "Um cômodo resolvido por inteiro: cozinha, sala, quarto, home office ou banheiro, com tudo que o marceneiro e o eletricista precisam.",
+    inclui: [
+      "Levantamento do ambiente",
+      "Layout e imagens 3D",
+      "Detalhamento de marcenaria e iluminação",
+      "Lista de compras",
+    ],
+    prazo: "3 a 5 semanas",
+    investimento: "A partir de R$ 0.000",
+    cta: "Quero projetar meu ambiente",
+  },
+  consultoria: {
+    nome: "Consultoria Olhar de Arquiteta",
+    resumo: "Um encontro de 90 minutos, presencial ou por vídeo, para decidir layout, cores, iluminação e o que comprar. Você sai com um plano e executa no seu ritmo.",
+    inclui: [
+      "Questionário e fotos do espaço antes do encontro",
+      "90 minutos de consultoria",
+      "Prancha-resumo com croquis, paleta e prioridades",
+      "15 dias para tirar dúvidas por mensagem",
+    ],
+    prazo: "Prancha em até 5 dias úteis",
+    investimento: "Valor fixo: R$ 000",
+    cta: "Quero marcar minha consultoria",
+  },
+  compra: {
+    nome: "Consultoria de Compra de Imóvel",
+    resumo: "Antes de assinar: eu analiso a planta ou visito o imóvel com você para avaliar o potencial, o que dá para mudar e quanto isso tende a custar.",
+    inclui: [
+      "Análise da planta ou visita ao imóvel",
+      "Leitura de luz natural, ventilação e circulação",
+      "Estudo rápido de um layout possível",
+      "Estimativa de reforma por faixas de custo",
+    ],
+    prazo: "Parecer em até 48 h",
+    investimento: "Valor fixo por imóvel",
+    cta: "Quero avaliar um imóvel",
+  },
+  guia: {
+    nome: "Guia: 12 decisões antes de reformar",
+    resumo: "Para quem ainda está juntando referências. O guia organiza o que decidir primeiro, o que costuma estourar o orçamento e como montar um briefing.",
+    inclui: [
+      "Checklist de decisões por etapa",
+      "Os 5 erros de layout mais comuns",
+      "Modelo de briefing para usar com qualquer profissional",
+    ],
+    prazo: "Chega na hora",
+    investimento: "Gratuito",
+    cta: "Receber o guia",
+    link: "guia",
+  },
+};
+
+const PERGUNTAS = [
+  {
+    id: "momento",
+    titulo: "Em que momento você está com esse imóvel?",
+    opcoes: [
+      { id: "comprando", label: "Ainda vou comprar ou alugar", dica: "Estou escolhendo entre imóveis ou plantas", curto: "Você ainda está escolhendo o imóvel", fase: "Escolha do imóvel" },
+      { id: "chaves", label: "Peguei as chaves ou vou reformar", dica: "Imóvel novo, na planta ou reforma grande", curto: "Você vai reformar ou mobiliar", fase: "Reforma e mobília" },
+      { id: "morando", label: "Já moro e algo não funciona", dica: "Falta espaço, luz, conforto ou identidade", curto: "Você já mora lá e quer melhorar", fase: "Melhoria" },
+      { id: "inspirando", label: "Estou só me inspirando", dica: "Sem data para começar", curto: "Você está juntando referências", fase: "Referências" },
+    ],
+  },
+  {
+    id: "escopo",
+    titulo: "Qual o tamanho da mudança que você imagina?",
+    opcoes: [
+      { id: "casa", label: "A casa inteira", dica: "Todos ou quase todos os ambientes", curto: "casa inteira" },
+      { id: "ambiente", label: "Um ou dois ambientes", dica: "Ex.: cozinha, sala integrada, suíte", curto: "um ou dois ambientes" },
+      { id: "ajustes", label: "Ajustes pontuais", dica: "Móveis, cores, iluminação, organização", curto: "ajustes pontuais" },
+    ],
+  },
+  {
+    id: "participacao",
+    titulo: "Como você quer participar do processo?",
+    opcoes: [
+      { id: "tudo", label: "Quero que alguém cuide de tudo", dica: "Projeto detalhado para entregar a fornecedores", curto: "quer um projeto completo nas mãos" },
+      { id: "direcao", label: "Quero direção e eu executo", dica: "Me diga o que fazer e eu toco", curto: "prefere direção e execução própria" },
+      { id: "naosei", label: "Ainda não sei", dica: "Quero entender as opções", curto: "ainda avaliando o formato" },
+    ],
+  },
+  {
+    id: "local",
+    titulo: "Onde fica o imóvel?",
+    ajuda: null, // preenchida com a cidade da configuração
+    opcoes: [
+      { id: "perto", label: "Na minha região", dica: null, curto: "presencial" },
+      { id: "longe", label: "Em outra cidade ou país", dica: "Atendo 100% online", curto: "online" },
+    ],
+  },
+];
+
+/* ============================================================
+   LÓGICA DA INDICAÇÃO
+   ============================================================ */
+function indicar(r) {
+  const notas = [];
+  let principal, alternativa;
+
+  if (r.momento === "inspirando") {
+    principal = "guia"; alternativa = "consultoria";
+  } else if (r.momento === "comprando") {
+    principal = "compra";
+    alternativa = r.escopo === "casa" ? "completo" : "ambiente";
+    notas.push("Quem fecha o projeto em até 60 dias depois da consultoria de compra tem o valor dela abatido.");
+  } else if (r.participacao === "direcao" || r.escopo === "ajustes") {
+    principal = "consultoria";
+    alternativa = r.escopo === "casa" ? "completo" : "ambiente";
+    if (r.escopo === "casa" && r.participacao === "direcao")
+      notas.push("Para a casa inteira, a consultoria vira um plano geral por etapas. Se depois quiser o detalhamento, o valor é abatido do projeto.");
+  } else if (r.escopo === "casa") {
+    principal = "completo"; alternativa = "consultoria";
+  } else {
+    principal = "ambiente"; alternativa = "consultoria";
+  }
+
+  if (r.participacao === "naosei" && principal !== "guia")
+    notas.push("Na dúvida entre formatos, a primeira conversa serve para isso: eu te explico as diferenças olhando para o seu caso.");
+  if (r.local === "longe" && principal !== "guia")
+    notas.push("Atendimento online: você me envia medidas e fotos com um roteiro que eu mando, e acompanhamos tudo por vídeo.");
+
+  return { principal, alternativa, notas };
+}
+
+/* ============================================================
+   INTERFACE
+   ============================================================ */
+const $ = (s) => document.querySelector(s);
+const telas = { inicio: $("#tela-inicio"), pergunta: $("#tela-pergunta"), resultado: $("#tela-resultado") };
+let passo = 0;
+const respostas = {};
+
+function mostrar(nome) {
+  for (const [k, el] of Object.entries(telas)) el.hidden = k !== nome;
+  window.scrollTo({ top: 0 });
+}
+
+function whatsLink(texto) {
+  return `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(texto)}`;
+}
+
+function rotulo(perguntaId) {
+  const p = PERGUNTAS.find((q) => q.id === perguntaId);
+  return p.opcoes.find((o) => o.id === respostas[perguntaId]);
+}
+
+function renderPergunta() {
+  const p = PERGUNTAS[passo];
+  const total = PERGUNTAS.length;
+  $("#folha").textContent = `Folha ${String(passo + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+  $("#preenche").style.width = `${(passo / total) * 100}%`;
+
+  const ajuda = p.id === "local" ? `Atendo presencialmente em ${CONFIG.cidade} e região.` : p.ajuda;
+  const box = $("#pergunta");
+  box.classList.remove("entra"); void box.offsetWidth; box.classList.add("entra");
+  box.innerHTML = `
+    <h2>${p.titulo}</h2>
+    ${ajuda ? `<p class="ajuda">${ajuda}</p>` : ""}
+    <div class="opcoes">
+      ${p.opcoes.map((o, i) => `
+        <button class="opcao" type="button" data-id="${o.id}" aria-pressed="${respostas[p.id] === o.id}">
+          <span class="cod">${String.fromCharCode(65 + i)}</span>
+          <span><strong>${o.label}</strong>${o.dica ? `<span class="dica">${o.dica}</span>` : ""}</span>
+        </button>`).join("")}
+    </div>`;
+  box.querySelectorAll(".opcao").forEach((b) =>
+    b.addEventListener("click", () => {
+      respostas[p.id] = b.dataset.id;
+      b.setAttribute("aria-pressed", "true");
+      setTimeout(avancar, 160);
+    })
+  );
+}
+
+function avancar() {
+  // quem está só se inspirando não precisa responder o resto
+  if (PERGUNTAS[passo].id === "momento" && respostas.momento === "inspirando") return renderResultado();
+  passo++;
+  if (passo >= PERGUNTAS.length) return renderResultado();
+  renderPergunta();
+}
+
+function renderResultado() {
+  const { principal, alternativa, notas } = indicar(respostas);
+  const s = SERVICOS[principal];
+  const alt = SERVICOS[alternativa];
+
+  const porque = PERGUNTAS
+    .filter((p) => respostas[p.id])
+    .map((p) => {
+      const o = rotulo(p.id);
+      return {
+        momento: `${o.curto}.`,
+        escopo: `A mudança envolve ${o.curto}.`,
+        participacao: `Você ${o.curto}.`,
+        local: `Atendimento ${o.curto}.`,
+      }[p.id];
+    });
+
+  const resumoWhats = PERGUNTAS
+    .filter((p) => respostas[p.id])
+    .map((p) => `• ${rotulo(p.id).label}`)
+    .join("\n");
+  const primeiroNome = CONFIG.nome.split(" ")[0];
+  const msg = `Olá, ${primeiroNome}! Fiz o diagnóstico no seu link da bio.\n\n${resumoWhats}\n\nIndicação: ${s.nome}. Quero saber como funciona.`;
+  const ctaHref = s.link ? CONFIG[s.link] : whatsLink(msg);
+
+  const hoje = new Date().toLocaleDateString("pt-BR");
+  const modalidade = principal === "guia" ? "Digital" : respostas.local === "longe" ? "Online" : "Presencial";
+
+  telas.resultado.innerHTML = `
+    <div class="topo">
+      <button class="voltar" type="button" id="refazer-topo">← Refazer</button>
+      <span class="label">Indicação</span>
+    </div>
+    <article class="prancha entra">
+      <div class="prancha-corpo">
+        <div class="label">Para o seu momento, eu indico</div>
+        <h2>${s.nome}</h2>
+        <p class="resumo">${s.resumo}</p>
+        <div class="label">Por que este</div>
+        <ul class="porque">${porque.map((t) => `<li>${t}</li>`).join("")}</ul>
+        <div class="label">O que está incluído</div>
+        <ul class="inclui">${s.inclui.map((t) => `<li>${t}</li>`).join("")}</ul>
+        <div class="fatos">
+          <div><span class="label">Prazo</span><strong>${s.prazo}</strong></div>
+          <div><span class="label">Investimento</span><strong>${s.investimento}</strong></div>
+        </div>
+        ${notas.map((n) => `<p class="nota">${n}</p>`).join("")}
+        <a class="btn" href="${ctaHref}" target="_blank" rel="noopener">${s.cta} <span class="seta">↗</span></a>
+      </div>
+      <div class="carimbo" aria-label="Resumo do diagnóstico">
+        <div><span>Serviço</span><b>${s.nome}</b></div>
+        <div><span>Modalidade</span><b>${modalidade}</b></div>
+        <div><span>Fase</span><b>${rotulo("momento").fase}</b></div>
+        <div><span>Data</span><b>${hoje}</b></div>
+      </div>
+    </article>
+    <button class="alternativa" type="button" id="ver-alt">
+      <span class="label">Também pode fazer sentido</span>
+      <strong>${alt.nome} →</strong>
+    </button>
+    <button class="voltar refazer" type="button" id="refazer">Refazer o diagnóstico</button>`;
+
+  $("#ver-alt").addEventListener("click", () => mostrarServico(alternativa, msg));
+  $("#refazer").addEventListener("click", reiniciar);
+  $("#refazer-topo").addEventListener("click", reiniciar);
+  mostrar("resultado");
+}
+
+function mostrarServico(id, msgBase) {
+  const s = SERVICOS[id];
+  const msg = msgBase.replace(/Indicação: .*\./, `Tenho interesse em: ${s.nome}.`);
+  const href = s.link ? CONFIG[s.link] : whatsLink(msg);
+  telas.resultado.innerHTML = `
+    <div class="topo">
+      <button class="voltar" type="button" id="volta-ind">← Voltar à indicação</button>
+      <span class="label">Alternativa</span>
+    </div>
+    <article class="prancha entra"><div class="prancha-corpo">
+      <h2>${s.nome}</h2>
+      <p class="resumo">${s.resumo}</p>
+      <div class="label">O que está incluído</div>
+      <ul class="inclui">${s.inclui.map((t) => `<li>${t}</li>`).join("")}</ul>
+      <div class="fatos">
+        <div><span class="label">Prazo</span><strong>${s.prazo}</strong></div>
+        <div><span class="label">Investimento</span><strong>${s.investimento}</strong></div>
+      </div>
+      <a class="btn" href="${href}" target="_blank" rel="noopener">${s.cta} <span class="seta">↗</span></a>
+    </div></article>`;
+  $("#volta-ind").addEventListener("click", renderResultado);
+  window.scrollTo({ top: 0 });
+}
+
+function reiniciar() {
+  for (const k of Object.keys(respostas)) delete respostas[k];
+  passo = 0;
+  mostrar("inicio");
+}
+
+$("#comecar").addEventListener("click", () => { passo = 0; renderPergunta(); mostrar("pergunta"); });
+$("#voltar").addEventListener("click", () => {
+  if (passo === 0) return mostrar("inicio");
+  passo--; renderPergunta();
+});
+
+// aplica a configuração na tela inicial
+$("#nome").textContent = CONFIG.nome;
+$("#iniciais").textContent = CONFIG.iniciais;
+$("#bio").textContent = `Projetos que partem de como você vive. Presencial em ${CONFIG.cidade} e online para todo o Brasil.`;
+$("#link-portfolio").href = CONFIG.portfolio;
+$("#link-guia").href = CONFIG.guia;
+$("#link-whats").href = whatsLink(`Olá, ${CONFIG.nome.split(" ")[0]}! Vim pelo seu link da bio.`);
+</script>
+</body>
+</html>
