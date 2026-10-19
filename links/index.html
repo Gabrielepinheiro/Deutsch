@@ -54,10 +54,16 @@ a { color: inherit; }
 .l-nome { font: 400 clamp(2rem, 7.4vw, 2.75rem)/1.08 var(--serif); margin: 0; text-wrap: balance; }
 .l-gancho { font-size: clamp(1.9rem, 7vw, 2.4rem); font-weight: 300; line-height: 1.25; color: var(--amora); margin: 0; text-wrap: balance; }
 .l-bio { margin: 0; max-width: 34em; }
-.l-fatos { list-style: none; margin: 0; padding: 14px 0 0; border-top: 1px solid var(--linha); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-.l-fatos b { display: block; font: 400 1.5rem/1.1 var(--serif); }
-.l-fatos span strong { font-weight: 600; color: var(--cacau); }
-.l-fatos span { display: block; font-size: .78rem; line-height: 1.35; color: var(--cacau-70); }
+.l-fatos { margin: 0; padding: 16px 0 0; border-top: 1px solid var(--linha); display: grid; gap: 18px; }
+.l-fato b { display: block; font: 400 1.6rem/1.15 var(--serif); margin-bottom: 8px; }
+.l-fato ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: .92rem; }
+.l-fato li { display: flex; gap: 12px; align-items: baseline; }
+.l-fato li .diam { color: var(--amora); }
+.l-fato strong { font-weight: 600; }
+.l-fato p { margin: 0; font-size: .88rem; line-height: 1.6; color: var(--cacau-70); }
+.l-paises { display: flex; flex-wrap: wrap; column-gap: 8px; }
+.l-paises span { white-space: nowrap; }
+.l-paises span:not(.fim)::after { content: "·"; margin-left: 8px; color: var(--cacau-45); }
 .l-atalhos { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .l-atalhos a {
   display: inline-flex; align-items: center; min-height: 40px; padding: 6px 14px; border: 1px solid var(--linha); border-radius: 999px;
@@ -186,7 +192,6 @@ a { color: inherit; }
   .l-retrato { width: 104px; height: 104px; font-size: 2.4rem; }
   .l-rodape { padding-top: 24px; }
 }
-@media (max-width: 380px) { .l-fatos b { font-size: 1.25rem; } }
 
 
 /* ---------- Movimento ---------- */
@@ -419,11 +424,20 @@ a { color: inherit; }
     <h1 class="l-gancho acento brilho" style="--i:1">Sua casa ainda não parece sua?</h1>
     <p class="l-bio entra" style="--i:2">Sou arquiteta e ajudo famílias brasileiras que vivem fora do Brasil a transformar a casa em lar, com identidade e sem desperdício.</p>
     <p class="l-vivo entra" style="--i:3"><span class="l-pulso" aria-hidden="true"></span>Diagnóstico gratuito · proposta em até 2 dias úteis</p>
-    <ul class="l-fatos entra" style="--i:4">
-      <li><b data-n="6" data-antes="+" data-depois=" anos">+6 anos</b><span>atendendo <strong>apenas</strong> brasileiros pelo mundo</span></li>
-      <li><b data-n="10" data-antes="+" data-depois=" países">+10 países</b><span>com famílias atendidas</span></li>
-      <li><b data-n="7" data-depois=" anos">7 anos</b><span>só com projetos online (e-design)</span></li>
-    </ul>
+    <div class="l-fatos entra" style="--i:4">
+      <div class="l-fato">
+        <b data-n="6" data-antes="Há " data-depois=" anos">Há 6 anos</b>
+        <ul>
+          <li><span class="diam"></span><span>Atendendo <strong>apenas</strong> famílias brasileiras pelo mundo</span></li>
+          <li><span class="diam"></span><span>Projetando 100% online (e-design)</span></li>
+          <li><span class="diam"></span><span>Vivenciando o design de interiores na Europa</span></li>
+        </ul>
+      </div>
+      <div class="l-fato">
+        <b data-n="10" data-antes="+" data-depois=" países atendidos">+10 países atendidos</b>
+        <p class="l-paises"><span>Alemanha</span><span>Áustria</span><span>Espanha</span><span>França</span><span>Itália</span><span>Noruega</span><span>Portugal</span><span>Suíça</span><span class="fim">Estados Unidos &amp; Brasil</span></p>
+      </div>
+    </div>
     <nav aria-label="Nesta página" class="entra" style="--i:5"><ul class="l-atalhos">
       <li><a href="#diagnostico">Diagnóstico da Casa</a></li>
       <li><a href="#premier">Premier</a></li>
