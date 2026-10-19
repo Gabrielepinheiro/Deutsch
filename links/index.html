@@ -47,13 +47,12 @@ a { color: inherit; }
 .l-retrato {
   width: 84px; height: 84px; border-radius: 50%; flex: none; overflow: hidden;
   background: var(--rose); color: var(--amora); display: grid; place-items: center;
+  font: italic 300 2rem/1 var(--accent); font-variation-settings: "SOFT" 100, "WONK" 1;
 }
-.logo { display: block; width: 1.25em; height: auto; overflow: visible; }
-.l-retrato .logo { width: 50%; }
 .l-retrato img { width: 100%; height: 100%; object-fit: cover; }
 .l-id .sobre { color: var(--cacau-70); }
 .l-nome { font: 400 clamp(2rem, 7.4vw, 2.75rem)/1.08 var(--serif); margin: 0; text-wrap: balance; }
-.l-gancho { font-size: clamp(1.45rem, 5vw, 1.75rem); line-height: 1.25; color: var(--amora); margin: 0; text-wrap: balance; }
+.l-gancho { font-size: clamp(1.9rem, 7vw, 2.4rem); font-weight: 300; line-height: 1.25; color: var(--amora); margin: 0; text-wrap: balance; }
 .l-bio { margin: 0; max-width: 34em; }
 .l-fatos { list-style: none; margin: 0; padding: 14px 0 0; border-top: 1px solid var(--linha); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
 .l-fatos b { display: block; font: 400 1.5rem/1.1 var(--serif); }
@@ -175,8 +174,7 @@ a { color: inherit; }
 .l-contatos small { display: block; color: var(--cacau-70); font-size: .8rem; font-weight: 300; }
 .l-contatos .seta { color: var(--amora); }
 .l-rodape { max-width: 1080px; margin: 0 auto; padding: 8px max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px)); display: grid; justify-items: center; gap: 8px; text-align: center; font-size: .82rem; color: var(--cacau-70); }
-.l-assinatura { color: var(--cacau); }
-.l-assinatura .logo { width: 52px; }
+.l-assinatura { font: italic 300 2.2rem/1 var(--accent); font-variation-settings: "SOFT" 100, "WONK" 1; color: var(--cacau); }
 .l-legal { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; }
 .l-legal a { text-underline-offset: 3px; }
 
@@ -184,7 +182,7 @@ a { color: inherit; }
   .l-pagina { grid-template-columns: minmax(0, 400px) minmax(0, 560px); justify-content: space-between; gap: 56px; padding-top: 56px; }
   .l-id { position: sticky; top: 40px; margin: 0; }
   .l-cartoes { margin: 0; }
-  .l-retrato { width: 104px; height: 104px; }
+  .l-retrato { width: 104px; height: 104px; font-size: 2.4rem; }
   .l-rodape { padding-top: 24px; }
 }
 @media (max-width: 380px) { .l-fatos b { font-size: 1.25rem; } }
@@ -218,8 +216,8 @@ a { color: inherit; }
   padding: calc(env(safe-area-inset-top, 0px) + 10px) max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px));
 }
 .diag .topo-linha { display: flex; align-items: center; justify-content: space-between; gap: 12px; max-width: 640px; margin: 0 auto 8px; }
-.diag .marca { color: var(--fg); display: block; padding: 4px 0; }
-.diag .marca .logo { width: 40px; }
+.diag .marca { font: italic 300 1.6rem/1 var(--accent); font-variation-settings: "SOFT" 100, "WONK" 1; color: var(--fg); text-decoration: none; }
+.diag .marca .ponto { color: var(--pink); }
 .diag .aos-links { font-size: .86rem; color: var(--muted); text-decoration: underline; text-underline-offset: 3px; padding: 8px 0; }
 .diag .trilho { height: 2px; background: var(--line); max-width: 640px; margin: 0 auto; }
 .diag .trilho span { display: block; height: 100%; width: 0; background: var(--accent); transition: width .35s ease; }
@@ -331,18 +329,16 @@ a { color: inherit; }
 </style>
 </head>
 <body>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="logo-gp" viewBox="0 0 80 66"><path d="M38.1 15.9A20 20 0 1 0 44 30H30M49 24v40M49 37a13 13 0 1 1 0 .01" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="butt"/></symbol></svg>
 
 <!-- =================== LINKS =================== -->
 <div id="vista-links">
 <main class="l-pagina">
   <header class="l-id">
     <div class="l-id-topo">
-      <div class="l-retrato" id="retrato" aria-hidden="true"><svg class="logo" viewBox="0 0 80 66" aria-hidden="true"><use href="#logo-gp"/></svg></div>
+      <div class="l-retrato" id="retrato" aria-hidden="true"><span>GP<span class="ponto">.</span></span></div>
       <p class="sobre">Studio GP<br>Design de interiores online</p>
     </div>
-    <h1 class="l-nome">Gabriele Pinheiro</h1>
-    <p class="l-gancho acento">Sua casa ainda não parece sua?</p>
+    <h1 class="l-gancho acento">Sua casa ainda não parece sua?</h1>
     <p class="l-bio">Sou arquiteta e ajudo famílias brasileiras que vivem fora do Brasil a transformar a casa em lar, com identidade e sem desperdício.</p>
     <ul class="l-fatos">
       <li><b>+8 anos</b><span>em interiores residenciais</span></li>
@@ -480,7 +476,7 @@ a { color: inherit; }
   </div>
 </main>
 <footer class="l-rodape">
-  <span class="l-assinatura" aria-hidden="true"><svg class="logo" viewBox="0 0 80 66" aria-hidden="true"><use href="#logo-gp"/></svg></span>
+  <span class="l-assinatura" aria-hidden="true">GP<span class="ponto">.</span></span>
   <span>Gabriele Pinheiro · Design de interiores online</span>
   <nav class="l-legal" aria-label="Informações legais">
     <a hidden data-cfg="impressum" href="#" target="_blank" rel="noopener">Impressum</a>
@@ -493,7 +489,7 @@ a { color: inherit; }
 <!-- =================== DIAGNÓSTICO DA CASA =================== -->
 <div id="vista-diagnostico" class="diag" hidden>
   <header class="topo">
-    <div class="topo-linha"><a class="marca" href="#inicio" aria-label="Voltar aos links"><svg class="logo" viewBox="0 0 80 66" aria-hidden="true"><use href="#logo-gp"/></svg></a><a class="aos-links nao-imprimir" href="#inicio">← Voltar aos links</a></div>
+    <div class="topo-linha"><a class="marca" href="#inicio" aria-label="Voltar aos links">GP<span class="ponto">.</span></a><a class="aos-links nao-imprimir" href="#inicio">← Voltar aos links</a></div>
     <div class="trilho" aria-hidden="true"><span id="progresso"></span></div>
   </header>
   <main id="app" class="pagina"></main>
