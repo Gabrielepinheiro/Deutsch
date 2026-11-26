@@ -79,18 +79,20 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 .abertura-texto > p:not(.manifesto):not(.ponte) { margin: 0; max-width: 36em; }
 .triangulo { margin: 0; justify-self: center; width: 100%; max-width: 380px; }
 .triangulo svg { display: block; width: 100%; height: auto; overflow: visible; }
-.triangulo .tl { font-family: var(--display); font-size: 30px; fill: var(--cacau); }
+.triangulo .tl { font-family: var(--mao); font-size: 46px; fill: var(--cacau); }
 .triangulo .tm { font-family: var(--mao); font-size: 40px; fill: var(--bordo); }
 .triangulo .v { fill: var(--bordo); }
 .triangulo .tri-fundo { fill: var(--anturio); fill-opacity: .22; }
-.triangulo .tri-linha { fill: none; stroke: var(--cacau); stroke-width: 1.2; }
+.triangulo .tri-linha { fill: none; stroke: var(--cacau); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.triangulo .tri-linha2 { stroke-width: .9; opacity: .45; }
+.triangulo .tri-sub { fill: none; stroke: var(--bordo); stroke-width: 1.6; stroke-linecap: round; }
 .convite-diag { margin: 0; background: var(--nevoa); border: 1px solid var(--linha); border-left: 3px solid var(--bordo); padding: 20px 20px 22px; display: grid; gap: 10px; justify-items: start; }
 .convite-diag .rot { color: var(--bordo); margin: 0; }
 .convite-diag .convite-frase { margin: 0; font: 400 clamp(1.3rem, 4.8vw, 1.55rem)/1.25 var(--display); color: var(--cacau); }
 .busco { font: 400 clamp(1.35rem, 5vw, 1.75rem)/1.35 var(--display); margin: 6px 0 0; padding: 22px 0 4px; border-top: 1px solid var(--linha); text-wrap: balance; }
 /* animação do triângulo: a base primeiro, depois a leveza */
 .triangulo.anima .tri-linha { stroke-dasharray: 1; stroke-dashoffset: 1; animation: tracar 2s cubic-bezier(.45,.05,.3,1) .3s forwards; }
-.triangulo.anima .tri-fundo, .triangulo.anima .tm { opacity: 0; animation: aparecer .9s ease 2.3s forwards; }
+.triangulo.anima .tri-fundo, .triangulo.anima .tm, .triangulo.anima .tri-sub { opacity: 0; animation: aparecer .9s ease 2.3s forwards; }
 .triangulo.anima .v, .triangulo.anima .tl { opacity: 0; transform-box: fill-box; transform-origin: center; animation: brotar .6s cubic-bezier(.2,.7,.2,1) forwards; }
 .triangulo.anima .o { animation-delay: .3s; }
 .triangulo.anima .b { animation-delay: 1s; }
@@ -399,13 +401,15 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
   </div>
   <figure class="triangulo" id="triangulo">
     <svg viewBox="0 0 440 400" role="img" aria-label="Triângulo com Ordem e Beleza na base, Leveza no topo e a sua casa no centro">
-      <polygon class="tri-fundo" points="220,62 58,330 382,330"/>
-      <path class="tri-linha" d="M58 330 L382 330 L220 62 Z" pathLength="1"/>
-      <circle class="v o" cx="58" cy="330" r="6"/><circle class="v b" cx="382" cy="330" r="6"/><circle class="v l" cx="220" cy="62" r="6"/>
+      <path class="tri-fundo" d="M60 329 C150 333 290 326 381 331 C330 245 272 150 221 63 C168 150 112 240 60 329 Z"/>
+      <path class="tri-linha" d="M48 332 C150 327 290 335 392 328 M385 336 C332 248 272 150 217 55 M226 57 C170 150 112 246 53 339" pathLength="1"/>
+      <path class="tri-linha tri-linha2" d="M62 326 C160 331 280 325 378 333 M377 327 C326 242 268 152 222 68 M216 70 C166 152 108 238 64 324" pathLength="1"/>
+      <circle class="v o" cx="58" cy="331" r="5"/><circle class="v b" cx="383" cy="330" r="5"/><circle class="v l" cx="221" cy="61" r="5"/>
       <text class="tl o" x="58" y="374" text-anchor="middle">Ordem</text>
       <text class="tl b" x="382" y="374" text-anchor="middle">Beleza</text>
       <text class="tl l" x="220" y="36" text-anchor="middle">Leveza</text>
       <text class="tm" x="220" y="262" text-anchor="middle">a sua casa</text>
+      <path class="tri-sub" d="M162 276 C190 270 225 281 252 272 C262 269 272 271 279 274"/>
     </svg>
   </figure>
   <p class="busco entra" style="--i:5">É isso que busco em cada projeto: uma casa funcional, em que cada coisa tem o seu lugar, com escolhas que acalmam o olhar e que deixam a sua rotina <em class="bordo">mais leve.</em></p>
