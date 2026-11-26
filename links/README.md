@@ -1,7 +1,7 @@
 # Links · gabrielepinheiro.com/links
 
-Página de links com o **Diagnóstico da Casa** funcionando dentro dela.
-Cores e fontes: Paleta Amora & Floresta. Conteúdo: Jornada do Cliente GP.
+Página principal do site (link da bio). Segue o Brand Book GP de nov/2026: Branco, Névoa, Cacau, Bordô e Antúrio; Instrument Serif, Hanken Grotesk, Reenie Beanie e Tinos.
+O botão do **Diagnóstico da Casa** leva ao link do diagnóstico que já está no ar (`linkDiagnostico` no `GP_CONFIG`).
 
 | Arquivo | O que é |
 |---|---|
