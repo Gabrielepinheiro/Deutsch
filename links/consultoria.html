@@ -366,6 +366,15 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
   .passos.duas { grid-auto-flow: column; grid-template-rows: repeat(4, auto); grid-template-columns: 1fr 1fr; column-gap: 48px; }
   .bloco.largo-2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); column-gap: 56px; align-items: start; }
 }
+
+/* ---------- Impressum e Datenschutz ---------- */
+.texto-legal { max-width: 46em; overflow-wrap: anywhere; }
+.texto-legal h1 { font-size: clamp(2rem, 7vw, 2.6rem); margin: 0 0 20px; }
+.texto-legal h2 { font-size: 1.35rem; margin: 32px 0 10px; }
+.texto-legal p, .texto-legal li { font-size: .95rem; }
+.texto-legal p { margin: 0 0 14px; }
+.texto-legal ul { margin: 0 0 14px; padding-left: 20px; }
+.texto-legal a { color: var(--bordo); text-underline-offset: 3px; }
 /*/PAGINAS*/
 </style>
 </head>
@@ -521,6 +530,7 @@ window.GP_CONFIG = {
   if (C.previa) document.querySelectorAll("a[data-pag]").forEach(function (a) {
     if (C.previa[a.dataset.pag]) { a.href = C.previa[a.dataset.pag]; a.removeAttribute("target"); }
   });
+  if (C.previa) document.querySelectorAll("a[data-cfg=impressum], a[data-cfg=privacidade]").forEach(function (a) { a.removeAttribute("target"); });
 })();
 </script>
 </body>
