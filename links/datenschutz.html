@@ -79,16 +79,20 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 .abertura-texto > p:not(.manifesto):not(.ponte) { margin: 0; max-width: 36em; }
 .triangulo { margin: 0; justify-self: center; width: 100%; max-width: 380px; }
 .triangulo svg { display: block; width: 100%; height: auto; overflow: visible; }
-.triangulo .tl { font-family: var(--display); font-size: 30px; fill: var(--cacau); }
+.triangulo .tl { font-family: var(--mao); font-size: 46px; fill: var(--cacau); }
 .triangulo .tm { font-family: var(--mao); font-size: 40px; fill: var(--bordo); }
 .triangulo .v { fill: var(--bordo); }
 .triangulo .tri-fundo { fill: var(--anturio); fill-opacity: .22; }
-.triangulo .tri-linha { fill: none; stroke: var(--cacau); stroke-width: 1.2; }
-.convite-diag { margin: 0; font-size: .95rem; color: var(--cacau-2); }
+.triangulo .tri-linha { fill: none; stroke: var(--cacau); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.triangulo .tri-linha2 { stroke-width: .9; opacity: .45; }
+.triangulo .tri-sub { fill: none; stroke: var(--bordo); stroke-width: 1.6; stroke-linecap: round; }
+.convite-diag { margin: 0; background: var(--nevoa); border: 1px solid var(--linha); border-left: 3px solid var(--bordo); padding: 20px 20px 22px; display: grid; gap: 10px; justify-items: start; }
+.convite-diag .rot { color: var(--bordo); margin: 0; }
+.convite-diag .convite-frase { margin: 0; font: 400 clamp(1.3rem, 4.8vw, 1.55rem)/1.25 var(--display); color: var(--cacau); }
 .busco { font: 400 clamp(1.35rem, 5vw, 1.75rem)/1.35 var(--display); margin: 6px 0 0; padding: 22px 0 4px; border-top: 1px solid var(--linha); text-wrap: balance; }
 /* animação do triângulo: a base primeiro, depois a leveza */
 .triangulo.anima .tri-linha { stroke-dasharray: 1; stroke-dashoffset: 1; animation: tracar 2s cubic-bezier(.45,.05,.3,1) .3s forwards; }
-.triangulo.anima .tri-fundo, .triangulo.anima .tm { opacity: 0; animation: aparecer .9s ease 2.3s forwards; }
+.triangulo.anima .tri-fundo, .triangulo.anima .tm, .triangulo.anima .tri-sub { opacity: 0; animation: aparecer .9s ease 2.3s forwards; }
 .triangulo.anima .v, .triangulo.anima .tl { opacity: 0; transform-box: fill-box; transform-origin: center; animation: brotar .6s cubic-bezier(.2,.7,.2,1) forwards; }
 .triangulo.anima .o { animation-delay: .3s; }
 .triangulo.anima .b { animation-delay: 1s; }
@@ -249,7 +253,10 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
   .abertura-texto { grid-column: 1; }
   .triangulo { grid-column: 2; grid-row: 1; max-width: 400px; }
   .busco { grid-column: 1 / -1; text-align: center; max-width: 820px; justify-self: center; padding-top: 30px; }
-  .convite-diag { grid-column: 1 / -1; text-align: center; }
+  .convite-diag { grid-column: 1 / -1; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 32px; padding: 24px 32px; }
+  .convite-diag .rot { grid-column: 1; }
+  .convite-diag .convite-frase { grid-column: 1; }
+  .convite-diag .btn { grid-column: 2; grid-row: 1 / span 2; }
   .abertura { column-gap: 80px; }
   .abertura .titulo { font-size: 2.6rem; }
   /* Abaixo da abertura, tudo usa a largura inteira: faixa de dados e blocos em duas colunas */
@@ -404,7 +411,7 @@ E-Mail: <a href="mailto:gabriele@gabrielepinheiro.com">gabriele@gabrielepinheiro
 <h2>5. Cookies und Einwilligung</h2>
 <p>Die Website setzt technisch notwendige Cookies, die für den Betrieb erforderlich sind (§ 25 Abs. 2 TDDDG, Art. 6 Abs. 1 lit. f DSGVO). Andere Cookies, etwa für Statistik, werden nur mit Ihrer Einwilligung gesetzt (§ 25 Abs. 1 TDDDG, Art. 6 Abs. 1 lit. a DSGVO). Ihre Auswahl können Sie über den Cookie-Banner treffen und jederzeit mit Wirkung für die Zukunft ändern.</p>
 <h2>6. Schriftarten</h2>
-<p>Die Schriftarten dieser Website sind direkt in die Seite eingebunden. Beim Laden der Schriften wird keine Verbindung zu Servern Dritter, etwa von Google, hergestellt.</p>
+<p>Die Schriftarten dieser Website liegen auf demselben Server wie die Website selbst und werden von dort geladen. Beim Laden der Schriften wird keine Verbindung zu Servern Dritter, etwa von Google, hergestellt.</p>
 <h2>7. Kontakt per E-Mail</h2>
 <p>Wenn Sie mir eine E-Mail schreiben, verarbeite ich Ihre Angaben, um Ihre Anfrage zu beantworten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, wenn Ihre Anfrage mit einem Vertrag oder dessen Anbahnung zusammenhängt, sonst Art. 6 Abs. 1 lit. f DSGVO. Die Daten werden gelöscht, sobald sie nicht mehr erforderlich sind, sofern keine gesetzlichen Aufbewahrungspflichten bestehen.</p>
 <h2>8. Diagnóstico da Casa</h2>
