@@ -285,15 +285,99 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
   .revelar { opacity: 1; transform: none; transition: none; }
   .btn .seta, .linhas summary::after, .troca-fundo, .painel { transition: none; }
 }
+/*PAGINAS*/
+/* ---------- Menu no topo (todas as páginas) ---------- */
+.topo-nav { position: sticky; top: 0; z-index: 30; background: rgba(255,255,255,.95); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); border-bottom: 1px solid var(--linha); }
+.topo-dentro { max-width: 1200px; margin: 0 auto; padding: 12px max(16px, env(safe-area-inset-right, 0px)) 12px max(16px, env(safe-area-inset-left, 0px)); display: flex; align-items: center; justify-content: space-between; gap: 16px; position: relative; }
+.marca { font: 300 .82rem/1.2 var(--texto); letter-spacing: .38em; text-transform: uppercase; text-decoration: none; color: var(--cacau); padding: 6px 0; }
+.marca small { display: block; font-size: .56rem; letter-spacing: .3em; color: var(--cacau-2); font-weight: 400; margin-top: 4px; }
+.menu { list-style: none; margin: 0; padding: 0; display: flex; gap: 6px 28px; }
+.menu a { display: inline-flex; align-items: center; min-height: 40px; font: 400 .9rem var(--texto); color: var(--cacau); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s, color .2s; }
+.menu a:hover { border-bottom-color: var(--cacau-2); }
+.menu a[aria-current=page] { color: var(--bordo); border-bottom-color: var(--bordo); font-weight: 500; }
+.menu-botao { display: none; font: 500 .82rem var(--texto); letter-spacing: .18em; text-transform: uppercase; color: var(--cacau); background: none; border: 1px solid var(--linha); border-radius: 999px; padding: 9px 16px; min-height: 40px; cursor: pointer; }
+@media (max-width: 799px) {
+  .menu-botao { display: inline-flex; align-items: center; gap: 8px; }
+  .menu { display: none; position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; gap: 0; background: var(--branco); border-bottom: 1px solid var(--linha); padding: 4px max(16px, env(safe-area-inset-right, 0px)) 12px max(16px, env(safe-area-inset-left, 0px)); box-shadow: 0 12px 24px rgba(58,38,33,.06); }
+  .topo-nav.aberto .menu { display: flex; }
+  .menu li { border-top: 1px solid var(--linha); }
+  .menu li:first-child { border-top: 0; }
+  .menu a { width: 100%; min-height: 50px; font-size: 1rem; border-bottom: 0; }
+  .menu a[aria-current=page] { border-bottom: 0; }
+}
+
+/* ---------- Páginas internas ---------- */
+.pg { max-width: 1200px; margin: 0 auto; padding: 40px max(16px, env(safe-area-inset-right, 0px)) 56px max(16px, env(safe-area-inset-left, 0px)); display: grid; gap: 28px; }
+.pg-hero { display: grid; gap: 18px; align-items: center; padding-bottom: 8px; }
+.pg-hero h1 { font-size: clamp(2.1rem, 7.4vw, 3rem); line-height: 1.08; margin: 0; }
+.pg-hero h1 b { font-family: inherit; font-weight: 400; -webkit-text-stroke: .032em currentColor; paint-order: stroke fill; }
+.pg-hero .lede { font: 400 clamp(1.25rem, 4.6vw, 1.55rem)/1.35 var(--display); margin: 0; max-width: 34em; text-wrap: balance; }
+.pg-hero .mao { font-size: 2rem; display: block; margin-bottom: -6px; }
+.foto-sobre { width: 100%; max-width: 420px; aspect-ratio: 4/5; background: var(--nevoa); overflow: hidden; justify-self: center; }
+.foto-sobre img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.texto-longo p { margin: 0 0 14px; max-width: 40em; }
+.texto-longo p:last-child { margin-bottom: 0; }
+.grade { display: grid; gap: 20px; }
+.grade > * { min-width: 0; }
+.cartao-n { display: grid; gap: 6px; }
+.cartao-n .n { color: var(--bordo); font-weight: 700; font-size: 1.05rem; }
+.cartao-n h3 { font-size: 1.35rem; line-height: 1.2; }
+.cartao-n p { margin: 0; font-size: .93rem; }
+.passos { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 0; }
+.passos li { display: grid; grid-template-columns: 2.6rem minmax(0, 1fr); gap: 2px 12px; padding: 16px 0; border-top: 1px solid var(--linha); }
+.passos li > .n { grid-row: 1 / span 2; width: 2.1rem; height: 2.1rem; border-radius: 50%; background: var(--bordo); color: var(--branco); display: grid; place-items: center; font: 700 .9rem/1 var(--num); }
+.passos strong { font-weight: 500; }
+.passos span:not(.n) { font-size: .92rem; color: var(--cacau-2); }
+.degraus { display: grid; gap: 14px; counter-reset: dg; }
+.degrau { background: var(--branco); border: 1px solid var(--linha); padding: 20px 20px 22px; display: grid; gap: 6px; position: relative; }
+.degrau .rot { color: var(--bordo); }
+.degrau h3 { font-size: 1.45rem; }
+.degrau p { margin: 0; font-size: .93rem; }
+.linha-servico { display: grid; gap: 10px; align-content: start; }
+.linha-servico h3 { font-size: 1.55rem; }
+.linha-servico .ideal { font-size: .92rem; color: var(--cacau-2); margin: 0; }
+.linha-servico h4 { font: 500 .6875rem/1.4 var(--texto); letter-spacing: .22em; text-transform: uppercase; color: var(--cacau-2); margin: 8px 0 0; }
+.linha-servico ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: .92rem; }
+.linha-servico ul li::marker { color: var(--bordo); }
+.linha-servico p { margin: 0; font-size: .92rem; }
+.tabela-wrap { overflow-x: auto; }
+.tabela { border-collapse: collapse; width: 100%; min-width: 460px; font-size: .92rem; }
+.tabela th, .tabela td { text-align: left; padding: 12px 14px 12px 0; border-bottom: 1px solid var(--linha); }
+.tabela th { font: 500 .6875rem/1.4 var(--texto); letter-spacing: .2em; text-transform: uppercase; color: var(--cacau-2); }
+.tabela td.n { font-family: var(--num); }
+.faq { display: grid; border-top: 1px solid var(--linha); }
+.faq details { border-bottom: 1px solid var(--linha); }
+.faq summary { list-style: none; cursor: pointer; padding: 16px 28px 16px 0; font: 400 1.2rem/1.3 var(--display); position: relative; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 4px; top: 14px; font: 300 1.4rem var(--texto); color: var(--bordo); }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { margin: 0 0 16px; font-size: .95rem; max-width: 46em; }
+.faq a { color: var(--bordo); text-underline-offset: 3px; }
+.fecho { text-align: center; display: grid; justify-items: center; gap: 14px; padding: 12px 0 8px; }
+.fecho h2 { font-size: clamp(1.7rem, 6vw, 2.2rem); margin: 0; }
+.fecho .btn { min-width: min(100%, 320px); }
+@media (min-width: 960px) {
+  .pg { padding-top: 64px; gap: 32px; }
+  .pg-hero.com-foto { grid-template-columns: minmax(0, 1.2fr) minmax(0, 420px); column-gap: 64px; }
+  .grade.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grade.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grade.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .degraus { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .passos.duas { grid-auto-flow: column; grid-template-rows: repeat(4, auto); grid-template-columns: 1fr 1fr; column-gap: 48px; }
+  .bloco.largo-2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); column-gap: 56px; align-items: start; }
+}
+/*/PAGINAS*/
 </style>
 </head>
 <body>
+<!--MENU-->
+<nav class="topo-nav" aria-label="Menu principal"><div class="topo-dentro"><a class="marca" data-pag="home" href="https://www.gabrielepinheiro.com/" target="_top">Gabriele Pinheiro<small>Interior designer</small></a><button type="button" class="menu-botao" aria-expanded="false" aria-controls="menu-lista">Menu</button><ul class="menu" id="menu-lista"><li><a data-pag="home" href="https://www.gabrielepinheiro.com/" target="_top" aria-current="page">Home</a></li><li><a data-pag="sobre" href="https://www.gabrielepinheiro.com/sobre-mim" target="_top">Sobre mim</a></li><li><a data-pag="diagnostico" href="https://www.gabrielepinheiro.com/diagnostico-da-casa" target="_top">Diagnóstico da Casa</a></li><li><a data-pag="consultoria" href="https://www.gabrielepinheiro.com/consultoria" target="_top">Consultoria</a></li></ul></div></nav>
+<!--/MENU-->
 
 <header class="abertura">
   <div class="abertura-texto">
     <div class="id-topo entra" style="--i:0">
       <div class="retrato" id="retrato" hidden></div>
-      <p class="assinatura">Gabriele Pinheiro<small>Interior designer</small></p>
     </div>
     <h1 class="titulo entra" style="--i:1">Um bom projeto não começa escolhendo móveis. Começa entendendo como eles vão <em class="bordo">funcionar juntos.</em></h1>
     <p class="manifesto entra" style="--i:3">Porque acredito fielmente que uma casa se sustenta como um triângulo: <b>ordem</b> e <b>beleza</b> são a base, e a <b>leveza</b> nasce delas.</p>
@@ -524,6 +608,32 @@ window.GP_CONFIG = {
   impressum: "https://www.gabrielepinheiro.com/impressum",
   privacidade: "https://www.gabrielepinheiro.com/datenschutz"
 };
+</script>
+<script id="js-comum">
+/* Comum a todas as páginas: menu, links do diagnóstico, links legais, foto e ano */
+(function () {
+  var C = window.GP_CONFIG || {};
+  var nav = document.querySelector(".topo-nav"), botao = nav && nav.querySelector(".menu-botao");
+  if (botao) botao.addEventListener("click", function () {
+    var aberto = nav.classList.toggle("aberto");
+    botao.setAttribute("aria-expanded", String(aberto));
+  });
+  document.querySelectorAll("[data-link=diagnostico]").forEach(function (a) { if (C.linkDiagnostico) a.href = C.linkDiagnostico; });
+  var urls = { impressum: C.impressum, privacidade: C.privacidade };
+  document.querySelectorAll("[data-cfg]").forEach(function (el) {
+    var u = urls[el.dataset.cfg]; if (!u) return;
+    var a = el.tagName === "A" ? el : el.querySelector("a"); a.href = u; el.hidden = false;
+  });
+  var foto = document.getElementById("foto-sobre");
+  if (foto && C.foto) {
+    foto.innerHTML = '<img src="' + encodeURI(C.foto) + '" alt="Gabriele Pinheiro">';
+    foto.hidden = false; foto.parentElement.classList.add("com-foto");
+  }
+  var ano = document.getElementById("ano"); if (ano) ano.textContent = new Date().getFullYear();
+  if (C.previa) document.querySelectorAll("a[data-pag]").forEach(function (a) {
+    if (C.previa[a.dataset.pag]) { a.href = C.previa[a.dataset.pag]; a.removeAttribute("target"); }
+  });
+})();
 </script>
 <script>
 (function () {
