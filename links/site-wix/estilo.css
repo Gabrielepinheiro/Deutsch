@@ -74,13 +74,16 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 .triangulo .tri-linha { fill: none; stroke: var(--cacau); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .triangulo .tri-linha2 { stroke-width: .9; opacity: .45; }
 .triangulo .tri-sub { fill: none; stroke: var(--bordo); stroke-width: 1.6; stroke-linecap: round; }
+.triangulo .tri-seta { fill: none; stroke: var(--cacau); stroke-width: 1.4; stroke-linecap: round; }
+.triangulo .tri-seta.bordo { stroke: var(--bordo); }
+.triangulo .te { font-family: var(--mao); font-size: 36px; fill: var(--bordo); }
 .convite-diag { margin: 0; background: var(--nevoa); border: 1px solid var(--linha); border-left: 3px solid var(--bordo); padding: 20px 20px 22px; display: grid; gap: 10px; justify-items: start; }
 .convite-diag .rot { color: var(--bordo); margin: 0; }
 .convite-diag .convite-frase { margin: 0; font: 400 clamp(1.3rem, 4.8vw, 1.55rem)/1.25 var(--display); color: var(--cacau); }
 .busco { font: 400 clamp(1.35rem, 5vw, 1.75rem)/1.35 var(--display); margin: 6px 0 0; padding: 22px 0 4px; border-top: 1px solid var(--linha); text-wrap: balance; }
 /* animação do triângulo: a base primeiro, depois a leveza */
 .triangulo.anima .tri-linha { stroke-dasharray: 1; stroke-dashoffset: 1; animation: tracar 2s cubic-bezier(.45,.05,.3,1) .3s forwards; }
-.triangulo.anima .tri-fundo, .triangulo.anima .tm, .triangulo.anima .tri-sub { opacity: 0; animation: aparecer .9s ease 2.3s forwards; }
+.triangulo.anima .tri-fundo, .triangulo.anima .tm, .triangulo.anima .tri-sub, .triangulo.anima .tri-seta, .triangulo.anima .te { opacity: 0; animation: aparecer .9s ease 2.3s forwards; }
 .triangulo.anima .v, .triangulo.anima .tl { opacity: 0; transform-box: fill-box; transform-origin: center; animation: brotar .6s cubic-bezier(.2,.7,.2,1) forwards; }
 .triangulo.anima .o { animation-delay: .3s; }
 .triangulo.anima .b { animation-delay: 1s; }

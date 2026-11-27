@@ -86,13 +86,16 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 .triangulo .tri-linha { fill: none; stroke: var(--cacau); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .triangulo .tri-linha2 { stroke-width: .9; opacity: .45; }
 .triangulo .tri-sub { fill: none; stroke: var(--bordo); stroke-width: 1.6; stroke-linecap: round; }
+.triangulo .tri-seta { fill: none; stroke: var(--cacau); stroke-width: 1.4; stroke-linecap: round; }
+.triangulo .tri-seta.bordo { stroke: var(--bordo); }
+.triangulo .te { font-family: var(--mao); font-size: 36px; fill: var(--bordo); }
 .convite-diag { margin: 0; background: var(--nevoa); border: 1px solid var(--linha); border-left: 3px solid var(--bordo); padding: 20px 20px 22px; display: grid; gap: 10px; justify-items: start; }
 .convite-diag .rot { color: var(--bordo); margin: 0; }
 .convite-diag .convite-frase { margin: 0; font: 400 clamp(1.3rem, 4.8vw, 1.55rem)/1.25 var(--display); color: var(--cacau); }
 .busco { font: 400 clamp(1.35rem, 5vw, 1.75rem)/1.35 var(--display); margin: 6px 0 0; padding: 22px 0 4px; border-top: 1px solid var(--linha); text-wrap: balance; }
 /* animação do triângulo: a base primeiro, depois a leveza */
 .triangulo.anima .tri-linha { stroke-dasharray: 1; stroke-dashoffset: 1; animation: tracar 2s cubic-bezier(.45,.05,.3,1) .3s forwards; }
-.triangulo.anima .tri-fundo, .triangulo.anima .tm, .triangulo.anima .tri-sub { opacity: 0; animation: aparecer .9s ease 2.3s forwards; }
+.triangulo.anima .tri-fundo, .triangulo.anima .tm, .triangulo.anima .tri-sub, .triangulo.anima .tri-seta, .triangulo.anima .te { opacity: 0; animation: aparecer .9s ease 2.3s forwards; }
 .triangulo.anima .v, .triangulo.anima .tl { opacity: 0; transform-box: fill-box; transform-origin: center; animation: brotar .6s cubic-bezier(.2,.7,.2,1) forwards; }
 .triangulo.anima .o { animation-delay: .3s; }
 .triangulo.anima .b { animation-delay: 1s; }
@@ -396,18 +399,24 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
       <div class="retrato" id="retrato" hidden></div>
     </div>
     <h1 class="titulo entra" style="--i:1">Um bom projeto não começa escolhendo móveis. Começa entendendo como eles vão <em class="bordo">funcionar juntos.</em></h1>
-    <p class="manifesto entra" style="--i:3">Porque acredito fielmente que uma casa se sustenta como um triângulo: <b>ordem</b> e <b>beleza</b> são a base, e a <b>leveza</b> nasce delas.</p>
+    <p class="manifesto entra" style="--i:3">Porque acredito fielmente que <b>ordem</b> e <b>beleza</b> são a base de uma casa, e a <b>leveza</b> nasce do equilíbrio entre elas.</p>
     <p class="entra" style="--i:4">É muito mais fácil ter leveza no dia a dia, para fazer as coisas e para sermos pessoas melhores, mães e parceiras melhores, quando a casa está <b>organizada e bonita</b>. A beleza acalma a alma.</p>
   </div>
   <figure class="triangulo" id="triangulo">
-    <svg viewBox="0 0 440 400" role="img" aria-label="Triângulo com Ordem e Beleza na base, Leveza no topo e a sua casa no centro">
+    <svg viewBox="0 0 440 440" role="img" aria-label="Desenho à mão: Ordem e Beleza na base, o equilíbrio entre elas, e a Leveza no topo, com a sua casa no centro">
+      <defs><marker id="seta-c" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M1.5 1.5 L8.5 5 L1.5 8.5" fill="none" stroke="#3A2621" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></marker><marker id="seta-b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M1.5 1.5 L8.5 5 L1.5 8.5" fill="none" stroke="#773131" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></marker></defs>
       <path class="tri-fundo" d="M60 329 C150 333 290 326 381 331 C330 245 272 150 221 63 C168 150 112 240 60 329 Z"/>
       <path class="tri-linha" d="M48 332 C150 327 290 335 392 328 M385 336 C332 248 272 150 217 55 M226 57 C170 150 112 246 53 339" pathLength="1"/>
       <path class="tri-linha tri-linha2" d="M62 326 C160 331 280 325 378 333 M377 327 C326 242 268 152 222 68 M216 70 C166 152 108 238 64 324" pathLength="1"/>
       <circle class="v o" cx="58" cy="331" r="5"/><circle class="v b" cx="383" cy="330" r="5"/><circle class="v l" cx="221" cy="61" r="5"/>
-      <text class="tl o" x="58" y="374" text-anchor="middle">Ordem</text>
-      <text class="tl b" x="382" y="374" text-anchor="middle">Beleza</text>
-      <text class="tl l" x="220" y="36" text-anchor="middle">Leveza</text>
+      <path class="tri-seta" d="M50 382 C42 370 44 356 52 345" marker-end="url(#seta-c)"/>
+      <path class="tri-seta" d="M390 382 C398 370 396 356 388 345" marker-end="url(#seta-c)"/>
+      <path class="tri-seta" d="M292 44 C272 30 250 36 235 52" marker-end="url(#seta-c)"/>
+      <path class="tri-seta bordo" d="M112 360 C160 366 200 354 220 360 C245 367 290 355 328 360" marker-start="url(#seta-b)" marker-end="url(#seta-b)"/>
+      <text class="tl o" x="58" y="414" text-anchor="middle">Ordem</text>
+      <text class="tl b" x="382" y="414" text-anchor="middle">Beleza</text>
+      <text class="tl l" x="340" y="52" text-anchor="middle">Leveza</text>
+      <text class="te" x="220" y="398" text-anchor="middle">equilíbrio</text>
       <text class="tm" x="220" y="262" text-anchor="middle">a sua casa</text>
       <path class="tri-sub" d="M162 276 C190 270 225 281 252 272 C262 269 272 271 279 274"/>
     </svg>
