@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Impressum · Gabriele Pinheiro</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Impressum von Gabriele Pinheiro, Interior designer.">
+<meta property="og:title" content="Impressum · Gabriele Pinheiro">
+<meta property="og:description" content="Impressum von Gabriele Pinheiro, Interior designer.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#FFFFFF">
+<script>window.wixSiteScript = true;</script>
+<link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<!--MENU-->
+<nav class="topo-nav" aria-label="Menu principal"><div class="topo-dentro"><a class="marca" data-pag="home" href="/" target="_top">Gabriele Pinheiro<small>Interior designer</small></a><button type="button" class="menu-botao" aria-expanded="false" aria-controls="menu-lista">Menu</button><ul class="menu" id="menu-lista"><li><a data-pag="home" href="/" target="_top">Home</a></li><li><a data-pag="sobre" href="/sobre-mim.html" target="_top">Sobre mim</a></li><li><a data-pag="diagnostico" href="/diagnostico-da-casa.html" target="_top">Diagnóstico da Casa</a></li><li><a data-pag="consultoria" href="/projetos.html" target="_top">Projetos</a></li></ul></div></nav>
+<!--/MENU-->
+
+<main class="pg"><article class="texto-legal" lang="de">
+<h1>Impressum</h1>
+<p><strong>Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</strong></p>
+<p>Gabriele Pinheiro Bernt Eymael</p>
+<p><strong>Kontakt</strong><br>
+E-Mail: <a href="mailto:gabriele@gabrielepinheiro.com">gabriele@gabrielepinheiro.com</a></p>
+<p><strong>Verantwortlich für den Inhalt nach § 18 Abs. 2 Medienstaatsvertrag (MStV)</strong><br>
+Gabriele Pinheiro Bernt Eymael</p>
+<p><strong>Verbraucherstreitbeilegung</strong><br>
+Ich bin nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+</article></main>
+
+<footer class="rodape">
+  <p class="assinatura">Gabriele Pinheiro<small>Interior designer</small></p>
+  <nav class="legal" aria-label="Informações legais">
+    <a hidden data-cfg="impressum" href="#" target="_top">Impressum</a>
+    <a hidden data-cfg="privacidade" href="#" target="_top">Datenschutz · Privacidade</a>
+  </nav>
+  <span>© <span class="n" id="ano">2026</span> Gabriele Pinheiro</span>
+  <span class="direitos">Textos, desenhos e imagens deste site são de autoria de Gabriele Pinheiro. Reprodução proibida sem autorização.</span>
+</footer>
+
+<script>
+/* =========================================================
+   CONFIGURAÇÃO · preencha aqui. Campo vazio = item escondido.
+   ========================================================= */
+window.GP_CONFIG = {
+  linkDiagnostico: "https://gabrielepinheiro.github.io/Diagnosticodacasa/?s=PERFIL", // o link do Diagnóstico da Casa
+  pedeSenha: false,     // true: mostra o aviso da senha do direct abaixo do botão
+  palavraChave: "DIAGNÓSTICO",
+  instagram: "gabrielepinhheiro", // o seu @ sem o arroba
+  portfolio: "",
+  premier: "",          // link de agendamento do Plano Express. Vazio: o botão leva ao diagnóstico.
+  whatsapp: "",         // NÃO preencher antes de confirmar o número oficial.
+  foto: "",             // link da sua foto (quadrada). Vazio: sem foto.
+  impressum: "/impressum.html",
+  privacidade: "/datenschutz.html"
+};
+</script>
+<script id="js-comum">
+/* Comum a todas as páginas: menu, links do diagnóstico, links legais, foto e ano */
+(function () {
+  var C = window.GP_CONFIG || {};
+  var nav = document.querySelector(".topo-nav"), botao = nav && nav.querySelector(".menu-botao");
+  if (botao) botao.addEventListener("click", function () {
+    var aberto = nav.classList.toggle("aberto");
+    botao.setAttribute("aria-expanded", String(aberto));
+  });
+  document.querySelectorAll("[data-link=diagnostico]").forEach(function (a) { if (C.linkDiagnostico) a.href = C.linkDiagnostico; });
+  var urls = { impressum: C.impressum, privacidade: C.privacidade };
+  document.querySelectorAll("[data-cfg]").forEach(function (el) {
+    var u = urls[el.dataset.cfg]; if (!u) return;
+    var a = el.tagName === "A" ? el : el.querySelector("a"); a.href = u; el.hidden = false;
+  });
+  var foto = document.getElementById("foto-sobre");
+  if (foto && C.foto) {
+    foto.innerHTML = '<img src="' + encodeURI(C.foto) + '" alt="Gabriele Pinheiro">';
+    foto.hidden = false; foto.parentElement.classList.add("com-foto");
+  }
+  var ano = document.getElementById("ano"); if (ano) ano.textContent = new Date().getFullYear();
+  if (C.previa) document.querySelectorAll("a[data-pag]").forEach(function (a) {
+    if (C.previa[a.dataset.pag]) { a.href = C.previa[a.dataset.pag]; a.removeAttribute("target"); }
+  });
+  if (C.previa) document.querySelectorAll("a[data-cfg=impressum], a[data-cfg=privacidade]").forEach(function (a) { a.removeAttribute("target"); });
+})();
+</script>
+</body>
+</html>
