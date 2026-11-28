@@ -250,6 +250,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 .contatos .seta { color: var(--bordo); }
 .rodape { max-width: 1200px; margin: 0 auto; padding: 24px max(16px, env(safe-area-inset-right, 0px)) 44px max(16px, env(safe-area-inset-left, 0px)); display: grid; justify-items: center; gap: 12px; text-align: center; font-size: .82rem; color: var(--cacau-2); border-top: 1px solid var(--linha); }
 .rodape .assinatura { color: var(--cacau); }
+.rodape .direitos { font-size: .72rem; color: var(--cacau-2); max-width: 32em; text-align: center; }
 .legal { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; }
 .legal a { text-underline-offset: 3px; }
 
@@ -388,12 +389,55 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 .texto-legal p { margin: 0 0 14px; }
 .texto-legal ul { margin: 0 0 14px; padding-left: 20px; }
 .texto-legal a { color: var(--bordo); text-underline-offset: 3px; }
+
+/* ---------- Projetos: o mesmo ambiente em três níveis e a tabela comparativa ---------- */
+.seletor { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 2px; }
+.seletor button { font: 500 .9rem var(--texto); min-height: 44px; padding: 10px 18px; border: 1px solid var(--linha); border-radius: 999px; background: var(--branco); color: var(--cacau); cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+.seletor button[aria-pressed="true"] { background: var(--bordo); border-color: var(--bordo); color: var(--branco); }
+.seletor button:focus-visible { outline: 2px solid var(--bordo); outline-offset: 2px; }
+.sala { margin: 4px 0 0; display: grid; gap: 12px; }
+.sala svg { width: 100%; max-width: 720px; height: auto; justify-self: center; overflow: visible; }
+.sala .tr { fill: none; stroke: var(--cacau); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.sala .tr2 { fill: none; stroke: var(--cacau); stroke-width: .9; opacity: .45; stroke-linecap: round; }
+.sala .trb { fill: none; stroke: var(--bordo); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.sala .trv { fill: none; stroke: var(--cacau-2); stroke-width: 1.4; stroke-linecap: round; }
+.sala .tinta { fill: var(--anturio); fill-opacity: .35; }
+.sala .luz { fill: var(--anturio); fill-opacity: .25; }
+.sala .seta { fill: none; stroke: var(--bordo); stroke-width: 1.3; stroke-linecap: round; }
+.sala .tn { font-family: var(--mao); font-size: 30px; fill: var(--bordo); }
+.sala g, .sala .vaso { transition: opacity .5s ease; }
+#niveis[data-nivel="1"] .n2, #niveis[data-nivel="1"] .n3, #niveis[data-nivel="2"] .n3,
+#niveis[data-nivel="2"] .so1, #niveis[data-nivel="3"] .so1,
+#niveis:not([data-nivel="1"]) .nota1, #niveis:not([data-nivel="2"]) .nota2, #niveis:not([data-nivel="3"]) .nota3 { opacity: 0; }
+.sala figcaption p { margin: 0; max-width: 46em; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.comparar th[scope="row"] { font: 400 .92rem/1.4 var(--texto); letter-spacing: 0; text-transform: none; color: var(--cacau); }
+.comparar thead th { font-size: .75rem; }
+.comparar td { vertical-align: middle; }
+.comparar tr.ideal td, .comparar tr.ideal th { font-size: .85rem; color: var(--cacau-2); vertical-align: top; }
+.comparar .sim { font-size: 0; display: inline-block; width: 18px; height: 18px; border-radius: 50%; background: var(--bordo); position: relative; vertical-align: middle; }
+.comparar .sim::after { content: ""; position: absolute; left: 5px; top: 5px; width: 7px; height: 4px; border-left: 1.6px solid var(--branco); border-bottom: 1.6px solid var(--branco); transform: rotate(-45deg); }
+.comparar .nao { font-size: 0; display: inline-block; width: 12px; height: 1px; background: var(--cacau-2); vertical-align: middle; }
+.comparar .qt { font: 700 1rem var(--num); color: var(--bordo); }
+.comparar[data-sel="1"] .c1, .comparar[data-sel="2"] .c2, .comparar[data-sel="3"] .c3 { background: var(--branco); }
+.comparar[data-sel="1"] th.c1, .comparar[data-sel="2"] th.c2, .comparar[data-sel="3"] th.c3 { color: var(--bordo); box-shadow: inset 0 2px 0 var(--bordo); }
+.comparar th.c1, .comparar th.c2, .comparar th.c3, .comparar td.c1, .comparar td.c2, .comparar td.c3 { padding-left: 12px; }
+.nota-tab { margin: 0; font-size: .88rem; color: var(--cacau-2); }
+.so-cel { display: none; }
+@media (max-width: 699px) {
+  .so-cel { display: flex; }
+  .comparar { min-width: 0; }
+  .comparar[data-sel="1"] .c2, .comparar[data-sel="1"] .c3, .comparar[data-sel="2"] .c1, .comparar[data-sel="2"] .c3,
+  .comparar[data-sel="3"] .c1, .comparar[data-sel="3"] .c2 { display: none; }
+  .sala .tn { font-size: 34px; }
+}
+@media (prefers-reduced-motion: reduce) { .sala g, .sala .vaso, .seletor button { transition: none; } }
 /*/PAGINAS*/
 </style>
 </head>
 <body>
 <!--MENU-->
-<nav class="topo-nav" aria-label="Menu principal"><div class="topo-dentro"><a class="marca" data-pag="home" href="https://www.gabrielepinheiro.com/" target="_top">Gabriele Pinheiro<small>Interior designer</small></a><button type="button" class="menu-botao" aria-expanded="false" aria-controls="menu-lista">Menu</button><ul class="menu" id="menu-lista"><li><a data-pag="home" href="https://www.gabrielepinheiro.com/" target="_top" aria-current="page">Home</a></li><li><a data-pag="sobre" href="https://www.gabrielepinheiro.com/sobre-mim" target="_top">Sobre mim</a></li><li><a data-pag="diagnostico" href="https://www.gabrielepinheiro.com/diagnostico-da-casa" target="_top">Diagnóstico da Casa</a></li><li><a data-pag="consultoria" href="https://www.gabrielepinheiro.com/consultoria" target="_top">Consultoria</a></li></ul></div></nav>
+<nav class="topo-nav" aria-label="Menu principal"><div class="topo-dentro"><a class="marca" data-pag="home" href="https://www.gabrielepinheiro.com/" target="_top">Gabriele Pinheiro<small>Interior designer</small></a><button type="button" class="menu-botao" aria-expanded="false" aria-controls="menu-lista">Menu</button><ul class="menu" id="menu-lista"><li><a data-pag="home" href="https://www.gabrielepinheiro.com/" target="_top" aria-current="page">Home</a></li><li><a data-pag="sobre" href="https://www.gabrielepinheiro.com/sobre-mim" target="_top">Sobre mim</a></li><li><a data-pag="diagnostico" href="https://www.gabrielepinheiro.com/diagnostico-da-casa" target="_top">Diagnóstico da Casa</a></li><li><a data-pag="consultoria" href="https://www.gabrielepinheiro.com/projetos" target="_top">Projetos</a></li></ul></div></nav>
 <!--/MENU-->
 
 <header class="abertura">
@@ -446,7 +490,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
     </div>
     <nav aria-label="Nesta página" class="entra" style="--i:5"><ul class="atalhos">
       <li><a href="#comece">Diagnóstico da Casa</a></li>
-      <li><a href="#premier">Premier</a></li>
+      <li><a href="#premier">Plano Express</a></li>
       <li><a href="#projetos">Projetos</a></li>
       <li><a href="#processo">Como funciona</a></li>
     </ul></nav>
@@ -512,13 +556,13 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 
     <section class="bloco" id="premier" aria-labelledby="t-premier">
       <p class="rot">Para a casa inteira</p>
-      <h2 id="t-premier"><em>Premier</em>: <b>clareza</b> antes de <span class="mao">investir.</span></h2>
+      <h2 id="t-premier"><em>Plano Express</em>: <b>clareza</b> antes de <span class="mao">investir.</span></h2>
       <p>Para quem tem <b>muitas demandas na casa</b> e quer saber por onde começar.</p>
       <ul class="lista">
         <li><span class="ponto"></span><span>Call de <span class="n">1h30</span> com todas as demandas da casa</span></li>
         <li><span class="ponto"></span><span>Diagnóstico ambiente por ambiente</span></li>
         <li><span class="ponto"></span><span>Estratégia de execução: prioridades, ordem das compras e o que cada ambiente precisa</span></li>
-        <li><span class="ponto"></span><span>Plano Premier por escrito, em até <span class="n">5</span> dias úteis</span></li>
+        <li><span class="ponto"></span><span>O plano por escrito, em até <span class="n">5</span> dias úteis</span></li>
       </ul>
       <p>Decidiu investir em um projeto Essence, Maison ou Personalité em até <span class="n">60</span> dias? <b>Você recebe um bônus.</b></p>
       <a class="btn contorno largo" id="cta-premier" href="#comece">Começar pelo diagnóstico <span class="seta" aria-hidden="true">→</span></a>
@@ -619,6 +663,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
     <a hidden data-cfg="privacidade" href="#" target="_top">Datenschutz · Privacidade</a>
   </nav>
   <span>© <span class="n" id="ano">2026</span> Gabriele Pinheiro</span>
+  <span class="direitos">Textos, desenhos e imagens deste site são de autoria de Gabriele Pinheiro. Reprodução proibida sem autorização.</span>
 </footer>
 
 <script>
@@ -631,7 +676,7 @@ window.GP_CONFIG = {
   palavraChave: "DIAGNÓSTICO",
   instagram: "gabrielepinhheiro", // o seu @ sem o arroba
   portfolio: "",
-  premier: "",          // link de agendamento da Premier. Vazio: o botão leva ao diagnóstico.
+  premier: "",          // link de agendamento do Plano Express. Vazio: o botão leva ao diagnóstico.
   whatsapp: "",         // NÃO preencher antes de confirmar o número oficial.
   foto: "",             // link da sua foto (quadrada). Vazio: sem foto.
   impressum: "https://www.gabrielepinheiro.com/impressum",
@@ -703,7 +748,7 @@ window.GP_CONFIG = {
   if (C.premier) {
     var p = document.getElementById("cta-premier");
     p.href = C.premier; p.target = "_blank"; p.rel = "noopener";
-    p.firstChild.textContent = "Agendar a Premier ";
+    p.firstChild.textContent = "Agendar o Plano Express ";
   }
   document.getElementById("ano").textContent = new Date().getFullYear();
 
