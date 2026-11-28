@@ -65,7 +65,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 .titulo b, .bloco h2 b, .manifesto b, .busco b, .citacao b { font-family: inherit; font-weight: 400; font-style: inherit; font-size: inherit; letter-spacing: .005em; -webkit-text-stroke: .032em currentColor; paint-order: stroke fill; }
 .bloco h2 em, .manifesto em, .titulo em { font-style: italic; }
 
-/* Abertura: a filosofia e o triângulo, lidos como um só pensamento */
+/* Abertura: a filosofia e o desenho dos dois círculos, lidos como um só pensamento */
 .abertura {
   max-width: 1200px; margin: 0 auto;
   padding: 28px max(16px, env(safe-area-inset-right, 0px)) 8px max(16px, env(safe-area-inset-left, 0px));
@@ -79,20 +79,25 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 .abertura-texto > p:not(.manifesto):not(.ponte) { margin: 0; max-width: 36em; }
 .triangulo { margin: 0; justify-self: center; width: 100%; max-width: 380px; }
 .triangulo svg { display: block; width: 100%; height: auto; overflow: visible; }
-.triangulo .tl { font-family: var(--mao); font-size: 46px; fill: var(--cacau); }
-.triangulo .tm { font-family: var(--mao); font-size: 40px; fill: var(--bordo); }
+.triangulo .tl { font-family: var(--mao); font-size: 40px; fill: var(--cacau); }
+.triangulo .tm { font-family: var(--mao); font-size: 36px; fill: var(--bordo); }
 .triangulo .v { fill: var(--bordo); }
 .triangulo .tri-fundo { fill: var(--anturio); fill-opacity: .22; }
 .triangulo .tri-linha { fill: none; stroke: var(--cacau); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .triangulo .tri-linha2 { stroke-width: .9; opacity: .45; }
 .triangulo .tri-sub { fill: none; stroke: var(--bordo); stroke-width: 1.6; stroke-linecap: round; }
+.triangulo .tri-seta { fill: none; stroke: var(--cacau); stroke-width: 1.4; stroke-linecap: round; }
+.triangulo .tri-seta.bordo { stroke: var(--bordo); }
+.triangulo .te { font-family: var(--mao); font-size: 36px; fill: var(--bordo); }
 .convite-diag { margin: 0; background: var(--nevoa); border: 1px solid var(--linha); border-left: 3px solid var(--bordo); padding: 20px 20px 22px; display: grid; gap: 10px; justify-items: start; }
 .convite-diag .rot { color: var(--bordo); margin: 0; }
 .convite-diag .convite-frase { margin: 0; font: 400 clamp(1.3rem, 4.8vw, 1.55rem)/1.25 var(--display); color: var(--cacau); }
-.busco { font: 400 clamp(1.35rem, 5vw, 1.75rem)/1.35 var(--display); margin: 6px 0 0; padding: 22px 0 4px; border-top: 1px solid var(--linha); text-wrap: balance; }
-/* animação do triângulo: a base primeiro, depois a leveza */
+.busco { font: 400 clamp(1.35rem, 5vw, 1.75rem)/1.35 var(--display); margin: 6px 0 0; padding: 22px 0 4px; border-top: 1px solid var(--linha); text-wrap: balance; display: grid; gap: 12px; }
+.busco p { margin: 0; }
+.busco .busco-2 { font: 300 1rem/1.6 var(--texto); color: var(--cacau-2); max-width: 36em; text-wrap: pretty; }
+/* animação do desenho: os dois círculos primeiro, depois a leveza no encontro */
 .triangulo.anima .tri-linha { stroke-dasharray: 1; stroke-dashoffset: 1; animation: tracar 2s cubic-bezier(.45,.05,.3,1) .3s forwards; }
-.triangulo.anima .tri-fundo, .triangulo.anima .tm, .triangulo.anima .tri-sub { opacity: 0; animation: aparecer .9s ease 2.3s forwards; }
+.triangulo.anima .tri-fundo, .triangulo.anima .tm, .triangulo.anima .tri-sub, .triangulo.anima .tri-seta, .triangulo.anima .te { opacity: 0; animation: aparecer .9s ease 2.3s forwards; }
 .triangulo.anima .v, .triangulo.anima .tl { opacity: 0; transform-box: fill-box; transform-origin: center; animation: brotar .6s cubic-bezier(.2,.7,.2,1) forwards; }
 .triangulo.anima .o { animation-delay: .3s; }
 .triangulo.anima .b { animation-delay: 1s; }
@@ -253,6 +258,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
   .abertura-texto { grid-column: 1; }
   .triangulo { grid-column: 2; grid-row: 1; max-width: 400px; }
   .busco { grid-column: 1 / -1; text-align: center; max-width: 820px; justify-self: center; padding-top: 30px; }
+  .busco .busco-2 { justify-self: center; }
   .convite-diag { grid-column: 1 / -1; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 32px; padding: 24px 32px; }
   .convite-diag .rot { grid-column: 1; }
   .convite-diag .convite-frase { grid-column: 1; }
@@ -395,21 +401,23 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
     <div class="abertura-texto">
       <p class="rot entra" style="--i:0">Sobre mim</p>
       <h1 class="entra" style="--i:1">Olá, eu sou a <em class="bordo">Gabriele.</em></h1>
-      <p class="lede entra" style="--i:2">Transformo referências, necessidades e escolhas em <b>casas que funcionam como um todo.</b></p>
+      <p class="lede entra" style="--i:2">Transformo referências, necessidades e escolhas em casas com <b>ordem, beleza e leveza</b>, que funcionam como um todo.</p>
       <div class="texto-longo entra" style="--i:3">
-        <p>Sou formada em Arquitetura e Urbanismo pela Universidade Belas Artes de São Paulo e trabalho com <b>interiores residenciais há mais de 8 anos</b>.</p>
-        <p>Em 2020 me mudei para a Alemanha e vivi na prática o que é recomeçar uma casa longe do Brasil: entender o espaço, as lojas e os limites de um imóvel alugado.</p>
-        <p>Há 6 anos atendo <b>apenas famílias brasileiras pelo mundo</b>, com projetos 100% online, para casas em mais de 10 países.</p>
+        <p>Sou formada em Arquitetura e Urbanismo pela Universidade Belas Artes de São Paulo, me especializei em design de interiores na Alemanha e trabalho <b>exclusivamente com interiores residenciais há mais de 8 anos</b>.</p>
+        <p>Em 2020 me mudei para a Alemanha e vivi na prática o que é recomeçar uma casa longe do Brasil: entender o espaço, a realidade das casas europeias e os limites de cada imóvel.</p>
+        <p>Nesse recomeço, mergulhei no estilo escandinavo, tão presente por aqui, e por um tempo deixei de lado o que era meu. Depois me reencontrei, e essa experiência mudou a forma como eu projeto: hoje cada casa começa por quem vive nela.</p>
+        <p>Há 6 anos atendo <b>famílias brasileiras pelo mundo</b>, principalmente na Europa, com projetos 100% online. Já fiz projetos em mais de 10 países.</p>
       </div>
     </div>
     <div class="foto-sobre entra" style="--i:2" id="foto-sobre" hidden></div>
   </header>
 
   <section class="bloco" aria-labelledby="t-olhar">
-    <p class="rot">O que guia o meu trabalho</p>
-    <h2 id="t-olhar">Repertório, critério e <span class="mao">personalidade</span></h2>
+    <p class="rot">Além da ordem, da beleza e da leveza</p>
+    <h2 id="t-olhar">O que sustenta cada <span class="mao">decisão</span></h2>
+    <p>A ordem, a beleza e a leveza são o resultado que eu busco. Para chegar até elas, cada escolha passa por três filtros.</p>
     <div class="grade g3" style="margin-top:12px">
-      <div class="cartao-n"><span class="n">01</span><h3>Repertório</h3><p>Conhecimento de design, marcas, materiais, referências e possibilidades.</p></div>
+      <div class="cartao-n"><span class="n">01</span><h3>Repertório</h3><p>Conhecimento de design, marcas e materiais para propor caminhos que você ainda não tinha considerado.</p></div>
       <div class="cartao-n"><span class="n">02</span><h3>Critério</h3><p>Selecionar, combinar, dimensionar e <b>justificar cada escolha</b>.</p></div>
       <div class="cartao-n"><span class="n">03</span><h3>Personalidade</h3><p>Uma identidade reconhecível, <b>sem impor o mesmo estilo</b> a todas as clientes.</p></div>
     </div>
@@ -418,27 +426,28 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
   <section class="bloco claro largo-2" aria-labelledby="t-identidade">
     <div>
       <p class="rot">Identidade de projeto</p>
-      <h2 id="t-identidade">Interiores contemporâneos com repertório, <em>contraste</em> e <span class="bordo">memória</span></h2>
-      <p>Isso não significa que todos os ambientes serão iguais. São as características que aparecem com frequência no meu olhar.</p>
+      <h2 id="t-identidade">O que aparece com frequência no meu <span class="mao">olhar</span></h2>
+      <p>Isso não significa que todos os ambientes sejam iguais. São as características que aparecem com frequência no meu olhar.</p>
     </div>
     <div class="grade g2">
-      <div class="cartao-n"><h3>Base contemporânea</h3><p>Linhas atuais, proporções cuidadosas e composição sem excessos.</p></div>
-      <div class="cartao-n"><h3>Contraste e memória</h3><p>O novo convivendo com o antigo, peças com história e referências de diferentes épocas.</p></div>
-      <div class="cartao-n"><h3>Materialidade e texturas</h3><p>Madeiras, tecidos, pedras e superfícies que criam profundidade.</p></div>
+      <div class="cartao-n"><h3>Base contemporânea</h3><p>Linhas mais retas, proporções cuidadosas e composições sem excessos.</p></div>
+      <div class="cartao-n"><h3>O que a sua casa já tem</h3><p>Nem todo projeto precisa começar do zero. A sua casa tem uma história, e eu combino as peças que já existem com as novas para que tudo fique bonito e faça sentido junto.</p></div>
+      <div class="cartao-n"><h3>Materialidade e texturas</h3><p>A mistura de madeiras, tecidos, pedras e outras superfícies é o que traz charme a qualquer ambiente.</p></div>
       <div class="cartao-n"><h3>Arte, cor e vegetação</h3><p>Elementos que acrescentam interesse, contraste e personalidade.</p></div>
     </div>
   </section>
 
-  <section class="bloco largo-2" aria-labelledby="t-para-quem">
-    <div>
-      <p class="rot">Para quem eu trabalho</p>
-      <h2 id="t-para-quem">Para quem sabe do que gosta e quer <span class="mao">um projeto.</span></h2>
+  <section class="bloco" aria-labelledby="t-para-quem">
+    <p class="rot">Para quem é o meu trabalho</p>
+    <h2 id="t-para-quem">Para quem quer uma casa com a sua cara e precisa de ajuda para <span class="mao">chegar lá</span></h2>
+    <p>Talvez você se reconheça em uma destas situações.</p>
+    <div class="grade g2" style="margin-top:12px">
+      <div class="cartao-n"><h3>Você sabe do que gosta</h3><p>Salva referências, conhece marcas e reconhece o que acha bonito. Mas <b>não sabe como juntar tudo em um ambiente coerente</b>: a disposição dos móveis, as proporções, os materiais.</p></div>
+      <div class="cartao-n"><h3>Você ainda não sabe qual é o seu estilo</h3><p>Sente que a casa não está como gostaria, mas não consegue dizer o que falta. Juntas, descobrimos o seu estilo a partir da sua rotina e do que já faz parte da sua vida.</p></div>
+      <div class="cartao-n"><h3>Você mudou de país</h3><p>Pela sua carreira ou acompanhando a da sua família, chegou a uma realidade nova e precisa montar ou adaptar a casa a ela.</p></div>
+      <div class="cartao-n"><h3>Você quer investir com segurança</h3><p>Pode investir em bons móveis e materiais, mas quer ter certeza de que <b>cada escolha faz sentido</b> antes de comprar.</p></div>
     </div>
-    <div class="texto-longo">
-      <p>Você valoriza estética e design, salva referências, conhece marcas e sabe reconhecer o que considera bonito.</p>
-      <p>Mas <b>saber do que gosta não significa saber transformar tudo isso em um ambiente coerente</b>: a disposição dos móveis, as proporções, as medidas, os materiais e como cada peça funciona com as outras.</p>
-      <p>É aí que eu entro. Interpreto as suas referências e transformo em decisões, para você investir com segurança e reconhecer as suas preferências no resultado.</p>
-    </div>
+    <p>Em comum, todas valorizam a própria casa e querem reconhecer o seu jeito no resultado.</p>
   </section>
 
   <section class="fecho" aria-labelledby="t-fecho-sobre">

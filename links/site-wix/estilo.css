@@ -80,7 +80,9 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
 .convite-diag { margin: 0; background: var(--nevoa); border: 1px solid var(--linha); border-left: 3px solid var(--bordo); padding: 20px 20px 22px; display: grid; gap: 10px; justify-items: start; }
 .convite-diag .rot { color: var(--bordo); margin: 0; }
 .convite-diag .convite-frase { margin: 0; font: 400 clamp(1.3rem, 4.8vw, 1.55rem)/1.25 var(--display); color: var(--cacau); }
-.busco { font: 400 clamp(1.35rem, 5vw, 1.75rem)/1.35 var(--display); margin: 6px 0 0; padding: 22px 0 4px; border-top: 1px solid var(--linha); text-wrap: balance; }
+.busco { font: 400 clamp(1.35rem, 5vw, 1.75rem)/1.35 var(--display); margin: 6px 0 0; padding: 22px 0 4px; border-top: 1px solid var(--linha); text-wrap: balance; display: grid; gap: 12px; }
+.busco p { margin: 0; }
+.busco .busco-2 { font: 300 1rem/1.6 var(--texto); color: var(--cacau-2); max-width: 36em; text-wrap: pretty; }
 /* animação do desenho: os dois círculos primeiro, depois a leveza no encontro */
 .triangulo.anima .tri-linha { stroke-dasharray: 1; stroke-dashoffset: 1; animation: tracar 2s cubic-bezier(.45,.05,.3,1) .3s forwards; }
 .triangulo.anima .tri-fundo, .triangulo.anima .tm, .triangulo.anima .tri-sub, .triangulo.anima .tri-seta, .triangulo.anima .te { opacity: 0; animation: aparecer .9s ease 2.3s forwards; }
@@ -244,6 +246,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; margin: 0; text-wrap
   .abertura-texto { grid-column: 1; }
   .triangulo { grid-column: 2; grid-row: 1; max-width: 400px; }
   .busco { grid-column: 1 / -1; text-align: center; max-width: 820px; justify-self: center; padding-top: 30px; }
+  .busco .busco-2 { justify-self: center; }
   .convite-diag { grid-column: 1 / -1; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: 32px; padding: 24px 32px; }
   .convite-diag .rot { grid-column: 1; }
   .convite-diag .convite-frase { grid-column: 1; }
